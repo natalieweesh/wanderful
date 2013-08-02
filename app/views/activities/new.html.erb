@@ -1,6 +1,7 @@
 <h3>create a new activity</h3>
 
 <form action="<%= activities_url %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <label for="activity_description">description</label>
   <input type="text" name="activity[description]" id="activity_description">
   

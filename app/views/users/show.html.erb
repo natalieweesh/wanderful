@@ -4,6 +4,17 @@
 
 <h3>your activities</h3>
 
+<ul>
+  <% @user.activities.each do |activity| %>
+  <li><%= activity.description %>
+    <ul>
+      <li><%= activity.venue %></li>
+      <li><%= activity.neighborhood %></li>
+    </ul>
+  </li>
+  <% end %>
+</ul>
+
 <h3>your itineraries</h3>
 
 <h3>your favorite itineraries</h3>
