@@ -1,1 +1,25 @@
 <h1>home!</h1>
+
+<section>
+  
+  <%= button_to "your profile", user_url(current_user.id), method: :get %>
+</section>
+
+<h3>hello!</h3>
+<section>
+  <button>find something to do</button>
+  <button>share something to do</button>
+</section>
+
+<h3>share stuff to do</h3>
+<section>
+  <button>add an activity</button>
+  <button>add an itinerary</button>
+</section>
+
+<h3>find something to do</h3>
+<section>
+  <button>search for something to do</button>
+  <%= button_to "see what your friends are up to", all_users_url, method: :get %>
+  <button>find something random to do</button>
+</section>
