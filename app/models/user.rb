@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
          
   # attr_accessible :title, :body
   validates :username, :uniqueness => { :case_sensitive => false }
+  
+  has_many :activities
+  
+  
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)

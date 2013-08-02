@@ -7,6 +7,7 @@ Capstone::Application.routes.draw do
   resources :users, except: [ :index ]
   resources :users, only: [:index], as: 'all_users'
   
+  resources :activities
   
   
 

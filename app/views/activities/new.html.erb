@@ -1,0 +1,21 @@
+<h3>create a new activity</h3>
+
+<form action="<%= activities_url %>" method="post">
+  <label for="activity_description">description</label>
+  <input type="text" name="activity[description]" id="activity_description">
+  
+  <label for="activity_venue">venue</label>
+  <input type="text" name="activity[venue]" id="activity_venue">
+  
+  <label for="activity_neighborhood">neighborhood</label>
+  <input type="text" name="activity[neighborhood]" id="activity_neighborhood">
+  
+  <select name="activity[tag_ids][]">
+    <% Tag.all.each do |tag| %>
+    <option value="<%= tag.id %>"><%= tag.name %></option>
+    <% end %>
+  </select>
+  
+  <input type="submit" value="go!">
+  
+</form>
