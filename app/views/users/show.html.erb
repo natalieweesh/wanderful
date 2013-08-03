@@ -8,8 +8,9 @@
   <% @user.activities.each do |activity| %>
   <li><%= activity.description %>
     <ul>
-      <li><%= activity.venue %></li>
-      <li><%= activity.neighborhood %></li>
+      <li>venue: <%= activity.venue %></li>
+      <li>neighborhood: <%= activity.neighborhood %></li>
+      <li>tags: <%= activity.tags.map{|tag| tag.name}.join(", ") %></li>
     </ul>
   </li>
   <% end %>

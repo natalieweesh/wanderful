@@ -2,6 +2,7 @@ class ActivitiesController < ApplicationController
   
   def new
     @activity = Activity.new
+    @tags = Tag.all
   end
   
   def create

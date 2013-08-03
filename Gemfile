@@ -28,6 +28,8 @@ group :development do
   gem "better_errors"
 end
 
+gem 'underscore-rails'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

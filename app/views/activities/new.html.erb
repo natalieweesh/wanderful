@@ -11,12 +11,46 @@
   <label for="activity_neighborhood">neighborhood</label>
   <input type="text" name="activity[neighborhood]" id="activity_neighborhood">
   
-  <select name="activity[tag_ids][]">
-    <% Tag.all.each do |tag| %>
-    <option value="<%= tag.id %>"><%= tag.name %></option>
-    <% end %>
-  </select>
+  
+  <div id="tags">
+    <script type="text/template" id="tags_template">
+      <select id="tag_<%%= tag_select_id %>" name="activity[tag_ids][]">
+      <option value="">choose ...</option>
+        <% @tags.each do |tag| %>
+          <option value="<%= tag.id %>">
+            <%= tag.name %>
+          </option>
+        <% end %>
+      </select>
+    </script>
+    <a href="#" id="add_tags_button">add another tag</a>
+  </div>
+  
+  
   
   <input type="submit" value="go!">
   
 </form>
+
+
+
+
+<script type="application/javascript">
+  var counter = 0;
+  var addSelect = function(){
+    var templateCode = $('#tags_template').html();
+    var templateFn = _.template(templateCode);
+    var renderedContent = templateFn({
+      tag_select_id: counter
+    })
+
+    $('#add_tags_button').before(renderedContent);
+    counter++;
+  };
+  addSelect();
+  $('#add_tags_button').on('click', function(event) {
+    event.preventDefault();
+    addSelect();
+  });
+
+</script>
