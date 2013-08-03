@@ -14,7 +14,7 @@
   
   <script type="text/template" id="tags_template">
     <select id="tag_<%%= tag_select_id %>" name="activity[tag_ids][]">
-    <option value="">choose ...</option>
+    <option value=""></option>
       <% @tags.each do |tag| %>
         <option value="<%= tag.id %>">
           <%= tag.name %>

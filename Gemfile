@@ -27,6 +27,7 @@ gem 'devise'
 group :development do
   gem "better_errors"
 end
+gem "binding_of_caller"
 
 gem 'underscore-rails'
 

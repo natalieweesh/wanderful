@@ -3,4 +3,7 @@ class Tag < ActiveRecord::Base
   
   has_many :tags_joins
   has_many :activities, through: :tags_joins
+  
+  validates :name, presence: true, allow_blank: false
+  validates_uniqueness_of :name
 end

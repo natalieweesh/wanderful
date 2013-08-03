@@ -6,6 +6,11 @@ class ActivitiesController < ApplicationController
   end
   
   def create
+    if params[:activity][:tag_ids].all?{|tag| tag==""}
+      flash[:notice] = "must have at least one tag"
+      redirect_to new_activity_url
+    end
+    
     @activity = Activity.new(params[:activity])
     @activity.user_id = current_user.id
     if @activity.save
