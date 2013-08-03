@@ -4,12 +4,12 @@
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="text" name="itinerary[description]">
   <select name="itinerary[time_it_takes]">
-    <option value="1">less than an hour</option>
-    <option value="2">one to two hours</option>
-    <option value="3">three to four hours</option>
-    <option value="4">five to six hours</option>
-    <option value="5">half a day</option>
-    <option value="6">the whole day</option>
+    <option value="0">less than an hour</option>
+    <option value="1">one to two hours</option>
+    <option value="2">three to four hours</option>
+    <option value="3">five to six hours</option>
+    <option value="4">half a day</option>
+    <option value="5">a whole day</option>
   </select>
   
   <% Activity.all.each do |activity| %>

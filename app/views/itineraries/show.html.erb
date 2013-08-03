@@ -1,1 +1,23 @@
 <h3>itinerary show page</h3>
+
+<li>description:
+  <%= @itinerary.description %>
+</li>
+
+<li>time it takes:
+  <%= @itinerary.time %>
+</li>
+
+<li>activities:
+  <ul>
+    <% @itinerary.activities.each do |activity| %>
+    <li><%= link_to activity.description, activity_url(activity.id) %></li>
+    <ul>
+      <li><%= activity.venue %></li>
+      <li><%= activity.neighborhood %></li>
+      <li><%= activity.tags.map{|tag| tag.name}.join(", ") %></li>
+    </ul>
+    <% end %>
+    
+  </ul>
+</li>

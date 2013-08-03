@@ -21,4 +21,6 @@ class ItinerariesController < ApplicationController
       
   end
   
+
+  
 end
