@@ -22,8 +22,9 @@
 <section class="find_something">
   <h3>find something to do</h3>
   <button>search for something to do</button>
-  <%= button_to "see what other people are up to", all_users_url, method: :get %>
-  <button>find something random to do</button>
+  <%= button_to "see what other people are up to", all_users_url, method: :get %>  
+  <%= button_to "find something random to do", itinerary_url(@random_id), method: :get %>
+  
   <button class="back_button">back</button>
 </section>
 
@@ -31,8 +32,6 @@
   $(function() {
     $(".share_something").css("display", "none");
     $(".find_something").css("display", "none");
-    
-    
   });
 
   $(".find_button").on("click", function(){
