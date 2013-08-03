@@ -1,0 +1,20 @@
+<h3>new itinerary page</h3>
+
+<form action="<%= itineraries_url %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="text" name="itinerary[description]">
+  <select name="itinerary[time_it_takes]">
+    <option value="1">less than an hour</option>
+    <option value="2">one to two hours</option>
+    <option value="3">three to four hours</option>
+    <option value="4">five to six hours</option>
+    <option value="5">half a day</option>
+    <option value="6">the whole day</option>
+  </select>
+  
+  <% Activity.all.each do |activity| %>
+    <input type="checkbox" name="itinerary[activity_ids][]" value="<%= activity.id %>"><%= activity.description %><br>
+  <% end %>
+  
+  <input type="submit" value="go!">
+</form>

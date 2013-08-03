@@ -9,7 +9,7 @@ Capstone::Application.routes.draw do
   
   resources :activities
   
-  
+  resources :itineraries
 
   
   # The priority is based upon order of creation:

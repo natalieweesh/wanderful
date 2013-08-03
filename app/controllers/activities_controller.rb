@@ -1,7 +1,7 @@
 class ActivitiesController < ApplicationController
   
   def new
-    @activity = Activity.new
+    @activity = Activity.new(params[:activity])
     @tags = Tag.all
   end
   

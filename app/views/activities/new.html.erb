@@ -12,19 +12,17 @@
   <input type="text" name="activity[neighborhood]" id="activity_neighborhood">
   
   
-  <div id="tags">
-    <script type="text/template" id="tags_template">
-      <select id="tag_<%%= tag_select_id %>" name="activity[tag_ids][]">
-      <option value="">choose ...</option>
-        <% @tags.each do |tag| %>
-          <option value="<%= tag.id %>">
-            <%= tag.name %>
-          </option>
-        <% end %>
-      </select>
-    </script>
-    <a href="#" id="add_tags_button">add another tag</a>
-  </div>
+  <script type="text/template" id="tags_template">
+    <select id="tag_<%%= tag_select_id %>" name="activity[tag_ids][]">
+    <option value="">choose ...</option>
+      <% @tags.each do |tag| %>
+        <option value="<%= tag.id %>">
+          <%= tag.name %>
+        </option>
+      <% end %>
+    </select>
+  </script>
+  <a href="#" id="add_tags_button">add another tag</a>
   
   
   
@@ -48,6 +46,7 @@
     counter++;
   };
   addSelect();
+  
   $('#add_tags_button').on('click', function(event) {
     event.preventDefault();
     addSelect();
