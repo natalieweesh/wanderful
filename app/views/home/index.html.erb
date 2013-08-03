@@ -1,25 +1,55 @@
 <h1>home!</h1>
 
+
 <section>
   
   <%= button_to "your profile", user_url(current_user.id), method: :get %>
 </section>
 
 <h3>hello!</h3>
-<section>
-  <button>find something to do</button>
-  <button>share something to do</button>
+<section class="buttons_group">
+  <button class="find_button">find something to do</button>
+  <button class="share_button">share something to do</button>
 </section>
 
-<h3>share stuff to do</h3>
-<section>
+<section class="share_something">
+  <h3>share stuff to do</h3>
   <%= button_to "add an activity", new_activity_url, method: :get %>
-  <button>add an itinerary</button>
+  <%= button_to "add an itinerary", new_itinerary_url, method: :get %>
+  <button class="back_button">back</button>
 </section>
 
-<h3>find something to do</h3>
-<section>
+<section class="find_something">
+  <h3>find something to do</h3>
   <button>search for something to do</button>
   <%= button_to "see what other people are up to", all_users_url, method: :get %>
   <button>find something random to do</button>
+  <button class="back_button">back</button>
 </section>
+
+<script type="application/javascript">
+  $(function() {
+    $(".share_something").css("display", "none");
+    $(".find_something").css("display", "none");
+    
+    
+  });
+
+  $(".find_button").on("click", function(){
+    $(".find_something").css("display", "block");
+    $(".buttons_group").css("display", "none");
+  });
+  
+  $(".share_button").on("click", function() {
+    $(".share_something").css("display", "block");
+    $(".buttons_group").css("display", "none");
+  });
+  
+  $(".back_button").on("click", function() {
+    $(".buttons_group").css("display", "block");
+    $(".share_something").css("display", "none");
+    $(".find_something").css("display", "none");
+  });
+
+  
+</script>
