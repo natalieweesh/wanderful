@@ -21,10 +21,21 @@
 
 <section class="find_something">
   <h3>find something to do</h3>
-  <button>search for something to do</button>
+  <button class="search_button">search for something to do</button>
   <%= button_to "see what other people are up to", all_users_url, method: :get %>  
   <%= button_to "find something random to do", itinerary_url(@random_id), method: :get %>
   
+  <button class="back_button">back</button>
+</section>
+
+<section class="query_group">
+  <form>
+    <select>
+      <% Tag.all.each do |tag| %>
+        <option value="<%= tag.id %>"><%= tag.name %></option>
+      <% end %>
+    </select>
+  </form>
   <button class="back_button">back</button>
 </section>
 
@@ -32,6 +43,7 @@
   $(function() {
     $(".share_something").css("display", "none");
     $(".find_something").css("display", "none");
+    $(".query_group").css("display", "none");
   });
 
   $(".find_button").on("click", function(){
@@ -44,11 +56,28 @@
     $(".buttons_group").css("display", "none");
   });
   
-  $(".back_button").on("click", function() {
+  $(".share_something").find(".back_button").on("click", function() {
     $(".buttons_group").css("display", "block");
     $(".share_something").css("display", "none");
     $(".find_something").css("display", "none");
   });
+
+  $(".find_something").find(".back_button").on("click", function() {
+    $(".buttons_group").css("display", "block");
+    $(".share_something").css("display", "none");
+    $(".find_something").css("display", "none");
+  });
+  
+  $(".search_button").on("click", function() {
+    $(".find_something").css("display", "none");
+    $(".query_group").css("display", "block")
+  });
+  
+  $(".query_group").find(".back_button").on("click", function() {
+    $(".query_group").css("display", "none");
+    $(".find_something").css("display", "block");
+  });
+  
 
   
 </script>
