@@ -28,12 +28,20 @@
 </section>
 
 <section class="query_group">
-  <form>
-    <select>
+  <h2>search for an activity</h2>
+  <form action="<%= search_activities_url %>" method="get">
+    <select name="search[tags][]">
       <% Tag.all.each do |tag| %>
         <option value="<%= tag.id %>"><%= tag.name %></option>
       <% end %>
     </select>
+    <select name="search[tags][]">
+      <% Tag.all.each do |tag| %>
+        <option value="<%= tag.id %>"><%= tag.name %></option>
+      <% end %>
+    </select>      
+      
+    <input type="submit" value="SEARCH">
   </form>
   <button class="back_button">back</button>
 </section>

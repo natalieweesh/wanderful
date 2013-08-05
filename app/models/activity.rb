@@ -19,4 +19,24 @@ class Activity < ActiveRecord::Base
     # errors.add(:tags, "must have at least one tag") unless self.tag_ids.length > 1  
   # end
   
+  def self.search(params)
+    @activities_found = []
+    if params["tags"]
+      search_tags_ids = params["tags"].map{|str| str.to_i}
+      p "TAGS_IDS"
+      p search_tags_ids
+
+      @activities_found += Activity.joins(:tags).where('tags.id IN (?)', search_tags_ids).group('activities.id').having('COUNT(*) >= ? ', search_tags_ids.length)
+        
+
+
+      
+    end
+    p "ACTIVITES FOUND!"
+    p @activities_found
+    p "DONEEEEEEEEEEEEEEE"
+    @activities_found
+
+  end
+  
 end

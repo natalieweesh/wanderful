@@ -26,4 +26,9 @@ class ActivitiesController < ApplicationController
     @activity = Activity.find(params[:id])
   end
   
+  def search
+    @search_results = Activity.search(params[:search])
+  end
+  
+  
 end

@@ -7,12 +7,23 @@ Capstone::Application.routes.draw do
   resources :users, except: [ :index ]
   resources :users, only: [:index], as: 'all_users'
   
-  resources :activities
+  resources :activities do
+    collection do
+      get 'search'
+    end
+  end
   
-  resources :itineraries
+  resources :itineraries do
+    collection do
+      get 'search'
+    end
+  end
+  
+  
   
   resources :favorites, only: [:create, :destroy]
-
+  
+  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
