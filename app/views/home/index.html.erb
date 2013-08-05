@@ -23,8 +23,7 @@
   <h3>find something to do</h3>
   <button class="search_button">search for something to do</button>
   <%= button_to "see what other people are up to", all_users_url, method: :get %>  
-  <%= button_to "find something random to do", itinerary_url(@random_id), method: :get %>
-  
+  <%= button_to "find something random to do", itinerary_url(Itinerary.get_random.id), method: :get %>
   <button class="back_button">back</button>
 </section>
 

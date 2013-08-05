@@ -4,6 +4,5 @@ class HomeController < ApplicationController
   
   
   def index
-    @random_id = rand(Itinerary.all.count) + 1;
   end
 end
