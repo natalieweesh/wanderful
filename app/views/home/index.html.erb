@@ -32,17 +32,20 @@
   <form action="<%= search_activities_url %>" method="get">
     <label>by neighborhood</label><br>
     <select name="search[neighborhood]">
+      <option value=""></option>
       <% Activity.all_neighborhoods.each do |neighborhood| %>
-      <option value="<% neighborhood %>"><%= neighborhood %></option>
+      <option value="<%= neighborhood %>"><%= neighborhood %></option>
       <% end %>
     </select>
     <br><label>by tags</label><br>
     <select name="search[tags][]">
+      <option value=""></option>
       <% Tag.all.each do |tag| %>
         <option value="<%= tag.id %>"><%= tag.name %></option>
       <% end %>
     </select>
     <select name="search[tags][]">
+      <option value=""></option>
       <% Tag.all.each do |tag| %>
         <option value="<%= tag.id %>"><%= tag.name %></option>
       <% end %>

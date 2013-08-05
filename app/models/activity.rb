@@ -20,21 +20,38 @@ class Activity < ActiveRecord::Base
   # end
   
   def self.search(params)
+    p "ALL PARAMS"
+    p params
     @activities_found = []
-    if params["tags"]
+    p "WHITTELED TAGS"
+    p params["tags"].delete("")
+    if !params["tags"].empty?
+      p "PARAMS TAGS"
+      p params["tags"]
       search_tags_ids = params["tags"].map{|str| str.to_i}
-      @activities_found += Activity.joins(:tags).where('tags.id IN (?)', search_tags_ids).group('activities.id').having('COUNT(*) >= ? ', search_tags_ids.length)
+      @activities_found_by_tags = Activity.joins(:tags).where('tags.id IN (?)', search_tags_ids).group('activities.id').having('COUNT(*) >= ? ', search_tags_ids.length)
+      p "ACTIVITIES FOUND BY TAGS"
+      p @activities_found_by_tags
     end
-    if params["neighborhood"]
-      @activities_found += Activity.find_all_by_neighborhood(params["neighborhood"])
+    if !params["neighborhood"].empty?
+      p "PARAMS NEIGHTBORHOOD"
+      p params["neighborhood"]
+      @activities_found_by_neighborhood = Activity.find_all_by_neighborhood(params["neighborhood"])
     end
-    p "ACTIVITES FOUND!"
-    p @activities_found.count
-    p "REDUCED UNIQUES"
-    p @activities_found.uniq.count
+    
+    if !@activities_found_by_tags.empty? && @activities_found_by_neighborhood.nil?
+      @activities_found = @activities_found_by_tags
+    elsif @activities_found_by_tags.empty? && !@activities_found_by_neighborhood.nil?
+      @activities_found = @activities_found_by_neighborhood
+    elsif @activities_found_by_tags.empty? && @activities_found_by_neighborhood.nil?
+      @activities_found = []
+    elsif !@activities_found_by_tags.empty? && !@activities_found_by_neighborhood.nil?
+      @activities_found = @activities_found_by_tags & @activities_found_by_neighborhood
+    end
+    
     
     p "DONEEEEEEEEEEEEEEE"
-    @activities_found.uniq!
+    @activities_found
 
   end
   

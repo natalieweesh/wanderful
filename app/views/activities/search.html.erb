@@ -1,5 +1,8 @@
 <h2>RESTless search page</h2>
-<% unless @search_results.nil? %>
+<% if @search_results.nil? || @search_results.empty? %>
+  <p>no results found :(</p>
+
+<% else %>
 <ul>
 <% @search_results.each do |result| %>
 <li>
@@ -14,6 +17,4 @@
 </ul>
 
 
-<% else %>
-<p>no results found :(</p>
 <% end %>
