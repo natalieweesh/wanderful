@@ -30,6 +30,13 @@
 <section class="query_group">
   <h2>search for an activity</h2>
   <form action="<%= search_activities_url %>" method="get">
+    <label>by neighborhood</label><br>
+    <select name="search[neighborhood]">
+      <% Activity.all_neighborhoods.each do |neighborhood| %>
+      <option value="<% neighborhood %>"><%= neighborhood %></option>
+      <% end %>
+    </select>
+    <br><label>by tags</label><br>
     <select name="search[tags][]">
       <% Tag.all.each do |tag| %>
         <option value="<%= tag.id %>"><%= tag.name %></option>

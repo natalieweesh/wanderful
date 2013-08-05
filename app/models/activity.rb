@@ -23,20 +23,23 @@ class Activity < ActiveRecord::Base
     @activities_found = []
     if params["tags"]
       search_tags_ids = params["tags"].map{|str| str.to_i}
-      p "TAGS_IDS"
-      p search_tags_ids
-
       @activities_found += Activity.joins(:tags).where('tags.id IN (?)', search_tags_ids).group('activities.id').having('COUNT(*) >= ? ', search_tags_ids.length)
-        
-
-
-      
+    end
+    if params["neighborhood"]
+      @activities_found += Activity.find_all_by_neighborhood(params["neighborhood"])
     end
     p "ACTIVITES FOUND!"
-    p @activities_found
+    p @activities_found.count
+    p "REDUCED UNIQUES"
+    p @activities_found.uniq.count
+    
     p "DONEEEEEEEEEEEEEEE"
-    @activities_found
+    @activities_found.uniq!
 
+  end
+  
+  def self.all_neighborhoods
+    Activity.uniq.pluck(:neighborhood)
   end
   
 end
