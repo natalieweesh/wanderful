@@ -11,3 +11,19 @@
  *= require_self
  *= require_tree .
  */
+
+.favorite-button {
+  display: block;
+}
+
+.unfavorite-button {
+  display: none;
+}
+
+.favorited .favorite-button {
+  display: none;
+}
+
+.favorited .unfavorite-button {
+  display: block;
+}

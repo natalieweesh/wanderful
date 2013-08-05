@@ -10,6 +10,8 @@ Capstone::Application.routes.draw do
   resources :activities
   
   resources :itineraries
+  
+  resources :favorites, only: [:create, :destroy]
 
   
   # The priority is based upon order of creation:

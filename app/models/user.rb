@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :login
+  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :login, :favorite_itinerary_ids
   attr_accessor :login
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
   
   has_many :activities
   has_many :itineraries
+  
+  has_many :favorites
+  has_many :favorite_itineraries, through: :favorites, source: :itinerary
   
   
   def self.find_first_by_auth_conditions(warden_conditions)

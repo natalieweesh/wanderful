@@ -18,7 +18,12 @@ class ItinerariesController < ApplicationController
 
   def show
     @itinerary = Itinerary.find(params[:id])
-      
+    @favorite = Favorite.find_by_user_id_and_itinerary_id(current_user.id, @itinerary.id)
+    if @favorite.nil?
+      @favorite_id = 0
+    else
+      @favorite_id = @favorite.id
+    end
   end
   
 

@@ -1,5 +1,24 @@
 <h3>itinerary show page</h3>
 
+<form class="favorite-form">
+  <%= @favorite_id %>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" id="itin-id" name="favorite[itinerary_id]" value="<%= @itinerary.id %>">
+
+  
+  <div class="favorite-buttons
+    <% if current_user.favorite_itinerary_ids.include?(@itinerary.id) %>
+    favorited
+    <% end %>
+  ">
+    <input class="favorite-button" type="submit" value="favorite this itinerary">
+    <input class="unfavorite-button" type="submit" value="unfavorite this itinerary">
+    
+    
+  </div>
+  
+</form>
+
 <li>description:
   <%= @itinerary.description %>
 </li>
@@ -21,3 +40,52 @@
     
   </ul>
 </li>
+
+
+<script>
+
+$('.favorite-form').on("click", 'input[type="submit"]', function(event) {
+  event.preventDefault()
+  var that = $(this);
+  if ($(this).attr('class') === "unfavorite-button") {
+
+  alert("cliked")
+  console.log("ID:");
+  console.log($(this).attr('id'));
+  console.log("@favorite_id");
+  console.log(<%= @favorite_id %>);
+  if ($(this).attr('id')) {
+    var id = $(this).attr('id');
+  } else {
+    var id = <%= @favorite_id %>
+  }
+  $.ajax({
+    
+    url: "/favorites/" + id + ".json",
+    type: "DELETE",
+    success: function(response) {
+      alert("done");
+      $(that).parent().toggleClass('favorited');
+    }
+  });
+  
+  
+
+  } else if ($(this).attr('class') === 'favorite-button') {
+      $.ajax({
+        url: "<%= favorites_url %>" + ".json",
+        type: "POST",
+        data: {"favorite": {"itinerary_id": <%= @itinerary.id %>}},
+        success: function(response) {
+          alert("done");
+          $(that).parent().toggleClass('favorited');
+          console.log(response);
+          $('.unfavorite-button').attr('id', response.id);
+        }
+      });
+    
+  }
+});
+
+
+</script>

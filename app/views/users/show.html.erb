@@ -2,7 +2,8 @@
 
 <%= @user.username %>
 
-<h3>your activities</h3>
+
+<h3>added activities</h3>
 
 <ul>
   <% @user.activities.each do |activity| %>
@@ -16,12 +17,18 @@
   <% end %>
 </ul>
 
-<h3>your itineraries</h3>
+<h3>added itineraries</h3>
 <ul>
   <% @user.itineraries.each do |itinerary| %>
     <li><%= link_to itinerary.description, itinerary_url(itinerary.id) %></li>
   <% end %>
 </ul>
 
-<h3>your favorite itineraries</h3>
+<h3>favorite itineraries</h3>
+
+<ul>
+  <% @user.favorite_itineraries.each do |itinerary| %>
+  <li><%= link_to itinerary.description, itinerary_url(itinerary.id) %></li>
+  <% end %>
+</ul>
 
