@@ -43,7 +43,7 @@
 </ul>
 
 <h3>added itineraries</h3>
-<ul class="group">
+<ul class="itinerary-group group">
   <% @user.itineraries.each do |itinerary| %>
   <ul class="itinerary-search-result">
 
@@ -59,7 +59,7 @@
 
 <h3>favorite itineraries</h3>
 
-<ul class="itinerary-group group">
+<ul class="itinerary-group favorites-group group">
   <% @user.favorite_itineraries.each do |itinerary| %>
   <ul class="itinerary-search-result">
   <li><%= link_to itinerary.description, itinerary_url(itinerary.id), class: "itinerary-description-blob" %>

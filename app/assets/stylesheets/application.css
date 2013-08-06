@@ -97,23 +97,41 @@ input[type=submit].unfavorite-button {
 
 .itinerary-group {
   display: block;
-  border: 5px solid green;  
+}
+.favorites-group .itinerary-search-result {
+  border: 5px solid #85F776;
+  transition: all .5s ease-in-out;
+}
+.favorites-group .itinerary-search-result:hover {
+  background: #85BB83;
+  border: 5px solid #85BB83;
+  transition: all .5s ease-in-out;
 }
 
-.itinerary-mini-blob {
+/*.itinerary-mini-blob {
   display: block;
   float: left;
   width: 80%;
   padding: 10px 10%;
   text-align: center;
   border: 5px solid orange;
-}
+}*/
 
-.itinerary-description-blob, .time-blob {
+.itinerary-description-blob {
   display: block;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.3em;
+  color: yellow;
+}
+.time-blob {
+  display: block;
+
+  font-size: .7em;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: lightgray;
 }
 
 
@@ -124,25 +142,38 @@ input[type=submit].unfavorite-button {
   margin: 2px;
 }
 
-.activity-title {
+.activity-title, .activity-title a {
   text-transform: uppercase;
   text-align: center;
   font-weight: bold;
-}
+  color: #D4FF00;
 
+}
+.activity-group {
+  clear: both;
+  display: block;
+}
 .activity-blob {
   display: block;
   float: left;
   margin: 10px;
   padding: 5px;
-  width: 200px;
-  height: 200px;
-  border: 5px solid blue;
+  width: 150px;
+  height: 150px;
+  border: 5px solid #05275A;
   transition: all .5s ease-in-out;
+  color: #B3B4AD;
 }
 .itinerary-search-result {
-  border: 5px solid blue;
+  border: 5px solid #77F7ED;
   padding: 20px;
+  margin: 20px 10px;
+  transition: all .5s ease-in-out;
+}
+.itinerary-search-result:hover {
+  background: #65ACA6;
+  border: 5px solid #65ACA6;
+  transition: all .5s ease-in-out;
 }
 .mini-activity-blob {
   display: block;
@@ -190,7 +221,8 @@ button:active, input[type=submit].big-button:active {
 }
 
 .activity-blob:hover {
-  background: #444141;
+  background: #222419;
+  border: 5px solid #222419;
   transition: all .5s ease-in-out;
 }
 
