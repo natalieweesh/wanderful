@@ -147,3 +147,24 @@ button:active {
   padding-left: 40px;
 }
 
+input[type=submit] {
+  display: block;
+  float: left;
+  border-radius: 0;
+  height: 120px;
+  width: 120px;
+  padding-bottom: 35px;
+  padding-right: 35px;
+  overflow: hidden;
+  background: url("small-button-sprite.png") no-repeat 0 0;
+}
+input[type=submit]:hover {
+  background-position: 0 -120px;
+  padding-top: 30px;
+  padding-left: 32px;
+}
+input[type=submit]:active {
+  background-position: 0 -240px;
+  padding-top: 45px;
+  padding-left: 45px;
+}
