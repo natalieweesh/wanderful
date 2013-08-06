@@ -48,7 +48,8 @@ li {
 }
 .container {  
   width: 90%;
-  margin: auto;
+  margin: 20px auto;
+  
 }
 .nav-buttons {
   display: block;
@@ -215,13 +216,20 @@ input[type="checkbox"] {
 input[type="checkbox"] + label {
   display: block;
   padding: 10px 5px;
-  
-
 }
 input[type="checkbox"]:checked + label {
-
   background: #1AC23B;
 }
 input[type="checkbox"] + label:hover {
+  background: #076B1B;
+}
+.query_group {
+}
 
+.activity-search-form {
+}
+.itinerary-search-form {
+}
+.search-button {
+  float: right;
 }

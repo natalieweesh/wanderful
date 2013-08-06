@@ -1,4 +1,3 @@
-<h1>home!</h1>
 
 <section class="intro group">
 
@@ -27,65 +26,62 @@
   <input type="submit" class="back_button small-button" value="back">
 </section>
 
-<section class="query_group">
+<section class="query_group group">
   <h2>search for activities</h2>
-  <section class="activity-search-form">
+  <section class="activity-search-form group">
   
   
   <form action="<%= search_activities_url %>" method="get">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     
-    <label>by neighborhood</label><br>
+    <label>by neighborhood</label>
     <select name="search[neighborhood]">
       <option value="nil"></option>
       <% Activity.all_neighborhoods.each do |neighborhood| %>
       <option value="<%= neighborhood %>"><%= neighborhood %></option>
       <% end %>
-    </select>
-    <br><label>by tags</label><br>
+    </select><br><br>
+    <label>by tags</label>
         
     <label>search: #</label>
       <input data-autocomplete="/tags/autocomplete_tag_name" name="search[tags]" size="20" type="text" data-delimiter=" #" multiple="true"/>
+      <br><br>
 
-
-      <input type="submit" value="submit">
+      <input class="search-button" type="submit" value="search">
   </form>
   </section>
   
   
   <h2>search for itineraries</h2>
-  <form class="itinerary-search-form" action="<%= search_itineraries_url %>" method="get">
+  <form class="itinerary-search-form group" action="<%= search_itineraries_url %>" method="get">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <label>time you have to spare</label>
+    <label>time you have to spare
     <select name="search[itinerary][time]">
       <option value=""></option>
       <% Itinerary.get_times.each_with_index do |time, index| %>
         <option value="<%= index %>"><%= time %></option>
       <% end %>
     </select>
+    </label>
     
-    <br>
-    <label>by neighborhood</label><br>
+    <br><br>
+    <label>by neighborhood
     <select name="search[activity][search][neighborhood]">
       <option value="nil"></option>
       <% Activity.all_neighborhoods.each do |neighborhood| %>
       <option value="<%= neighborhood %>"><%= neighborhood %></option>
       <% end %>
     </select>
-    <br><label>by tags</label><br>
+    </label>
+    <br><br>    
     
     
-    
-        
-    <label for="product_name">search: #</label>
+    <label for="product_name">by tags: #
       <input data-autocomplete="/tags/autocomplete_tag_name" name="search[activity][search][tags]" size="20" type="text" data-delimiter=" #" multiple="true"/>
+    </label>
+    <br><br>
     
-    
-    
-    
-
-    
-    <input type="submit" value="SEARCH">
+    <input class="search-button" type="submit" value="search">
   </form>
   <br><br>
   
