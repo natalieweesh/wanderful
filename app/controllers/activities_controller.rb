@@ -11,6 +11,7 @@ class ActivitiesController < ApplicationController
     if @tags.empty?
       flash[:notice] = "must have at least one tag"
       render :new
+      return
     end
     
     # if params[:activity][:tag_ids].all?{|tag| tag==""}
