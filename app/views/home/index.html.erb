@@ -29,7 +29,7 @@
 
 <section class="query_group">
   <h2>search for an activity</h2>
-  
+  <section class="activity-search-form">
   
   
   <form action="<%= search_activities_url %>" method="get">
@@ -50,12 +50,11 @@
 
       <input type="submit" value="submit">
   </form>
-  
+  </section>
   
   
   <h2>search for itineraries</h2>
-  
-  <form action="<%= search_itineraries_url %>" method="get">
+  <form class="itinerary-search-form" action="<%= search_itineraries_url %>" method="get">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <label>time you have to spare</label>
     <select name="search[itinerary][time]">
@@ -88,7 +87,6 @@
     
     <input type="submit" value="SEARCH">
   </form>
-  
   <br><br>
   
 
@@ -96,7 +94,6 @@
 </section>
 
 <script type="application/javascript">
-
 
   $(function() {
     $(".share_something").css("display", "none");

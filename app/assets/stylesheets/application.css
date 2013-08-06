@@ -125,3 +125,25 @@ li {
 .friended .unfriend-button {
   display: block;
 }
+button {
+  display: block;
+  float: left;
+  border-radius: 0;
+  height: 200px;
+  width: 200px;
+  padding-bottom: 30px;
+  padding-right: 30px;
+  overflow: hidden;
+  background: url("square-button-sprite.png") no-repeat 0 0;
+}
+button:hover {
+  background-position: 0 -200px;
+  padding-top: 28px;
+  padding-left: 28px;
+}
+button:active {
+  background-position: 0 -400px;
+  padding-top: 40px;
+  padding-left: 40px;
+}
+
