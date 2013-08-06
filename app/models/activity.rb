@@ -19,18 +19,25 @@ class Activity < ActiveRecord::Base
     # errors.add(:tags, "must have at least one tag") unless self.tag_ids.length > 1  
   # end
   
-  def self.search(params)
+  # def self.search(params)
+  def self.search(paramstags, paramsneighborhood)
     @activities_found = []
   
-    if !params["tags"].empty?
-      search_tags_ids = params["tags"].map{|str| str.to_i}
-      @activities_found_by_tags = Activity.joins(:tags).where('tags.id IN (?)', search_tags_ids).group('activities.id').having('COUNT(*) >= ? ', params["tags"].length)
+    # if !params["tags"].empty?
+    if !paramstags.empty?
+      # search_tags_ids = params["tags"].map{|str| str.to_i}
+      search_tags_ids = paramstags.map{|name| Tag.find_by_name(name).id }
+      # @activities_found_by_tags = Activity.joins(:tags).where('tags.id IN (?)', search_tags_ids).group('activities.id').having('COUNT(*) >= ? ', params["tags"].length)
+      @activities_found_by_tags = Activity.joins(:tags).where('tags.id IN (?)', search_tags_ids).group('activities.id').having('COUNT(*) >= ? ', paramstags.length)
+
     else
       @activities_found_by_tags = nil
     end
 
-    if params["neighborhood"] != "nil"
-      @activities_found_by_neighborhood = Activity.find_all_by_neighborhood(params["neighborhood"])
+    # if params["neighborhood"] != "nil"
+    if paramsneighborhood != "nil"
+      # @activities_found_by_neighborhood = Activity.find_all_by_neighborhood(params["neighborhood"])
+      @activities_found_by_neighborhood = Activity.find_all_by_neighborhood(paramsneighborhood)
     else
       @activities_found_by_neighborhood = nil
     end

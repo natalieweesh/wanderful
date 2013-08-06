@@ -59,6 +59,9 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.0.4)
+      jquery-rails
+      railties (>= 3.1.0)
     json (1.8.0)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -83,6 +86,8 @@ GEM
       activesupport (= 3.2.13)
       bundler (~> 1.0)
       railties (= 3.2.13)
+    rails3-jquery-autocomplete (1.0.11)
+      rails (~> 3.0)
     railties (3.2.13)
       actionpack (= 3.2.13)
       activesupport (= 3.2.13)
@@ -126,8 +131,10 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   jquery-rails
+  jquery-ui-rails
   pg
   rails (= 3.2.13)
+  rails3-jquery-autocomplete
   sass-rails (~> 3.2.3)
   sqlite3
   uglifier (>= 1.0.3)

@@ -26,8 +26,16 @@ class ActivitiesController < ApplicationController
     @activity = Activity.find(params[:id])
   end
   
-  def search    
-    @search_results = Activity.search(params[:search])
+  # def search    
+  #   @search_results = Activity.search(params[:search])
+  # end
+  
+  def search
+    @tags_array = params[:search][:tags].split(" #")
+    p "@TAGS_ARRAY @TAGS_ARRAY @TAGS_ARRAY @TAGS_ARRAY @TAGS_ARRAY @TAGS_ARRAY @TAGS_ARRAY "
+    p @tags_array
+    p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+    @search_results = Activity.search(@tags_array, params[:search][:neighborhood])
   end
   
   

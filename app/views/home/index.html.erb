@@ -67,6 +67,7 @@
       <% end %>
     </select>
     
+    <br>
     <label>by neighborhood</label><br>
     <select name="search[activity][neighborhood]">
       <option value="nil"></option>
@@ -91,7 +92,28 @@
     <input type="submit" value="SEARCH">
   </form>
   
+  <br><br>
+  <h3>jquery autocomplete test</h3>
+  <form action="<%= search_activities_url %>" method="get" style="background: lightblue;">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    
+    <label>by neighborhood</label><br>
+    <select name="search[neighborhood]">
+      <option value="nil"></option>
+      <% Activity.all_neighborhoods.each do |neighborhood| %>
+      <option value="<%= neighborhood %>"><%= neighborhood %></option>
+      <% end %>
+    </select>
+    <br><label>by tags</label><br>
+        
+    <label for="product_name">search: #</label>
+      <input data-autocomplete="/tags/autocomplete_tag_name" name="search[tags]" size="20" type="text" data-delimiter=" #" multiple="true"/>
+
+
+      <input type="submit" value="submit">
+  </form>
   
+
   <button class="back_button">back</button>
 </section>
 
