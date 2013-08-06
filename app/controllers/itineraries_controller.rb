@@ -36,7 +36,11 @@ class ItinerariesController < ApplicationController
     p "ALL THE PARAMS ALL THE PARAMS ALL THE PARAMS ALL THE PARAMS ALL THE PARAMS ALL THE PARAMS ALL THE PARAMS"
     p params[:search]
     p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
-    @activities_search_result = Activity.search(params[:search][:activity])
+    
+    @tags_array = params[:search][:activity][:search][:tags].split(" #")
+    
+    
+    @activities_search_result = Activity.search(@tags_array, params[:search][:activity][:search][:neighborhood])
     
     p "PARAMS[:SEARCH][:ACTIVITY] PARAMS[:SEARCH][:ACTIVITY] PARAMS[:SEARCH][:ACTIVITY] PARAMS[:SEARCH][:ACTIVITY]"
     p params[:search][:activity]

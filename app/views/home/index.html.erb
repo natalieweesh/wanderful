@@ -29,71 +29,9 @@
 
 <section class="query_group">
   <h2>search for an activity</h2>
-  <form action="<%= search_activities_url %>" method="get" style="background:pink;">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <label>by neighborhood</label><br>
-    <select name="search[neighborhood]">
-      <option value="nil"></option>
-      <% Activity.all_neighborhoods.each do |neighborhood| %>
-      <option value="<%= neighborhood %>"><%= neighborhood %></option>
-      <% end %>
-    </select>
-    <br><label>by tags</label><br>
-    <select name="search[tags][]">
-      <option value="nil"></option>
-      <% Tag.all.each do |tag| %>
-        <option value="<%= tag.id %>"><%= tag.name %></option>
-      <% end %>
-    </select>
-    <select name="search[tags][]">
-      <option value="nil"></option>
-      <% Tag.all.each do |tag| %>
-        <option value="<%= tag.id %>"><%= tag.name %></option>
-      <% end %>
-    </select>      
-      
-    <input type="submit" value="SEARCH">
-  </form>
   
-  <h2>search for itineraries</h2>
   
-  <form action="<%= search_itineraries_url %>" method="get">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <label>time you have to spare</label>
-    <select name="search[itinerary][time]">
-      <option value=""></option>
-      <% Itinerary.get_times.each_with_index do |time, index| %>
-        <option value="<%= index %>"><%= time %></option>
-      <% end %>
-    </select>
-    
-    <br>
-    <label>by neighborhood</label><br>
-    <select name="search[activity][neighborhood]">
-      <option value="nil"></option>
-      <% Activity.all_neighborhoods.each do |neighborhood| %>
-      <option value="<%= neighborhood %>"><%= neighborhood %></option>
-      <% end %>
-    </select>
-    <br><label>by tags</label><br>
-    <select name="search[activity][tags][]">
-      <option value="nil"></option>
-      <% Tag.all.each do |tag| %>
-        <option value="<%= tag.id %>"><%= tag.name %></option>
-      <% end %>
-    </select>
-    <select name="search[activity][tags][]">
-      <option value="nil"></option>
-      <% Tag.all.each do |tag| %>
-        <option value="<%= tag.id %>"><%= tag.name %></option>
-      <% end %>
-    </select>
-    
-    <input type="submit" value="SEARCH">
-  </form>
   
-  <br><br>
-  <h3>jquery autocomplete test</h3>
   <form action="<%= search_activities_url %>" method="get" style="background: lightblue;">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     
@@ -112,6 +50,46 @@
 
       <input type="submit" value="submit">
   </form>
+  
+  
+  
+  <h2>search for itineraries</h2>
+  
+  <form action="<%= search_itineraries_url %>" method="get">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <label>time you have to spare</label>
+    <select name="search[itinerary][time]">
+      <option value=""></option>
+      <% Itinerary.get_times.each_with_index do |time, index| %>
+        <option value="<%= index %>"><%= time %></option>
+      <% end %>
+    </select>
+    
+    <br>
+    <label>by neighborhood</label><br>
+    <select name="search[activity][search][neighborhood]">
+      <option value="nil"></option>
+      <% Activity.all_neighborhoods.each do |neighborhood| %>
+      <option value="<%= neighborhood %>"><%= neighborhood %></option>
+      <% end %>
+    </select>
+    <br><label>by tags</label><br>
+    
+    
+    
+        
+    <label for="product_name">search: #</label>
+      <input data-autocomplete="/tags/autocomplete_tag_name" name="search[activity][search][tags]" size="20" type="text" data-delimiter=" #" multiple="true"/>
+    
+    
+    
+    
+
+    
+    <input type="submit" value="SEARCH">
+  </form>
+  
+  <br><br>
   
 
   <button class="back_button">back</button>

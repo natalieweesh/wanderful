@@ -31,6 +31,7 @@ class ActivitiesController < ApplicationController
   # end
   
   def search
+    
     @tags_array = params[:search][:tags].split(" #")
     p "@TAGS_ARRAY @TAGS_ARRAY @TAGS_ARRAY @TAGS_ARRAY @TAGS_ARRAY @TAGS_ARRAY @TAGS_ARRAY "
     p @tags_array
