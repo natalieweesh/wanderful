@@ -24,20 +24,12 @@ class Itinerary < ActiveRecord::Base
   end
   
   def self.search(params)
-    @result = Itinerary.where('time_it_takes <= ?', params[:time])
-    p "ITINERARY SIMPLE SEARCH ITINERARY SIMPLE SEARCH ITINERARY SIMPLE SEARCH ITINERARY SIMPLE SEARCH"
-    p @result
+    Itinerary.where('time_it_takes <= ?', params[:time])
   end
   
   def self.finer_search(activities_ids)
-    p "ACTIVITIES_IDS ACTIVITIES_IDS ACTIVITIES_IDS ACTIVITIES_IDS ACTIVITIES_IDS ACTIVITIES_IDS ACTIVITIES_IDS"
-    p activities_ids
     # @result = Itinerary.joins(:activities).where('activities.id in (?)', activities_ids).group('itineraries.id').having('COUNT(*) >= ?', activities_ids.length)
-    @result = Itinerary.joins(:activities).where('activities.id in (?)', activities_ids)
-    p "ITINERARY.JOINS QUERY ITINERARY.JOINS QUERY ITINERARY.JOINS QUERY ITINERARY.JOINS QUERY ITINERARY.JOINS QUERY"
-    p @result
-    p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
-    @result
+    Itinerary.joins(:activities).where('activities.id in (?)', activities_ids)
   end
   
 end

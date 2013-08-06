@@ -1,7 +1,6 @@
 <h3>itinerary show page</h3>
 
 <form class="favorite-form">
-  <%= @favorite_id %>
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" id="itin-id" name="favorite[itinerary_id]" value="<%= @itinerary.id %>">
 
@@ -19,26 +18,28 @@
   
 </form>
 
-<li>description:
-  <%= @itinerary.description %>
+<li class="itinerary-description-blob">
+  <h3><%= @itinerary.description %></h3>
 </li>
 
-<li>time it takes:
-  <%= @itinerary.time %>
+<li class="time-blob">
+  <small>(<%= @itinerary.time %>)</small>
 </li>
 
-<li>activities:
-  <ul>
+<li class="activity-group">
+
     <% @itinerary.activities.each do |activity| %>
-    <li><%= link_to activity.description, activity_url(activity.id) %></li>
+  <ul class="activity-blob">
+    <li class="activity-title"><%= link_to activity.description, activity_url(activity.id) %></li>
     <ul>
-      <li><%= activity.venue %></li>
-      <li><%= activity.neighborhood %></li>
-      <li><%= activity.tags.map{|tag| tag.name}.join(", ") %></li>
+      <li>@ <%= activity.venue %></li>
+      <li>[<%= activity.neighborhood %>]</li>
+      <li>#<%= activity.tags.map{|tag| tag.name}.join(" #") %></li>
     </ul>
+  </ul>
     <% end %>
     
-  </ul>
+
 </li>
 
 

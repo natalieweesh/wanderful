@@ -4,30 +4,26 @@
 
 <% else %>
 <ul>
-<% @search_results.each do |result| %>
-<li>
-<%= link_to result.description, itinerary_url(result.id) %>
-  <small>(<%= result.time %>)</small>
-  <ul>
-    <% result.activities.each do |activity| %>
-    <li><%= link_to activity.description, activity_url(activity.id) %></li>
+  <li>
+  <% @search_results.each do |result| %>
+  <li class="itinerary-search-result group">
+    <%= link_to result.description, itinerary_url(result.id), class: "itinerary-description-blob" %>
+    <small class="time-blob">(<%= result.time %>)</small>
     <ul>
-      <li><%= activity.venue %></li>
-      <li><%= activity.neighborhood %></li>
+      <% result.activities.each do |activity| %>
+      <li class="mini-activity-blob"><%= link_to activity.description, activity_url(activity.id), class: "activity-title" %>
+        <ul>
+          <li>@<%= activity.venue %></li>
+          <li>[<%= activity.neighborhood %>]</li>
 
-      <ul>
-        <% activity.tags.each do |tag| %>
-        <li>
-          <%= tag.name %>
-        </li>      
-        <% end %>
-      </ul>
+          <li>#<%= activity.tags.map{|tag| tag.name}.join(" #") %></li>
+        </ul>
+      </li>
+      <% end %>
     </ul>
-    <% end %>
-  </ul>
+  </li>
+  <% end %>
 </li>
-<% end %>
-
 </ul>
 
 

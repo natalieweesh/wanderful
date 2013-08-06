@@ -11,6 +11,31 @@
  *= require_self
  *= require_tree .
  */
+html, body, ul, li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-family: sans-serif;
+}
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.logout-button {
+  float: right;
+}
+.container {  
+  width: 90%;
+  margin: auto;
+}
 
 .favorite-button {
   display: block;
@@ -19,11 +44,42 @@
 .unfavorite-button {
   display: none;
 }
-
+.itinerary-description-blob, .time-blob {
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+}
 .favorited .favorite-button {
   display: none;
 }
 
 .favorited .unfavorite-button {
   display: block;
+}
+
+.activity-title {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+}
+
+.activity-blob {
+  display: block;
+  float: left;
+  margin: 10px;
+  padding: 5px;
+  width: 200px;
+  height: 200px;
+  border: 5px solid blue;
+}
+.itinerary-search-result {
+  border: 5px solid blue;
+  padding: 20px;
+}
+.mini-activity-blob {
+  display: block;
+  float: left;
+  height: 70px;
+  border: 5px solid purple;
 }
