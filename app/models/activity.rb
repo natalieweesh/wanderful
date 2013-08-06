@@ -20,37 +20,40 @@ class Activity < ActiveRecord::Base
   # end
   
   def self.search(params)
-    p "ALL PARAMS"
-    p params
     @activities_found = []
-    p "WHITTELED TAGS"
-    p params["tags"].delete("")
+  
+    p "PARAMS[TAGS]"
+    p params["tags"].delete("nil")
     if !params["tags"].empty?
-      p "PARAMS TAGS"
-      p params["tags"]
+      p "PARAMS[TAGS] IS NOT EMPTY"
       search_tags_ids = params["tags"].map{|str| str.to_i}
-      @activities_found_by_tags = Activity.joins(:tags).where('tags.id IN (?)', search_tags_ids).group('activities.id').having('COUNT(*) >= ? ', search_tags_ids.length)
-      p "ACTIVITIES FOUND BY TAGS"
-      p @activities_found_by_tags
+      @activities_found_by_tags = Activity.joins(:tags).where('tags.id IN (?)', search_tags_ids).group('activities.id').having('COUNT(*) >= ? ', params["tags"].length)
+    else
+      @activities_found_by_tags = nil
     end
-    if !params["neighborhood"].empty?
-      p "PARAMS NEIGHTBORHOOD"
-      p params["neighborhood"]
+    p "ACTIVITIES+FOUND_BY_TAGS"
+    p @activities_found_by_tags
+    p "PARAMS[NEIGHBORHOOD]"
+    p params["neighborhood"]
+    if params["neighborhood"] != "nil"
+      p "PARAMS[NEIGHBORHOOD] IS NOT EMPTY"
       @activities_found_by_neighborhood = Activity.find_all_by_neighborhood(params["neighborhood"])
+    else
+      @activities_found_by_neighborhood = nil
     end
-    
-    if !@activities_found_by_tags.empty? && @activities_found_by_neighborhood.nil?
-      @activities_found = @activities_found_by_tags
-    elsif @activities_found_by_tags.empty? && !@activities_found_by_neighborhood.nil?
-      @activities_found = @activities_found_by_neighborhood
-    elsif @activities_found_by_tags.empty? && @activities_found_by_neighborhood.nil?
+    p "ACTIVITIESFOUNDBYNEIGHBORHOD"
+    p @activities_found_by_neighborhood
+    if @activities_found_by_tags.nil? && @activities_found_by_neighborhood.nil?
       @activities_found = []
-    elsif !@activities_found_by_tags.empty? && !@activities_found_by_neighborhood.nil?
+    elsif !@activities_found_by_tags.nil? && @activities_found_by_neighborhood.nil?
+      @activities_found = @activities_found_by_tags
+    elsif @activities_found_by_tags.nil? && !@activities_found_by_neighborhood.nil?
+      @activities_found = @activities_found_by_neighborhood
+    else #if !@activities_found_by_tags.nil? && !@activities_found_by_neighborhood.nil?
       @activities_found = @activities_found_by_tags & @activities_found_by_neighborhood
     end
-    
-    
-    p "DONEEEEEEEEEEEEEEE"
+    p "ACTIVITIES FOUND OVERALL"
+    p @activities_found
     @activities_found
 
   end

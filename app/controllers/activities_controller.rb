@@ -28,7 +28,6 @@ class ActivitiesController < ApplicationController
   
   def search    
     @search_results = Activity.search(params[:search])
-    
   end
   
   
