@@ -12,12 +12,18 @@
  *= require_tree .
  */
 
-html, body, ul, li {
+html, body, ul, li, a {
   margin: 0;
   padding: 0;
   border: 0;
   font-size: 100%;
   font-family: sans-serif;
+}
+input[type=submit], button {
+  marigin: 0;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
 }
 a {
   text-decoration: none;
@@ -72,6 +78,13 @@ li {
 
 .favorited .unfavorite-button {
   display: block;
+}
+
+.activity-checkbox {
+  display: block;
+  float: left;
+  border: 5px solid pink;
+  padding: 10px;
 }
 
 .activity-title {
