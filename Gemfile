@@ -38,6 +38,8 @@ end
 
 gem 'underscore-rails'
 
+gem "animate-rails"
+
 
 
 # To use ActiveModel has_secure_password
