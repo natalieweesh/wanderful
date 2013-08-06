@@ -45,6 +45,21 @@ li {
 .unfavorite-button {
   display: none;
 }
+
+.itinerary-group {
+  display: block;
+  border: 5px solid green;  
+}
+
+.itinerary-mini-blob {
+  display: block;
+  float: left;
+  width: 80%;
+  padding: 10px 10%;
+  text-align: center;
+  border: 5px solid orange;
+}
+
 .itinerary-description-blob, .time-blob {
   display: block;
   text-align: center;

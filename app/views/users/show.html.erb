@@ -5,9 +5,9 @@
 
 <h3>added activities</h3>
 
-<ul>
+<ul class="activity-group group">
   <% @user.activities.each do |activity| %>
-  <li><%= link_to activity.description, activity_url(activity.id) %>
+  <li class="activity-blob"><%= link_to activity.description, activity_url(activity.id), class: "activity-title" %>
     <ul>
       <li>venue: <%= activity.venue %></li>
       <li>neighborhood: <%= activity.neighborhood %></li>
@@ -18,17 +18,29 @@
 </ul>
 
 <h3>added itineraries</h3>
-<ul>
+<ul class="group">
   <% @user.itineraries.each do |itinerary| %>
-    <li><%= link_to itinerary.description, itinerary_url(itinerary.id) %></li>
+  <ul class="itinerary-search-result">
+
+    <li><%= link_to itinerary.description, itinerary_url(itinerary.id), class: "itinerary-description-blob" %>
+    
+      <small class="time-blob">(<%= itinerary.time %>)</small>
+      
+    </li>
+  </ul>
+    
   <% end %>
 </ul>
 
 <h3>favorite itineraries</h3>
 
-<ul>
+<ul class="itinerary-group group">
   <% @user.favorite_itineraries.each do |itinerary| %>
-  <li><%= link_to itinerary.description, itinerary_url(itinerary.id) %></li>
+  <ul class="itinerary-search-result">
+  <li><%= link_to itinerary.description, itinerary_url(itinerary.id), class: "itinerary-description-blob" %>
+    <small class="time-blob">(<%= itinerary.time %>)</small>
+  </li>
+  </ul>
   <% end %>
 </ul>
 

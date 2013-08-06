@@ -3,13 +3,13 @@
   <p>no results found :(</p>
 
 <% else %>
-<ul>
+<ul class="activity-group">
 <% @search_results.each do |result| %>
-<li>
-<%= link_to result.description, activity_url(result.id) %>
+<li class="activity-blob">
+<%= link_to result.description, activity_url(result.id), class: "activity-title" %>
   <ul>
-    <li><%= result.venue %></li>
-    <li><%= result.neighborhood %></li>
+    <li>@<%= result.venue %></li>
+    <li>[<%= result.neighborhood %>]</li>
   </ul>
 </li>
 <% end %>
