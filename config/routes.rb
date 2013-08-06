@@ -26,6 +26,8 @@ Capstone::Application.routes.draw do
   
   resources :favorites, only: [:create, :destroy]
   
+  resources :friendships, only: [:create, :destroy]
+  
   
   
   # The priority is based upon order of creation:

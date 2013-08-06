@@ -1,9 +1,18 @@
-<h3>users index</h3>
+<h3>your peeps</h3>
+<% current_user.friends.each do |friend| %>
+
+<li><%= link_to friend.username, user_url(friend.id) %></li>
+
+<% end %>
+
+<h3>everyone else</h3>
 
 <ul>
 <% @users.all.each do |user| %>
+  <% if !current_user.friend_ids.include?(user.id) %>
 
   <li><%= link_to user.username, user_url(user.id) %></li>
 
+  <% end %>
 <% end %>
 </ul>

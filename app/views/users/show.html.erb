@@ -1,7 +1,32 @@
-<h1>user show page</h1>
+<h1><%= @user.username %></h1>
 
-<%= @user.username %>
+<% if current_user.id != @user.id %>
 
+
+
+
+<form class="friend-form">
+
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<input type="hidden" name="friendship[friend_id]" value="<%= @user.id %>">
+
+
+<div class="friend-buttons
+  <% if current_user.friend_ids.include?(@user.id) %>
+  friended
+  <% end %>
+">
+  <input class="friend-button" type="submit" value="follow">
+  <input class="unfriend-button" type="submit" value="unfollow">
+  
+  
+</div>
+</form>
+
+
+
+
+<% end %>
 
 <h3>added activities</h3>
 
@@ -43,4 +68,48 @@
   </ul>
   <% end %>
 </ul>
+
+<script>
+
+
+
+
+$('.friend-form').on("click", 'input[type="submit"]', function(event) {
+  event.preventDefault();
+  var that = $(this);
+  if ($(this).attr('class') === "unfriend-button") {
+
+  if ($(this).attr('id')) {
+    var id = $(this).attr('id');
+  } else {
+    var id = "<%= @friendship_id %>";
+  }
+  $.ajax({
+    
+    url: "/friendships/" + id + ".json",
+    type: "DELETE",
+    success: function(response) {
+      $(that).parent().toggleClass('friended');
+    }
+  });
+
+
+  } else if ($(this).attr('class') === 'friend-button') {
+      $.ajax({
+        url: "<%= friendships_url %>" + ".json",
+        type: "POST",
+        data: {"friendship": {"friend_id": <%= @user.id %>}},
+        success: function(response) {
+          $(that).parent().toggleClass('friended');
+          $('.unfriend-button').attr('id', response.id);
+        }
+      });
+    
+  }
+});
+
+
+
+
+</script>
 

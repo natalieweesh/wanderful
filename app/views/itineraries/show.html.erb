@@ -50,11 +50,6 @@ $('.favorite-form').on("click", 'input[type="submit"]', function(event) {
   var that = $(this);
   if ($(this).attr('class') === "unfavorite-button") {
 
-  alert("cliked")
-  console.log("ID:");
-  console.log($(this).attr('id'));
-  console.log("@favorite_id");
-  console.log(<%= @favorite_id %>);
   if ($(this).attr('id')) {
     var id = $(this).attr('id');
   } else {
@@ -69,8 +64,7 @@ $('.favorite-form').on("click", 'input[type="submit"]', function(event) {
       $(that).parent().toggleClass('favorited');
     }
   });
-  
-  
+
 
   } else if ($(this).attr('class') === 'favorite-button') {
       $.ajax({
@@ -78,15 +72,12 @@ $('.favorite-form').on("click", 'input[type="submit"]', function(event) {
         type: "POST",
         data: {"favorite": {"itinerary_id": <%= @itinerary.id %>}},
         success: function(response) {
-          alert("done");
           $(that).parent().toggleClass('favorited');
-          console.log(response);
           $('.unfavorite-button').attr('id', response.id);
         }
       });
     
   }
 });
-
 
 </script>
