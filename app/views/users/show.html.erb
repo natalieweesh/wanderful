@@ -1,3 +1,4 @@
+<section class="head-info">
 <h1><%= @user.username %></h1>
 
 <% if current_user.id != @user.id %>
@@ -27,8 +28,8 @@
 
 
 <% end %>
-
-<h3>added activities</h3>
+</section>
+<h3 class="header-text">added activities</h3>
 
 <ul class="activity-group group">
   <% @user.activities.each do |activity| %>

@@ -25,10 +25,19 @@ class Activity < ActiveRecord::Base
   
     # if !params["tags"].empty?
     if !paramstags.empty?
+      tags = []
       # search_tags_ids = params["tags"].map{|str| str.to_i}
-      search_tags_ids = paramstags.map{|name| Tag.find_by_name(name).id }
+      # search_tags_ids = paramstags.map{|name| Tag.find_by_name(name).id }
+      search_tags_ids = paramstags.map do |name|
+        tag = Tag.find_by_name(name)
+        if tag.nil?
+          
+        else
+          tags << tag
+        end
+      end
       # @activities_found_by_tags = Activity.joins(:tags).where('tags.id IN (?)', search_tags_ids).group('activities.id').having('COUNT(*) >= ? ', params["tags"].length)
-      @activities_found_by_tags = Activity.joins(:tags).where('tags.id IN (?)', search_tags_ids).group('activities.id').having('COUNT(*) >= ? ', paramstags.length)
+      @activities_found_by_tags = Activity.joins(:tags).where('tags.id IN (?)', tags).group('activities.id').having('COUNT(*) >= ? ', tags.length)
 
     else
       @activities_found_by_tags = nil

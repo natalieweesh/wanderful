@@ -22,6 +22,11 @@ html, body, ul, li, a {
 body {
   background: black;
   color: white;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -o-hyphens: auto;
+  hyphens: auto;
 }
 
 
@@ -264,4 +269,12 @@ input[type="checkbox"] + label:hover {
 }
 .search-button {
   float: right;
+}
+.friend-form {
+  display: block;
+  float: left;
+}
+.header-text {
+  display: block;
+  clear: both;
 }
