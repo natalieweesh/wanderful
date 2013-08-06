@@ -6,4 +6,9 @@ class Tag < ActiveRecord::Base
   
   validates :name, presence: true, allow_blank: false
   validates_uniqueness_of :name
+
+  def self.process_tags(arr)
+    arr.map{|name| Tag.find_by_name(name).id }
+  end
+  
 end

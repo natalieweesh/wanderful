@@ -12,7 +12,11 @@
   <input type="text" name="activity[neighborhood]" id="activity_neighborhood">
   
   
-  <script type="text/template" id="tags_template">
+  
+  <label>search: #</label>
+    <input data-autocomplete="/tags/autocomplete_tag_name" name="activity[tags]" size="20" type="text" data-delimiter=" #" multiple="true"/>
+  
+<!--   <script type="text/template" id="tags_template">
     <select id="tag_<%%= tag_select_id %>" name="activity[tag_ids][]">
     <option value=""></option>
       <% @tags.each do |tag| %>
@@ -23,7 +27,7 @@
     </select>
   </script>
   <a href="#" id="add_tags_button">add another tag</a>
-  
+   -->
   
   
   <input type="submit" value="go!">

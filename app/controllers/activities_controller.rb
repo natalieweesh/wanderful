@@ -6,12 +6,20 @@ class ActivitiesController < ApplicationController
   end
   
   def create
-    if params[:activity][:tag_ids].all?{|tag| tag==""}
+    
+    @tags = params[:activity][:tags].split(" #")
+    if @tags.empty?
       flash[:notice] = "must have at least one tag"
-      redirect_to new_activity_url
+      render :new
     end
     
-    @activity = Activity.new(params[:activity])
+    # if params[:activity][:tag_ids].all?{|tag| tag==""}
+    #   flash[:notice] = "must have at least one tag"
+    #   render :new
+    # end
+    @tag_ids = Tag.process_tags(@tags)
+    params[:activity][:tag_ids] = @tag_ids
+    @activity = Activity.new(params[:activity].except("tags"))
     @activity.user_id = current_user.id
     if @activity.save
       redirect_to activity_url(@activity.id)
