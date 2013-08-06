@@ -8,7 +8,21 @@ class Tag < ActiveRecord::Base
   validates_uniqueness_of :name
 
   def self.process_tags(arr)
-    arr.map{|name| Tag.find_by_name(name).id }
+    @ids = []
+    arr.map do |name|
+      tag = Tag.find_by_name(name)
+      if tag.nil?
+        @new_tag = Tag.create(name: name)
+        @ids << @new_tag.id
+      else
+        @ids << tag.id
+      end  
+    end
+    @ids
+  end
+  
+  def self.get_all_names
+    Tag.uniq.pluck(:name)
   end
   
 end

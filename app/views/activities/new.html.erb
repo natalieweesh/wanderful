@@ -1,4 +1,4 @@
-<h3>create a new activity</h3>
+<h3>add a new activity</h3>
 
 <form action="<%= activities_url %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
@@ -13,23 +13,9 @@
   
   
   
-  <label>search: #</label>
-    <input data-autocomplete="/tags/autocomplete_tag_name" name="activity[tags]" size="20" type="text" data-delimiter=" #" multiple="true"/>
-  
-<!--   <script type="text/template" id="tags_template">
-    <select id="tag_<%%= tag_select_id %>" name="activity[tag_ids][]">
-    <option value=""></option>
-      <% @tags.each do |tag| %>
-        <option value="<%= tag.id %>">
-          <%= tag.name %>
-        </option>
-      <% end %>
-    </select>
-  </script>
-  <a href="#" id="add_tags_button">add another tag</a>
-   -->
-  
-  
+  <label for="activity_tags">tags: #</label>
+    <input id="activity_tags" data-autocomplete="/tags/autocomplete_tag_name" name="activity[tags]" size="20" type="text" data-delimiter=" #" multiple="true"/>
+
   <input type="submit" value="go!">
   
 </form>
