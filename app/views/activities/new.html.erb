@@ -1,22 +1,22 @@
 <h3>add a new activity</h3>
 
-<form action="<%= activities_url %>" method="post">
+<form class="new-activity-form" action="<%= activities_url %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <label for="activity_description">description</label>
   <input type="text" name="activity[description]" id="activity_description">
-  
+  <br><br>
   <label for="activity_venue">venue</label>
   <input type="text" name="activity[venue]" id="activity_venue">
-  
+  <br><br>
   <label for="activity_neighborhood">neighborhood</label>
   <input type="text" name="activity[neighborhood]" id="activity_neighborhood">
-  
+  <br><br>
   
   
   <label for="activity_tags">tags: #</label>
     <input id="activity_tags" data-autocomplete="/tags/autocomplete_tag_name" name="activity[tags]" size="20" type="text" data-delimiter=" #" multiple="true"/>
-
-  <input type="submit" value="go!">
+    <br><br>
+  <input class="go-button" type="submit" value="go!">
   
 </form>
 

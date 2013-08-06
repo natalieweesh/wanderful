@@ -19,11 +19,13 @@
   <div class="container">
     <div class="nav-buttons">
       <div class="top-buttons group">
+        <%= button_to "home", root_url, class: "home-button" %>
+
+
   <% if user_signed_in? %>
     <%= button_to "sign out", destroy_user_session_url, method: :delete, class: "logout-button" %>
   <% end %>
   
-  <%= button_to "home", root_url, class: "home-button" %>
     </div>
   
   <p class="notice"><%= notice %></p>
