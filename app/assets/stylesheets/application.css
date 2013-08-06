@@ -19,6 +19,12 @@ html, body, ul, li, a {
   font-size: 100%;
   font-family: sans-serif;
 }
+body {
+  background: black;
+  color: white;
+}
+
+
 input[type=submit], button {
   marigin: 0;
   padding: 10px;
@@ -37,19 +43,63 @@ li {
   clear: both;
 }
 .logout-button {
-  float: right;
+  display: block;
+  float: left;
+}
+.home-button {
+  display: block;
+  float: left;
+}
+.top-buttons {
+  width: 240px;
 }
 .container {  
   width: 90%;
   margin: auto;
 }
+.nav-buttons {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
 
-.favorite-button {
+input[type=submit] {
+  display: block;
+  float: left;
+  border-radius: 0;
+  height: 120px;
+  width: 120px;
+  padding-bottom: 35px;
+  padding-right: 35px;
+  overflow: hidden;
+  background: url("small-button-sprite.png") no-repeat 0 0;
+  white-space: pre-wrap;
+}
+input[type=submit]:hover {
+  background-position: 0 -120px;
+  padding-top: 30px;
+  padding-left: 32px;
+}
+input[type=submit]:active {
+  background-position: 0 -240px;
+  padding-top: 45px;
+  padding-left: 45px;
+}
+
+input[type=submit].favorite-button {
   display: block;
 }
 
-.unfavorite-button {
+input[type=submit].unfavorite-button {
   display: none;
+}
+
+.favorited input[type=submit].favorite-button {
+  display: none;
+}
+
+.favorited input[type=submit].unfavorite-button {
+  display: block;
 }
 
 .itinerary-group {
@@ -72,13 +122,7 @@ li {
   text-transform: uppercase;
   letter-spacing: 0.3em;
 }
-.favorited .favorite-button {
-  display: none;
-}
 
-.favorited .unfavorite-button {
-  display: block;
-}
 
 .activity-checkbox {
   display: block;
@@ -101,6 +145,7 @@ li {
   width: 200px;
   height: 200px;
   border: 5px solid blue;
+  transition: all 1s ease-in-out;
 }
 .itinerary-search-result {
   border: 5px solid blue;
@@ -113,19 +158,19 @@ li {
   border: 5px solid purple;
 }
 
-.friend-button {
+input[type=submit].friend-button {
   display: block;
 }
-.unfriend-button {
+input[type=submit].unfriend-button {
   display: none;
 }
-.friended .friend-button {
+.friended input[type=submit].friend-button {
   display: none;
 }
-.friended .unfriend-button {
+.friended input[type=submit].unfriend-button {
   display: block;
 }
-button {
+button, input[type=submit].big-button {
   display: block;
   float: left;
   border-radius: 0;
@@ -136,35 +181,23 @@ button {
   overflow: hidden;
   background: url("square-button-sprite.png") no-repeat 0 0;
 }
-button:hover {
+button:hover, input[type=submit].big-button:hover {
   background-position: 0 -200px;
   padding-top: 28px;
   padding-left: 28px;
 }
-button:active {
+button:active, input[type=submit].big-button:active {
   background-position: 0 -400px;
   padding-top: 40px;
   padding-left: 40px;
 }
 
-input[type=submit] {
-  display: block;
-  float: left;
-  border-radius: 0;
-  height: 120px;
-  width: 120px;
-  padding-bottom: 35px;
-  padding-right: 35px;
-  overflow: hidden;
-  background: url("small-button-sprite.png") no-repeat 0 0;
+.buttons_group {
+  padding: 30px 0;
 }
-input[type=submit]:hover {
-  background-position: 0 -120px;
-  padding-top: 30px;
-  padding-left: 32px;
-}
-input[type=submit]:active {
-  background-position: 0 -240px;
-  padding-top: 45px;
-  padding-left: 45px;
+
+.activity-blob:hover {
+  background: #CFCACA;
+  color: black;
+  transition: all 1s ease-in-out;
 }

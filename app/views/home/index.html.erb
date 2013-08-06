@@ -1,13 +1,13 @@
 <h1>home!</h1>
 
+<section class="intro group">
 
-<section>
-  
+
+
   <%= button_to "your profile", user_url(current_user.id), method: :get %>
-</section>
 
-<h3>hello!</h3>
-<section class="buttons_group">
+</section>
+<section class="buttons_group group">
   <button class="find_button">find something to do</button>
   <button class="share_button">share something to do</button>
 </section>
@@ -16,15 +16,15 @@
   <h3>share stuff to do</h3>
   <%= button_to "add an activity", new_activity_url, method: :get %>
   <%= button_to "add an itinerary", new_itinerary_url, method: :get %>
-  <button class="back_button">back</button>
+  <input type="submit" class="back_button" value="back">
 </section>
 
 <section class="find_something">
   <h3>find something to do</h3>
   <button class="search_button">search for something to do</button>
-  <%= button_to "see what other people are up to", all_users_url, method: :get %>  
-  <%= button_to "find something random to do", itinerary_url(Itinerary.get_random.id), method: :get %>
-  <button class="back_button">back</button>
+  <%= button_to "see what other people are up to", all_users_url, method: :get, class: "big-button" %>  
+  <%= button_to "find something random to do", itinerary_url(Itinerary.get_random.id), method: :get, class: "big-button" %>
+  <input type="submit" class="back_button small-button" value="back">
 </section>
 
 <section class="query_group">
@@ -90,7 +90,7 @@
   <br><br>
   
 
-  <button class="back_button">back</button>
+  <input type="submit" class="back_button" value="back">
 </section>
 
 <script type="application/javascript">
