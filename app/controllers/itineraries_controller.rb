@@ -75,32 +75,17 @@ class ItinerariesController < ApplicationController
         @search_results = @time_result & Itinerary.finer_search(@activities_search_result.map{|act| act.id})
       end
     end
-
-    # @activities_search_result = Activity.search(params[:search][:activity])
-#     @itineraries_by_time = Itinerary.search(params[:search][:itinerary])
-#     if (@activities_search_result.nil? || @activities_search_result.empty?) && 
-#                                 (@itineraries_by_time.nil? || @itineraries_by_time.empty?)
-#       @search_results = []
-#     elsif (@activities_search_result.nil? || @activities_search_result.empty?) && 
-#     if params[:search][:itinerary][:time] == "" #no time-it-takes was given
-#       if @activities_search_result.nil? || @activities_search_result.empty?
-#         @search_results = []
-#       else
-#         @search_results = @activities_search_result
-#       end
-#     else
-#       if @activities_search_result.nil? || @activites_search_result.empty?
-#         @search_results = @itineraries_by_time
-#       else
-#         
-#         @search_results = @itineraries_by_time & @activities_search_result
-#       end
-#     end
   
     @search_results
     
   end
   
+  def index
+    top_ten_favs = Favorite.group('itinerary_id').order('COUNT(*) DESC').limit(10)
+
+    @top_ten = top_ten_favs.map{ |fav| fav.itinerary }
+    
+  end
 
   
 end

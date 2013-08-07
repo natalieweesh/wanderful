@@ -23,6 +23,7 @@
   <button class="search_button left-right-bounce">search for something to do</button>
   <%= button_to "see what other people are up to", all_users_url, method: :get, class: "big-button top-down-bounce" %>  
   <%= button_to "find something random to do", itinerary_url(Itinerary.get_random.id), method: :get, class: "big-button right-left-bounce" %>
+  <%= button_to "top 10 favorited itineraries", itineraries_url, method: :get, class: "big-button" %>
   <input type="submit" class="back_button small-button" value="back">
 </section>
 
