@@ -523,6 +523,17 @@ a.friend-blob:active {
   color: white;
   border: 0;
 }
+
+#users-accordion .ui-accordion-header {
+  color: white;
+  border: none;
+  
+}
+#users-accordion.ui-accordion {
+  float: left;
+  width: 100%;
+}
+
 input[type=submit].search-button {
   display: block;
   float: right;

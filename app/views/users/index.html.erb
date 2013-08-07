@@ -1,4 +1,8 @@
+<div id="users-accordion">
+
+
 <h3>your peeps</h3>
+<div>
 <ul class="group">
 <% current_user.friends.each do |friend| %>
 
@@ -6,8 +10,9 @@
 
 <% end %>
 </ul>
+</div>
 <h3>everyone else</h3>
-
+<div>
 <ul class="group">
 <% @users.all.each do |user| %>
   <% if !current_user.friend_ids.include?(user.id) %>
@@ -17,3 +22,11 @@
   <% end %>
 <% end %>
 </ul>
+
+</div>
+</div>
+
+<script>
+  $( "#users-accordion" ).accordion({collapsible: true, icons: false});
+
+</script>
