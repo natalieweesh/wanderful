@@ -260,9 +260,7 @@ input[type="checkbox"]:checked + label {
 input[type="checkbox"] + label:hover {
   background: #3B83CF;
 }
-.search-button {
-  float: right;
-}
+
 .friend-form {
   display: block;
   float: left;
@@ -304,4 +302,24 @@ input[type=submit].logout-button:active, input[type=submit].sign-in-button:activ
 .friend-blob a, .non-friend-blob a {
   color: white;
   
+}
+.ui-accordion {
+  border: 0;
+  font-family: inherit;
+  font-size: inherit;
+}
+.ui-accordion-header {
+  background: black;
+  border: 0;
+  color: yellow;
+}
+.ui-accordion-content {
+  background: black; 
+  color: white;
+  border: 0;
+}
+input[type=submit].search-button {
+  display: block;
+  float: right;
+  font-size: inherit;
 }

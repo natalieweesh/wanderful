@@ -13,8 +13,8 @@
 
 <section class="share_something">
   <h3>share stuff to do</h3>
-  <%= button_to "add an activity", new_activity_url, method: :get %>
-  <%= button_to "add an itinerary", new_itinerary_url, method: :get %>
+  <%= button_to "add an activity", new_activity_url, method: :get, class: "big-button" %>
+  <%= button_to "add an itinerary", new_itinerary_url, method: :get, class: "big-button" %>
   <input type="submit" class="back_button" value="back">
 </section>
 
@@ -27,7 +27,11 @@
 </section>
 
 <section class="query_group group">
+  
+  <div id="accordion">
+  
   <h2>search for activities</h2>
+  <div>
   <section class="activity-search-form group">
   
   
@@ -45,14 +49,14 @@
         
     <label>search: #</label>
       <input data-autocomplete="/tags/autocomplete_tag_name" name="search[tags]" size="20" type="text" data-delimiter=" #" multiple="true"/>
-      <br><br>
-
       <input class="search-button" type="submit" value="search">
   </form>
+
   </section>
-  
+  </div>
   
   <h2>search for itineraries</h2>
+  <div>
   <form class="itinerary-search-form group" action="<%= search_itineraries_url %>" method="get">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <label>time you have to spare
@@ -83,13 +87,18 @@
     
     <input class="search-button" type="submit" value="search">
   </form>
-  <br><br>
+  </div>
   
+  <br><br>
+  </div> <!-- end accordion div -->
 
   <input type="submit" class="back_button" value="back">
 </section>
 
 <script type="application/javascript">
+
+  $( "#accordion" ).accordion({collapsible: true, active: false, icons: false});
+
 
   $(document).ready($('.find_button').addClass("animated fadeInLeftBig"));
   $(document).ready($('.share_button').addClass("animated fadeInRightBig"));
