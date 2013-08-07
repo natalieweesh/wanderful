@@ -170,7 +170,7 @@ input[type=submit].unfavorite-button:hover {
 .activity-checkbox {
   display: block;
   float: left;
-  border: 5px solid #3B83CF;
+  border: 5px solid #36D59E;
   margin: 2px;
 }
 
@@ -246,15 +246,36 @@ button, input[type=submit].big-button {
   overflow: hidden;
   background: url("square-button-sprite.png") no-repeat 0 0;
 }
+input[type=submit].half-big-button {
+  display: block;
+  float: left;
+  border-radius: 0;
+  height: 90px;
+  width: 200px;
+  padding-bottom: 25px;
+  padding-right: 25px;
+  overflow: hidden;
+  background: url("half-button-sprite.png") no-repeat 0 0;
+}
 button:hover, input[type=submit].big-button:hover {
   background-position: 0 -200px;
   padding-top: 28px;
-  padding-left: 28px;
+  padding-left: 25px;
+}
+input[type=submit].half-big-button:hover {
+  background-position: 0 -90px;
+  padding-top: 20px;
+  padding-left: 20px;
 }
 button:active, input[type=submit].big-button:active {
   background-position: 0 -400px;
   padding-top: 40px;
   padding-left: 40px;
+}
+input[type=submit].half-big-button:active {
+  background-position: 0 -180px;
+  padding-top: 35px;
+  padding-left: 32px;
 }
 
 .buttons_group {
@@ -293,11 +314,11 @@ input[type="checkbox"] + label {
   padding: 10px 5px;
 }
 input[type="checkbox"]:checked + label {
-  background: #3B83CF;
-  color: yellow;
+  background: #36D59E;
+  color: black;
 }
 input[type="checkbox"] + label:hover {
-  background: #3B83CF;
+  background: #36D59E;
 }
 
 .friend-form {
@@ -519,4 +540,20 @@ input[type=submit].search-button {
 .inner-text li {
   color: white;
   font-size: 12px;
+}
+
+.activity-checkbox {
+  margin: 10px;
+  box-shadow: 1px 0px 1px #3997D4,
+              0px 1px 1px #B9FF00,
+              2px 1px 1px #3997D4,
+              1px 2px 1px #B9FF00,
+              3px 2px 1px #3997D4,
+              2px 3px 1px #B9FF00,
+              4px 3px 1px #3997D4,
+              3px 4px 1px #B9FF00,
+              5px 4px 1px #3997D4,
+              4px 5px 1px #B9FF00,
+              6px 5px 1px #3997D4          
+              ;
 }
