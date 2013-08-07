@@ -9,6 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require select2
  *= require_tree .
  */
 
@@ -447,12 +448,7 @@ a.friend-blob:active, a.non-friend-blob:active {
   transform:translate(9px, 9px)}
 
 }*/
-.friend-blob:hover:after, .non-friend-blob:hover:after {
-/*  top:-3px;
-  left:-3px;
-  right:-2px;
-  bottom:-2px*/
-}*/
+
 
 .friend-blob a, .non-friend-blob a {
   color: white;
@@ -464,12 +460,15 @@ a.friend-blob:active, a.non-friend-blob:active {
   font-size: inherit;
 }
 .ui-accordion-header {
-  background: black;
-  border: 0;
+  background: #242529;
+  border: 5px solid blue;
+  width: 200px;
   color: yellow;
+
 }
+
 .ui-accordion-content {
-  background: black; 
+  background: #242529; 
   color: white;
   border: 0;
 }
@@ -477,4 +476,12 @@ input[type=submit].search-button {
   display: block;
   float: right;
   font-size: inherit;
+}
+.select-box-container {
+  border: 5px solid blue;
+  width: 200px;
+  display: block;
+  float: left;
+}
+#select-box {
 }

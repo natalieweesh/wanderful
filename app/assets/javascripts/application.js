@@ -15,4 +15,5 @@
 //= require jquery.ui.all
 //= require autocomplete-rails
 //= require underscore
+//= require select2
 //= require_tree .

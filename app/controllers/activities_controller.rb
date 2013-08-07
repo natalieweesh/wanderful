@@ -3,11 +3,14 @@ class ActivitiesController < ApplicationController
   def new
     @activity = Activity.new(params[:activity])
     @tags = Tag.all
+    @tag_names = Tag.get_all_names
   end
   
   def create
-    
-    @tags = params[:activity][:tags].split(" #")
+    p "PARAMS PARAMS PARAMS PARAMS PARAMS PARAMS PARAMS PARAMS PARAMS PARAMS PARAMS PARAMS PARAMS PARAMS"
+    p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+    p params[:activity][:tags]
+    @tags = params[:activity][:tags].split(",")
     if @tags.empty?
       flash[:notice] = "must have at least one tag"
       render :new

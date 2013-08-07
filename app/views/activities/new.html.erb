@@ -13,33 +13,33 @@
   <br><br>
   
   
-  <label for="activity_tags">tags: #</label>
-    <input id="activity_tags" data-autocomplete="/tags/autocomplete_tag_name" name="activity[tags]" size="20" type="text" data-delimiter=" #" multiple="true"/>
+  <!-- <label for="activity_tags">tags: #</label>
+    <input id="activity_tags" data-autocomplete="/tags/autocomplete_tag_name" name="activity[tags]" size="20" type="text" data-delimiter=" #" multiple="true"/> -->
+
     <br><br>
   <input class="go-button" type="submit" value="go!">
   
+  <div class="select-box-container">
+  <div id="select-box">
+  </div>
+  </div>
+  <input type="hidden" name="activity[tags]" id="tags">
+    
 </form>
 
-
-
-
-<script type="application/javascript">
-  var counter = 0;
-  var addSelect = function(){
-    var templateCode = $('#tags_template').html();
-    var templateFn = _.template(templateCode);
-    var renderedContent = templateFn({
-      tag_select_id: counter
-    })
-
-    $('#add_tags_button').before(renderedContent);
-    counter++;
-  };
-  addSelect();
-  
-  $('#add_tags_button').on('click', function(event) {
-    event.preventDefault();
-    addSelect();
-  });
-
+<script type="application/json" id="all_tags">
+  <%= @tag_names.to_json.html_safe %>
 </script>
+
+<script>
+  var allTags = JSON.parse($("#all_tags").html());
+  console.log(allTags);
+  $("#select-box").select2({width: "element", tags: allTags});
+  $("#select-box").on("change", function(event) {
+    alert("it's been changed");
+    alert($("#select-box").val());
+    $("#tags").val($("#select-box").val());
+  });
+</script>
+
+
