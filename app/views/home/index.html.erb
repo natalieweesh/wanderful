@@ -13,8 +13,8 @@
 
 <section class="share_something">
   <h3>share stuff to do</h3>
-  <%= button_to "add an activity", new_activity_url, method: :get, class: "big-button" %>
-  <%= button_to "add an itinerary", new_itinerary_url, method: :get, class: "big-button" %>
+  <%= button_to "add an activity", new_activity_url, method: :get, class: "big-button bounce-in" %>
+  <%= button_to "add an itinerary", new_itinerary_url, method: :get, class: "big-button bounce-in" %>
   <input type="submit" class="back_button" value="back">
 </section>
 
@@ -105,6 +105,8 @@
   $(document).ready($('.find_something').find('.left-right-bounce').addClass("animated bounceInLeft"));
   $(document).ready($('.find_something').find('.right-left-bounce').addClass("animated bounceInRight"));
   $(document).ready($('.find_something').find('.top-down-bounce').addClass("animated bounceInDown"))
+  $(document).ready($('.share_something').find('.bounce-in').addClass("animated bounceIn"))
+
 
   $(function() {
     $(".share_something").css("display", "none");

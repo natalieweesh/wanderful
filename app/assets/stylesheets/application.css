@@ -20,7 +20,7 @@ html, body, ul, li, a {
   font-family: sans-serif;
 }
 body {
-  background: black;
+  background: #242529;
   color: white;
 }
 
@@ -82,6 +82,23 @@ input[type=submit]:active {
 
 input[type=submit].favorite-button {
   display: block;
+  background: url("heart-button-sprite.png") no-repeat 0 0;
+  width: 150px;
+  height: 150px;
+  padding-bottom: 30px;
+  padding-right: 30px;
+  overflow: hidden;
+}
+input[type=submit].favorite-button:hover {
+  background-position: 0 -120px;
+  padding-top: 20px;
+  padding-left: 20px;
+  background-position: 0 -150px;
+}
+input[type=submit].favorite-button:active {
+  background-position: 0 -300px;
+  padding-top: 25px;
+  padding-left: 25px;
 }
 
 input[type=submit].unfavorite-button {
@@ -91,10 +108,24 @@ input[type=submit].unfavorite-button {
 .favorited input[type=submit].favorite-button {
   display: none;
 }
-
+input[type=submit].unfavorite-button {
+  background: url("heart-button-sprite.png") no-repeat 0 -300px;
+  width: 150px;
+  height: 150px;
+  padding-top: 35px;
+  padding-left: 37px;
+  overflow: hidden;
+}
 .favorited input[type=submit].unfavorite-button {
   display: block;
+  
 }
+input[type=submit].unfavorite-button:hover {
+  background: url("heart-button-sprite.png") no-repeat 0 -150px;
+  padding-top: 25px;
+  padding-left: 27px;
+}
+
 
 .itinerary-group {
   display: block;
