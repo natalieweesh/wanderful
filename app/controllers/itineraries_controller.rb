@@ -82,7 +82,7 @@ class ItinerariesController < ApplicationController
   
   def index
     
-    top_ten_favs = Favorite.group('favorites.itinerary_id').order('COUNT(*) DESC').limit(10)
+    top_ten_favs = Favorite.group('favorites.itinerary_id').order('COUNT(favorites.id) DESC').limit(10)
 
     @top_ten = top_ten_favs.map{ |fav| fav.itinerary }
     
