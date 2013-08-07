@@ -66,8 +66,13 @@ class ItinerariesController < ApplicationController
       else
         p "TIME GIVEN AND ACTIVITIES RESULT IS NOT NILLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"
         p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+        p "PARAMS[:SEARCH][:ITINERARY] PARAMS[:SEARCH][:ITINERARY] PARAMS[:SEARCH][:ITINERARY] PARAMS[:SEARCH][:ITINERARY]"
+        p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+        p params[:search][:itinerary]
         @time_result = Itinerary.search(params[:search][:itinerary])
-        @search_results = @time_result & @activities_search_result
+        p "TIME RESULT TIME RESULT TIME RESULT TIME RESULT TIME RESULT TIME RESULT TIME RESULT "
+        p @time_result
+        @search_results = @time_result & Itinerary.finer_search(@activities_search_result.map{|act| act.id})
       end
     end
 

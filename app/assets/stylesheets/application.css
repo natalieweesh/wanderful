@@ -337,29 +337,29 @@ input[type=submit].logout-button:active, input[type=submit].sign-in-button:activ
   position: relative;
 
   overflow: hidden;
-  box-shadow: 2px 0px 1px lightgray, 
-              0px 1px 1px gray, 
-              2px 1px 1px lightgray,
-              1px 2px 1px gray,
-              3px 2px 1px lightgray,
-              2px 3px 1px gray,
-              4px 3px 1px lightgray,
-              3px 4px 1px gray,
-              5px 4px 1px lightgray,
-              4px 5px 1px gray,
-              6px 5px 1px lightgray,
-              5px 6px 1px gray,
-              7px 6px 1px lightgray,
-              6px 7px 1px gray,
-              8px 7px 1px lightgray,
-              7px 8px 1px gray,
-              9px 8px 1px lightgray,
-              8px 9px 1px gray,
-              10px 9px 1px lightgray,
-              9px 10px 1px gray,
-              11px 10px 1px lightgray,
-              10px 11px 1px gray,
-              12px 11px 1px lightgray
+  box-shadow: 2px 0px 1px #FFF080, 
+              0px 1px 1px #DB1717, 
+              2px 1px 1px #FFF080,
+              1px 2px 1px #DB1717,
+              3px 2px 1px #FFF080,
+              2px 3px 1px #DB1717,
+              4px 3px 1px #FFF080,
+              3px 4px 1px #DB1717,
+              5px 4px 1px #FFF080,
+              4px 5px 1px #DB1717,
+              6px 5px 1px #FFF080,
+              5px 6px 1px #DB1717,
+              7px 6px 1px #FFF080,
+              6px 7px 1px #DB1717,
+              8px 7px 1px #FFF080,
+              7px 8px 1px #DB1717,
+              9px 8px 1px #FFF080,
+              8px 9px 1px #DB1717,
+              10px 9px 1px #FFF080,
+              9px 10px 1px #DB1717,
+              11px 10px 1px #FFF080,
+              10px 11px 1px #DB1717,
+              12px 11px 1px #FFF080
               ;
   margin-left: -3px;
   margin-top: -3px;
@@ -401,39 +401,61 @@ input[type=submit].logout-button:active, input[type=submit].sign-in-button:activ
 }*/
 
 .friend-blob:hover, .non-friend-blob:hover {
-  box-shadow: 1px 0px 1px lightgray,
-              0px 1px 1px gray,
-              2px 1px 1px lightgray,
-              1px 2px 1px gray,
-              3px 2px 1px lightgray,
-              2px 3px 1px gray,
-              4px 3px 1px lightgray,
-              3px 4px 1px gray,
-              5px 4px 1px lightgray,
-              4px 5px 1px gray,
-              6px 5px 1px lightgray
+  box-shadow: 1px 0px 1px #FFF080,
+              0px 1px 1px #DB1717,
+              2px 1px 1px #FFF080,
+              1px 2px 1px #DB1717,
+              3px 2px 1px #FFF080,
+              2px 3px 1px #DB1717,
+              4px 3px 1px #FFF080,
+              3px 4px 1px #DB1717,
+              5px 4px 1px #FFF080,
+              4px 5px 1px #DB1717,
+              6px 5px 1px #FFF080
               ;
   -webkit-transform:translate(6px, 6px);
   -moz-transform:translate(6px, 6px);
   -ms-transform:translate(6px, 6px);
   -o-transform:translate(6px, 6px);
-  transform:translate(6px, 6px)}
+  transform:translate(6px, 6px);
+}
+
+.friend-blob:hover {
+  box-shadow: 1px 0px 1px #A8FFBA,
+              0px 1px 1px #0F6320,
+              2px 1px 1px #A8FFBA,
+              1px 2px 1px #0F6320,
+              3px 2px 1px #A8FFBA,
+              2px 3px 1px #0F6320,
+              4px 3px 1px #A8FFBA,
+              3px 4px 1px #0F6320,
+              5px 4px 1px #A8FFBA,
+              4px 5px 1px #0F6320,
+              6px 5px 1px #A8FFBA
+              ;  
 }
 
 a.friend-blob, a.non-friend-blob {
 }
 a.friend-blob:active, a.non-friend-blob:active {
   color: yellow;
-  box-shadow: 1px 0px 1px lightgray,
-              0px 1px 1px gray,
-              2px 1px 1px lightgray,
-              1px 2px 1px gray,
-              3px 2px 1px lightgray;
+  box-shadow: 1px 0px 1px #FFF080,
+              0px 1px 1px #DB1717,
+              2px 1px 1px #FFF080,
+              1px 2px 1px #DB1717,
+              3px 2px 1px #FFF080;
   -webkit-transform:translate(9px, 9px);
   -moz-transform:translate(9px, 9px);
   -ms-transform:translate(9px, 9px);
   -o-transform:translate(9px, 9px);
-  transform:translate(9px, 9px)}
+  transform:translate(9px, 9px)
+}
+a.friend-blob:active {
+  box-shadow: 1px 0px 1px #A8FFBA,
+              0px 1px 1px #0F6320,
+              2px 1px 1px #A8FFBA,
+              1px 2px 1px #0F6320,
+              3px 2px 1px #A8FFBA;
 }
 
 /*.friend-blob:active, .non-friend-blob:active {

@@ -22,7 +22,12 @@ class Activity < ActiveRecord::Base
   # def self.search(params)
   def self.search(paramstags, paramsneighborhood)
     @activities_found = []
-  
+    p "PARAMS TAGS PARAMS TAGS PARAMS TAGS PARAMS TAGS PARAMS TAGS PARAMS TAGS "
+    p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+    p paramstags
+    p "PARAMS NEIGHBORHOOD PARAMS NEIGHBORHOOD PARAMS NEIGHBORHOOD PARAMS NEIGHBORHOOD "
+    p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+    p paramsneighborhood
     # if !params["tags"].empty?
     if !paramstags.empty?
       tags = []
@@ -36,15 +41,21 @@ class Activity < ActiveRecord::Base
           tags << tag
         end
       end
+      p "TAGS TAGS TAGS TAGS TAGS TAGS TAGS TAGS TAGS TAGS TAGS TAGS TAGS TAGS TAGS TAGS TAGS "
+      p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+      p tags
       # @activities_found_by_tags = Activity.joins(:tags).where('tags.id IN (?)', search_tags_ids).group('activities.id').having('COUNT(*) >= ? ', params["tags"].length)
       @activities_found_by_tags = Activity.joins(:tags).where('tags.id IN (?)', tags).group('activities.id').having('COUNT(*) >= ? ', tags.length)
-
+      p "ACTIVITIES FOUND BY TAGS ACTIVITIES FOUND BY TAGS ACTIVITIES FOUND BY TAGS ACTIVITIES FOUND BY TAGS "
+      p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+      p @activities_found_by_tags
     else
+      p "ACTIVITIES NOT FOUBD BY TAGS ACTIVITIES NOT FOUBD BY TAGS ACTIVITIES NOT FOUBD BY TAGS ACTIVITIES NOT FOUBD BY TAGS "
       @activities_found_by_tags = nil
     end
 
     # if params["neighborhood"] != "nil"
-    if paramsneighborhood != "nil"
+    if paramsneighborhood != ""
       # @activities_found_by_neighborhood = Activity.find_all_by_neighborhood(params["neighborhood"])
       @activities_found_by_neighborhood = Activity.find_all_by_neighborhood(paramsneighborhood)
     else
