@@ -529,8 +529,7 @@ input[type=submit].search-button {
   font-size: inherit;
 }
 .select-box-container {
-  border: 5px solid blue;
-  width: 200px;
+  width: 300px;
   display: block;
   float: left;
 }
