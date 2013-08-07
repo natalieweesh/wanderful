@@ -4,5 +4,7 @@ class HomeController < ApplicationController
   
   
   def index
+    @tag_names = Tag.get_all_names
+    @all_neighborhoods = Activity.all_neighborhoods
   end
 end

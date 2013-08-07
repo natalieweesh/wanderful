@@ -213,6 +213,7 @@ input[type=submit].unfavorite-button:hover {
   float: left;
   height: 70px;
   border: 5px solid purple;
+  margin: 7px;
 }
 
 input[type=submit].friend-button {
@@ -483,5 +484,6 @@ input[type=submit].search-button {
   display: block;
   float: left;
 }
-#select-box {
+#select-box-neighborhood, #select-box-neighborhood-2 {
+  width: 200px;
 }

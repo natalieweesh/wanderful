@@ -39,17 +39,31 @@
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     
     <label>by neighborhood</label>
-    <select name="search[neighborhood]">
-      <option value="nil"></option>
-      <% Activity.all_neighborhoods.each do |neighborhood| %>
-      <option value="<%= neighborhood %>"><%= neighborhood %></option>
-      <% end %>
-    </select><br><br>
-    <label>by tags</label>
+    
+    
+    <div class="select-box-container">
+      <select id="select-box-neighborhood-2" name="search[neighborhood]">
+        <option value=""></option>
+        <% @all_neighborhoods.each do |neigh| %>
+        <option value="<%= neigh %>"><%= neigh %></option>
+        <% end %>
         
-    <label>search: #</label>
-      <input data-autocomplete="/tags/autocomplete_tag_name" name="search[tags]" size="20" type="text" data-delimiter=" #" multiple="true"/>
-      <input class="search-button" type="submit" value="search">
+      </select>
+    </div>
+    
+    
+    
+   
+        
+    
+    <div class="select-box-container">
+    <div id="select-box-1">
+    </div>
+    </div>
+    <input type="hidden" name="search[tags]" id="tags-1">
+ 
+        
+    <input class="search-button" type="submit" value="search">
   </form>
 
   </section>
@@ -69,21 +83,26 @@
     </label>
     
     <br><br>
-    <label>by neighborhood
-    <select name="search[activity][search][neighborhood]">
-      <option value="nil"></option>
-      <% Activity.all_neighborhoods.each do |neighborhood| %>
-      <option value="<%= neighborhood %>"><%= neighborhood %></option>
-      <% end %>
-    </select>
-    </label>
-    <br><br>    
+
+    <label for"select-box-neighborhood">neighborhood</label>
     
+    <div class="select-box-container">
+      <select id="select-box-neighborhood" name="search[activity][search][neighborhood]">
+        <option value=""></option>
+        <% @all_neighborhoods.each do |neigh| %>
+        <option value="<%= neigh %>"><%= neigh %></option>
+        <% end %>
+        
+      </select>
+    </div>
     
-    <label for="product_name">by tags: #
-      <input data-autocomplete="/tags/autocomplete_tag_name" name="search[activity][search][tags]" size="20" type="text" data-delimiter=" #" multiple="true"/>
-    </label>
-    <br><br>
+    <label>tags</label>
+    <div class="select-box-container">
+    <div id="select-box-2">
+    </div>
+    </div>
+    <input type="hidden" name="search[activity][search][tags]" id="tags-2" value="">
+ 
     
     <input class="search-button" type="submit" value="search">
   </form>
@@ -94,6 +113,37 @@
 
   <input type="submit" class="back_button" value="back">
 </section>
+
+
+<script type="application/json" id="all_neighbs">
+  <%= @all_neighborhoods.to_json.html_safe %>
+</script>
+
+<script type="application/json" id="all_tags">
+  <%= @tag_names.to_json.html_safe %>
+</script>
+
+<script>
+  var allTags = JSON.parse($("#all_tags").html());
+  $("#select-box-1").select2({width: "element", tags: allTags});
+  $("#select-box-1").on("change", function(event) {
+    $("#tags-1").val($("#select-box-1").val());
+  });
+</script>
+
+<script>
+  var allTags = JSON.parse($("#all_tags").html());
+  $("#select-box-2").select2({width: "element", tags: allTags});
+  $("#select-box-2").on("change", function(event) {
+    $("#tags-2").val($("#select-box-2").val());
+  });
+</script>
+
+<script>
+$("#select-box-neighborhood").select2({width: "element"});
+$("#select-box-neighborhood-2").select2({width: "element"});
+</script>
+
 
 <script type="application/javascript">
 
