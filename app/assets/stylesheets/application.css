@@ -292,3 +292,16 @@ input[type=submit].logout-button:active, input[type=submit].sign-in-button:activ
   padding-top: 25px;
   padding-left: 25px;
 }
+.friend-blob, .non-friend-blob {
+  display: block;
+  float: left;
+  width: 50%;
+  border: 5px solid blue;
+  background: blue;
+  padding: 10px;
+  box-shadow:1px 0px 1px #203891,0px 1px 1px #3852b1,2px 1px 1px #203891,1px 2px 1px #3852b1,3px 2px 1px #203891,2px 3px 1px #3852b1,4px 3px 1px #203891,3px 4px 1px #3852b1,5px 4px 1px #203891,4px 5px 1px #3852b1,6px 5px 1px #203891;
+}
+.friend-blob a, .non-friend-blob a {
+  color: white;
+  
+}

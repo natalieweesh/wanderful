@@ -35,9 +35,9 @@
   <% @user.activities.each do |activity| %>
   <li class="activity-blob"><%= link_to activity.description, activity_url(activity.id), class: "activity-title" %>
     <ul>
-      <li>venue: <%= activity.venue %></li>
-      <li>neighborhood: <%= activity.neighborhood %></li>
-      <li>tags: #<%= activity.tags.map{|tag| tag.name}.join(" #") %></li>
+      <li>@<%= activity.venue %></li>
+      <li>[<%= activity.neighborhood %>]</li>
+      <li>#<%= activity.tags.map{|tag| tag.name}.join(" #") %></li>
     </ul>
   </li>
   <% end %>

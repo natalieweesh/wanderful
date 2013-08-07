@@ -1,17 +1,18 @@
 <h3>your peeps</h3>
+<ul class="group">
 <% current_user.friends.each do |friend| %>
 
-<li><%= link_to friend.username, user_url(friend.id) %></li>
+<li class="friend-blob"><%= link_to friend.username, user_url(friend.id) %></li>
 
 <% end %>
-
+</ul>
 <h3>everyone else</h3>
 
-<ul>
+<ul class="group">
 <% @users.all.each do |user| %>
   <% if !current_user.friend_ids.include?(user.id) %>
 
-  <li><%= link_to user.username, user_url(user.id) %></li>
+  <li class="non-friend-blob"><%= link_to user.username, user_url(user.id) %></li>
 
   <% end %>
 <% end %>

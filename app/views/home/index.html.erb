@@ -20,9 +20,9 @@
 
 <section class="find_something">
   <h3>find something to do</h3>
-  <button class="search_button">search for something to do</button>
-  <%= button_to "see what other people are up to", all_users_url, method: :get, class: "big-button" %>  
-  <%= button_to "find something random to do", itinerary_url(Itinerary.get_random.id), method: :get, class: "big-button" %>
+  <button class="search_button left-right-bounce">search for something to do</button>
+  <%= button_to "see what other people are up to", all_users_url, method: :get, class: "big-button top-down-bounce" %>  
+  <%= button_to "find something random to do", itinerary_url(Itinerary.get_random.id), method: :get, class: "big-button right-left-bounce" %>
   <input type="submit" class="back_button small-button" value="back">
 </section>
 
@@ -93,6 +93,9 @@
 
   $(document).ready($('.find_button').addClass("animated fadeInLeftBig"));
   $(document).ready($('.share_button').addClass("animated fadeInRightBig"));
+  $(document).ready($('.find_something').find('.left-right-bounce').addClass("animated bounceInLeft"));
+  $(document).ready($('.find_something').find('.right-left-bounce').addClass("animated bounceInRight"));
+  $(document).ready($('.find_something').find('.top-down-bounce').addClass("animated bounceInDown"))
 
   $(function() {
     $(".share_something").css("display", "none");

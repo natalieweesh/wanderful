@@ -1,23 +1,22 @@
 <h3>activity show page</h3>
 
 <ul>
-  <li>
-    description
+  <li class="activity-title">
     <%= @activity.description %>
   </li>
-
+  <br><br>
   <li>
-    venue
-    <%= @activity.venue %>
+    
+    @<%= @activity.venue %>
   </li>
-
+  <br><br>
   <li>
-    neighborhood
-    <%= @activity.neighborhood %>
+
+    [<%= @activity.neighborhood %>]
   </li>
-
+  <br><br>
   <li>
-    tags
+    tags:
     <ul>
       <% @activity.tags.each do |tag| %>
         <li><%= tag.name %></li>
