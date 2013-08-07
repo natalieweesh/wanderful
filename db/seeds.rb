@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Activity.create(description:"go to the zoo", venue:"bronx zoo", neighborhood: "bronx")
+Activity.create(description:"get a haircut", venue:"barbershop", neighborhood:"chinatown")
+Itinerary.create(description:"a productive day", time_it_takes: 3, user_id: 1)
+ItinerariesJoin.create(itinerary_id: 1, activity_id: 1)
+ItinerariesJoin.create(itinerary_id: 1, activity_id: 2)
