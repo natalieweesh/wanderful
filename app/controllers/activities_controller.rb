@@ -31,10 +31,19 @@ class ActivitiesController < ApplicationController
     @activity = Activity.find(params[:id])
   end
 
+# the original search method :   
+  # def search
+  #   @tags_array = params[:search][:tags].split(",")
+  #   @search_results = Activity.search(@tags_array, params[:search][:neighborhood])
+  # end
   
   def search
     @tags_array = params[:search][:tags].split(",")
-    @search_results = Activity.search(@tags_array, params[:search][:neighborhood])
+    
+    # @results_by_location = Activity.near(params[:search][:address], 20) #20 mile radius
+    @search_results = Activity.search(@tags_array, [params[:search][:latitude], params[:search][:longitude]], params[:search][:radius])
+    # @search_results = @tags_array & @results_by_location #THIS ASSUMES THAT NEITHER IS BLANK, CAN WORK THAT OUT LATER
+    
   end
   
   

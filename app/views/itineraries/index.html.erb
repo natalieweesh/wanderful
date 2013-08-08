@@ -15,7 +15,7 @@
         <li class="activity-title"><%= link_to activity.description, activity_url(activity.id) %></li>
         <ul class="inner-text">
           <li>@ <%= activity.venue %></li>
-          <li>[ <%= activity.neighborhood %> ]</li>
+          <li>[ <%= activity.address %> ]</li>
           <li>#<%= activity.tags.map{|tag| tag.name}.join(" #") %></li>
         </ul>
       </ul>

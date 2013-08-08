@@ -9,7 +9,7 @@
 <%= link_to result.description, activity_url(result.id), class: "activity-title" %>
   <ul>
     <li>@<%= result.venue %></li>
-    <li>[<%= result.neighborhood %>]</li>
+    <li>[<%= result.address %>]</li>
     <li>#<%= result.tags.map{|tag| tag.name}.join(" #") %></li>
   </ul>
 </li>

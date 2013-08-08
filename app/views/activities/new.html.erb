@@ -1,6 +1,6 @@
 <h3>add a new activity</h3>
 
-<form class="new-activity-form" action="<%= activities_url %>" method="post">
+<form class="new-activity-form" action="<%= activities_url %>" method="post" id="form-new-activity">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <label for="activity_description">description</label>
   <input type="text" name="activity[description]" id="activity_description">
@@ -8,9 +8,41 @@
   <label for="activity_venue">venue</label>
   <input type="text" name="activity[venue]" id="activity_venue">
   <br><br>
-  <label for="activity_neighborhood">neighborhood</label>
+  
+  
+  
+<!--   <label for="activity_neighborhood">neighborhood</label>
   <input type="text" name="activity[neighborhood]" id="activity_neighborhood">
-  <br><br>
+  <br><br> -->
+  
+  <input type="hidden" name="activity[address]" id="address_box">
+  <input type="hidden" name="activity[latitude]" id="lat-box">
+  <input type="hidden" name="activity[longitude]" id="long-box">
+    
+
+
+
+        <div>
+          <input id="address" type="textbox" value="">
+          <input type="button" value="place pin" onclick="codeAddress()">
+        </div>
+        <div id="map_canvas" style="height:200px; width:400px; color: black; position: relative; background-color: rgb(229, 227, 223); overflow: hidden;"></div>
+
+      
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
   
   
   <div class="select-box-container">
@@ -20,9 +52,198 @@
   <input type="hidden" name="activity[tags]" id="tags">
     
     
-  <input class="go-button" type="submit" value="go!">
+  <input id="new-activity-button" class="go-button" type="button" value="go!" onclick="changeTextBoxes();">
+  
+  
+  
+  <input type="button" value="testbttn">
+    
     
 </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+<script>
+var result;
+  var geocoder;
+  var map;
+  var marker;
+  
+  
+  
+  
+  
+  
+  
+  var infowindow = new google.maps.InfoWindow({size: new google.maps.Size(100,50)});
+  function initialize() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(40.730844, -74.005973);
+    var mapOptions = {
+      zoom: 8,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+    google.maps.event.addListener(map, 'click', function() {
+      infowindow.close();
+    });
+  }
+  function clone(obj){
+    if(obj == null || typeof(obj) != 'object') return obj;
+    var temp = new obj.constructor(); 
+    for(var key in obj) temp[key] = clone(obj[key]);
+    return temp;
+  }
+  function geocodePosition(pos) {
+    geocoder.geocode({
+      latLng: pos
+    }, function(responses) {
+      if (responses && responses.length > 0) {
+        marker.formatted_address = responses[0].formatted_address;
+        console.log("geocodePosition response:")
+        console.log(pos);
+      } else {
+        marker.formatted_address = 'Cannot determine address at this location.';
+      }
+      infowindow.setContent(marker.formatted_address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
+      infowindow.open(map, marker);
+    });
+  }
+  function codeAddress() {
+    var address = document.getElementById('address').value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        if (marker) {
+          marker.setMap(null);
+          marker = new google.maps.Marker();
+          if (infowindow) infowindow.close();
+        }
+        marker = new google.maps.Marker({
+          map: map,
+          draggable: true,
+          position: results[0].geometry.location
+        });
+        google.maps.event.addListener(marker, 'dragend', function() {
+          // updateMarkerStatus('Drag ended');
+          geocodePosition(marker.getPosition());
+          $('#address').val('coordinates saved');
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+          if (marker.formatted_address) {
+            infowindow.setContent(marker.formatted_address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
+          } else  {
+            infowindow.setContent(address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
+          }
+          // infowindow.open(map, marker);
+
+        });
+        google.maps.event.trigger(marker, 'click');
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+  
+  
+  function codeLatLng() {
+      // var input = document.getElementById("latlng").value;
+      var input = marker.position.lb + "," + marker.position.mb;
+      alert("INPUT: ");
+      alert(input);
+      var latlngStr = input.split(",",2);
+      var lat = parseFloat(latlngStr[0]);
+      var lng = parseFloat(latlngStr[1]);
+      var latlng = new google.maps.LatLng(lat, lng);
+      geocoder.geocode({'latLng': latlng}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          if (results[1]) {
+            // map.setZoom(11);
+            marker = new google.maps.Marker({
+                position: latlng,
+                map: map
+            });
+            alert(results[1].formatted_address);
+            $("#address_box").val(results[1].formatted_address);
+            // infowindow.setContent(results[1].formatted_address);
+            // infowindow.open(map, marker);
+            alert("SUBMIT THE FORM NOW!!!");
+            $('#form-new-activity').submit();
+            alert('submitted');
+          }
+        } else {
+          
+          alert("Geocoder failed due to: " + status);
+        }
+      });
+    }
+  
+    function changeTextBoxes() {
+      alert("before codeLatLng()");
+      codeLatLng();
+      alert("HERE");
+      $('#address_box').val($('#address').val());
+      $('#lat-box').val(marker.position.lb);
+      $('#long-box').val(marker.position.mb);
+      alert("DONE");
+
+    }
+    
+  // $('#new-activity-button').on("click", function(event) {
+  //   alert("HERE!");
+  //   // event.preventDefault();
+  //   console.log("MARKER.position");
+  //   console.log(marker.position);
+  //  
+  //   $('#address_box').val($("#address").val());
+  //   $('#lat-box').val(marker.position.lb);
+  //   $('#long-box').val(marker.position.mb);
+  //  
+  // })
+  
+  $('#tester-button').on("click", function(event){
+    event.preventDefault();
+    console.log(marker)
+        alert(marker.formatted_address);
+  })
+
+</script>
+
+<script>
+$(document).ready(initialize());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <script type="application/json" id="all_tags">
   <%= @tag_names.to_json.html_safe %>

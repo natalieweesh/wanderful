@@ -1,5 +1,15 @@
 class Activity < ActiveRecord::Base
-  attr_accessible :description, :neighborhood, :user_id, :venue, :tag_ids
+  attr_accessible :description, :neighborhood, :user_id, :venue, :tag_ids, :latitude, :longitude, :address
+
+  validates :description, :venue, presence: true
+  # validate :at_least_one_tag
+  # validates_associated :tags_joins, presence: true, allow_blank: false
+  validates_associated :tags, presence: true, allow_blank: false
+
+  geocoded_by :address
+  after_validation :geocode          # auto-fetch coordinates
+
+
 
   belongs_to :user
   
@@ -9,10 +19,7 @@ class Activity < ActiveRecord::Base
   has_many :itineraries_joins
   has_many :itineraries, through: :itineraries_joins
   
-  validates :description, :neighborhood, :venue, presence: true
-  # validate :at_least_one_tag
-  # validates_associated :tags_joins, presence: true, allow_blank: false
-  validates_associated :tags, presence: true, allow_blank: false
+
   private
   
   # def at_least_one_tag
@@ -20,61 +27,68 @@ class Activity < ActiveRecord::Base
   # end
   
   # def self.search(params)
-  def self.search(paramstags, paramsneighborhood)
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  # "REFACTORED" CODE BELOW
+  def self.search(paramstags, paramslatlong, paramsradius)
     @activities_found = []
-    p "PARAMS TAGS PARAMS TAGS PARAMS TAGS PARAMS TAGS PARAMS TAGS PARAMS TAGS "
-    p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
-    p paramstags
-    p "PARAMS NEIGHBORHOOD PARAMS NEIGHBORHOOD PARAMS NEIGHBORHOOD PARAMS NEIGHBORHOOD "
-    p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
-    p paramsneighborhood
-    # if !params["tags"].empty?
-    if !paramstags.empty?
+    if !paramstags.empty? # if any tags are given
       tags = []
-      # search_tags_ids = params["tags"].map{|str| str.to_i}
-      # search_tags_ids = paramstags.map{|name| Tag.find_by_name(name).id }
       search_tags_ids = paramstags.map do |name|
-        tag = Tag.find_by_name(name)
-        if tag.nil?
-          
-        else
-          tags << tag
-        end
+        tags << Tag.find_by_name(name) # (none of the tags should be nil now that we're using select2)
       end
-      p "TAGS TAGS TAGS TAGS TAGS TAGS TAGS TAGS TAGS TAGS TAGS TAGS TAGS TAGS TAGS TAGS TAGS "
-      p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
-      p tags
-      # @activities_found_by_tags = Activity.joins(:tags).where('tags.id IN (?)', search_tags_ids).group('activities.id').having('COUNT(*) >= ? ', params["tags"].length)
-      @activities_found_by_tags = Activity.joins(:tags).where('tags.id IN (?)', tags).group('activities.id').having('COUNT(*) >= ? ', tags.length)
-      p "ACTIVITIES FOUND BY TAGS ACTIVITIES FOUND BY TAGS ACTIVITIES FOUND BY TAGS ACTIVITIES FOUND BY TAGS "
-      p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
-      p @activities_found_by_tags
+      @activities_found_by_tags = Activity.joins(:tags).where('tags.id IN (?)', tags).group('activities.id').having('COUNT(*) >= ? ', tags.length) # MAKE SURE POSTGRESQL IS OKAY WITH THIS QUERY!!!!!!!
     else
-      p "ACTIVITIES NOT FOUBD BY TAGS ACTIVITIES NOT FOUBD BY TAGS ACTIVITIES NOT FOUBD BY TAGS ACTIVITIES NOT FOUBD BY TAGS "
       @activities_found_by_tags = nil
     end
 
-    # if params["neighborhood"] != "nil"
-    if paramsneighborhood != ""
-      # @activities_found_by_neighborhood = Activity.find_all_by_neighborhood(params["neighborhood"])
-      @activities_found_by_neighborhood = Activity.find_all_by_neighborhood(paramsneighborhood)
-    else
-      @activities_found_by_neighborhood = nil
-    end
+    # if paramsneighborhood != ""
+      # @activities_found_by_neighborhood = Activity.find_all_by_neighborhood(paramsneighborhood)
+    # else
+      # @activities_found_by_neighborhood = nil
+    # end
+    p "PARAMS LATLONG PARAMS LATLONG PARAMS LATLONG PARAMS LATLONG PARAMS LATLONG PARAMS LATLONG "
+    p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+    p paramslatlong
     
-    if @activities_found_by_tags.nil? && @activities_found_by_neighborhood.nil?
+    p "PARAMS RADIUS PARAMS RADIUS PARAMS RADIUS PARAMS RADIUS PARAMS RADIUS PARAMS RADIUS PARAMS RADIUS "
+    p paramsradius
+    
+    @activities_found_by_location = Activity.near(paramslatlong, paramsradius.to_i)
+    
+    p "ACTIVITIES NEAR PARAMSADDRESS ACTIVITIES NEAR PARAMSADDRESS ACTIVITIES NEAR PARAMSADDRESS"
+    p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+    p @activities_found_by_location
+    
+    if @activities_found_by_tags.nil? && @activities_found_by_location.nil?
       @activities_found = []
-    elsif !@activities_found_by_tags.nil? && @activities_found_by_neighborhood.nil?
+    elsif !@activities_found_by_tags.nil? && @activities_found_by_location.nil?
       @activities_found = @activities_found_by_tags
-    elsif @activities_found_by_tags.nil? && !@activities_found_by_neighborhood.nil?
-      @activities_found = @activities_found_by_neighborhood
-    else #if !@activities_found_by_tags.nil? && !@activities_found_by_neighborhood.nil?
-      @activities_found = @activities_found_by_tags & @activities_found_by_neighborhood
+    elsif @activities_found_by_tags.nil? && !@activities_found_by_location.nil?
+      @activities_found = @activities_found_by_location
+    else #if !@activities_found_by_tags.nil? && !@activities_found_by_location.nil?
+      @activities_found = @activities_found_by_tags & @activities_found_by_location
     end
 
     @activities_found
 
   end
+  
+  
+  
+  
+  
+  
+  
   
   def self.all_neighborhoods
     Activity.uniq.pluck(:neighborhood)
