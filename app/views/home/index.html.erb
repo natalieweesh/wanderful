@@ -75,7 +75,7 @@
           </div>
           <br><br>
           <div style="display: block; position: relative; background:red; height: 200px; width: 300px">
-            <div id="map_canvas" style="height:100%; width:100%; color: black; position: fixed; background-color: rgb(229, 227, 223); overflow: hidden;"></div>
+            <div id="map_canvas" style="height:200px; width:300px; color: black; position: fixed; background-color: rgb(229, 227, 223); overflow: hidden; z-index: 1000;"></div>
           </div>
           <br><br>
           
@@ -135,7 +135,8 @@
   </div>
   
   <br><br>
-  </div> <!-- end accordion div -->
+  </div>
+    <!-- end accordion div -->
   <input type="submit" class="back_button" value="back">
 </section>
 
@@ -150,6 +151,8 @@
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
 <script>
+
+
 var result;
   var geocoder;
   var map;
@@ -297,8 +300,9 @@ $(document).ready(initialize());
 
 <script type="application/javascript">
 
-  $( "#accordion" ).accordion({collapsible: true, active: false, icons: false});
+  var counter = 0;
 
+  $( "#accordion" ).accordion({collapsible: true, active: false, icons: false });
 
   $(document).ready($('.find_button').addClass("animated fadeInLeftBig"));
   $(document).ready($('.share_button').addClass("animated fadeInRightBig"));
@@ -310,7 +314,16 @@ $(document).ready(initialize());
 
   $(document).ready($('.share_something').find('.bounce-in').addClass("animated bounceIn"))
 
-
+  $('.ui-accordion-header').on("click", function(){
+    counter += 1;
+    console.log("counter: ");
+    console.log(counter);
+    google.maps.event.trigger(map, 'resize');
+    if (counter === 1) {
+      map.setCenter(new google.maps.LatLng(40.730844, -74.005973));
+    }
+  });
+  
   $(function() {
     $(".share_something").css("display", "none");
     $(".find_something").css("display", "none");
