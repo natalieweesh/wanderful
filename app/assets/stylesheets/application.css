@@ -33,6 +33,7 @@ body {
   background: #242529;
   color: white;
   font-family: 'Maven Pro', sans-serif;
+  font-smoothing: antialiased;
 }
 
 input[type=submit], button, input[type=button] {
@@ -200,11 +201,17 @@ input[type=submit].unfavorite-button:hover {
   float: left;
   margin: 10px;
   padding: 5px;
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
   border: 5px solid #05275A;
   transition: all .5s ease-in-out;
   color: #B3B4AD;
+}
+.activity-blob > ul > li.address-line {
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .itinerary-search-result {
   clear: right;
@@ -600,7 +607,63 @@ input[type=button].pin-button {
 .map-box {
   width: 400px;
 }
-
+.map-box a {
+  font-size: 8px;
+}
 .inner-text li {
   font-size: 16px;
+}
+
+#columns {
+    -moz-column-count: 2;
+    -moz-column-gap: 10px;
+    -moz-column-fill: auto;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 10px;
+    -webkit-column-fill: auto;
+    column-count: 2;
+    column-gap: 15px;
+    column-fill: auto;
+}
+
+.pin { 
+  -moz-column-break-inside: avoid; 
+  -webkit-column-break-inside: avoid; 
+  column-break-inside: avoid; 
+  display: inline-block; 
+/*  margin: 0 2px 15px; */
+/*  padding: 15px; */
+  
+  display: block;
+  float: left;
+  margin: 10px 5px;
+  padding: 5px;
+  min-width: 150px;
+  border: 5px solid #05275A;
+  transition: all .5s ease-in-out;
+  color: #B3B4AD;
+}
+
+@media (min-width: 620px) {
+	#columns {
+		-webkit-column-count: 3;
+		-moz-column-count: 3;
+		column-count: 3;
+	}
+}
+
+@media (min-width: 890px) {
+	#columns {
+		-webkit-column-count: 4;
+		-moz-column-count: 4;
+		column-count: 4;
+	}
+}
+
+@media (min-width: 1100px) {
+	#columns {
+		-webkit-column-count: 5;
+		-moz-column-count: 5;
+		column-count: 5;
+	}
 }

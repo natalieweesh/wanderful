@@ -9,8 +9,8 @@
     favorited
     <% end %>
   ">
-    <input class="favorite-button" type="submit" value="favorite this itinerary">
-    <input class="unfavorite-button" type="submit" value="unfavorite this itinerary">
+    <input class="favorite-button" type="submit" value="favorite">
+    <input class="unfavorite-button" type="submit" value="unfavorite">
     
     
   </div>
@@ -32,7 +32,7 @@
     <li class="activity-title"><%= link_to activity.description, activity_url(activity.id) %></li>
     <ul>
       <li>@ <%= activity.venue %></li>
-      <li>[<%= activity.address %>]</li>
+      <li class="address-line">[<%= activity.address %>]</li>
       <li>#<%= activity.tags.map{|tag| tag.name}.join(" #") %></li>
     </ul>
   </ul>

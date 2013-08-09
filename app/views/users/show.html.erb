@@ -36,7 +36,7 @@
   <li class="activity-blob"><%= link_to activity.description, activity_url(activity.id), class: "activity-title" %>
     <ul>
       <li>@<%= activity.venue %></li>
-      <li>[<%= activity.address %>]</li>
+      <li class="address-line">[<%= activity.address %>]</li>
       <li>#<%= activity.tags.map{|tag| tag.name}.join(" #") %></li>
     </ul>
   </li>

@@ -19,6 +19,9 @@
 </head>
 <body>
   <div class="container">
+  
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <div class="nav-buttons">
       <div class="top-buttons group">
         <%= button_to "home", root_url, class: "home-button" %>
@@ -30,8 +33,6 @@
   
     </div>
   
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
   </div>
 <%= yield %>
 

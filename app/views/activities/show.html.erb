@@ -1,4 +1,4 @@
-<h3>activity show page</h3>
+<!-- <h3>activity show page</h3> -->
 
 <ul>
   <li class="activity-title">
@@ -6,22 +6,18 @@
   </li>
   <br><br>
   <li>
-    
+    <!-- venue: -->
     @<%= @activity.venue %>
   </li>
   <br><br>
   <li>
-
+    <!-- location: -->
     [<%= @activity.address %>]
   </li>
   <br><br>
   <li>
-    tags:
-    <ul>
-      <% @activity.tags.each do |tag| %>
-        <li>#<%= tag.name %></li>
-      <% end %>
-    </ul>
+    <!-- tags:  -->
+    #<%= @activity.tags.map{|tag| tag.name}.join(" #") %>
   </li>
 
 </ul>
