@@ -152,15 +152,6 @@ input[type=submit].unfavorite-button:hover {
   transition: all .5s ease-in-out;
 }
 
-/*.itinerary-mini-blob {
-  display: block;
-  float: left;
-  width: 80%;
-  padding: 10px 10%;
-  text-align: center;
-  border: 5px solid orange;
-}*/
-
 .itinerary-description-blob a, .itinerary-title {
   text-align: center;
   text-transform: uppercase;
@@ -231,7 +222,7 @@ input[type=submit].unfavorite-button:hover {
   text-align: center;
   text-transform: uppercase;
 }
-.mini-activity-blob {
+.itinerary-search-result .activity-blob {
   display: block;
   float: left;
   height: 70px;
@@ -239,6 +230,24 @@ input[type=submit].unfavorite-button:hover {
   border: 5px solid purple;
   margin: 7px;
   transition: all .5s ease-in-out;
+}
+
+.itinerary-search-result .activity-blob:hover {
+  border: 5px solid purple;
+  background: purple;
+}
+
+.activity-blob > a > ul > li {
+  text-transform: lowercase;
+  letter-spacing: 0;
+  text-align: left;
+  color: lightgray;
+}
+.activity-blob > a > ul > li.address-line {
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .mini-activity-blob:hover {
@@ -578,7 +587,8 @@ input[type=submit].search-button {
 }
 .inner-text li {
   color: white;
-  font-size: 12px;
+  font-size: 8px;
+  text-transform: lowercase;
 }
 
 .activity-checkbox {

@@ -7,20 +7,10 @@
   <li>
   <% @search_results.each do |result| %>
   <li class="itinerary-search-result group">
+    
     <%= link_to result.description, itinerary_url(result.id), class: "itinerary-description-blob" %>
     <small class="time-blob">(<%= result.time %>)</small>
-    <ul>
-      <% result.activities.each do |activity| %>
-      <li class="mini-activity-blob"><%= link_to activity.description, activity_url(activity.id), class: "activity-title" %>
-        <ul>
-          <li>@<%= activity.venue %></li>
-          <li>[<%= activity.address %>]</li>
-
-          <li>#<%= activity.tags.map{|tag| tag.name}.join(" #") %></li>
-        </ul>
-      </li>
-      <% end %>
-    </ul>
+    <%= render result %>
   </li>
   <% end %>
 </li>

@@ -1,0 +1,14 @@
+<a href="<%= activity_url(activity.id) %>">
+  <ul class="activity-blob">
+
+    <li class="activity-title">
+      <%= activity.description %>
+
+</li>
+    <ul>
+      <li>@ <%= activity.venue %></li>
+      <li class="address-line">[<%= activity.address %>]</li>
+      <li>#<%= activity.tags.map{|tag| tag.name}.join(" #") %></li>
+    </ul>
+  </ul>
+</a>

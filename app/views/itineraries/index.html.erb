@@ -11,13 +11,18 @@
     <li class="activity-group group">
 
         <% itin.activities.each do |activity| %>
-      <ul class="mini-activity-blob" style="max-width: 200px; height: auto;">
-        <li class="activity-title"><%= link_to activity.description, activity_url(activity.id) %></li>
-        <ul class="inner-text">
+      <ul class="activity-blob" style="max-width: 200px; height: auto;">
+        <a href="<%= activity_url(activity.id) %>">
+        <li class="activity-title">
+          <%= activity.description %>
+        </li>
+        <ul>
+        
           <li>@ <%= activity.venue %></li>
-          <li>[ <%= activity.address %> ]</li>
+          <li class="address-line">[ <%= activity.address %> ]</li>
           <li>#<%= activity.tags.map{|tag| tag.name}.join(" #") %></li>
         </ul>
+      </a>
       </ul>
         <% end %>
     

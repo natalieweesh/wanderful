@@ -61,9 +61,12 @@ class ItinerariesController < ApplicationController
       end
     elsif params[:search][:itinerary][:time] != ""
       if @activities_search_result.nil? || @activities_search_result.empty?
-        @search_results = Itinerary.search(params[:search][:itinerary])
+        @search_results = Itinerary.search(params[:search][:itinerary][:time])
+        p "PARAMS[:SEARCH][:ITINERARY][:TIME]!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        p params[:search][:itinerary][:time]
         p "TIME GIVEN AND ACTIVITIES RESULT IS NILLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"
         p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+        p @search_results
       else
         p "TIME GIVEN AND ACTIVITIES RESULT IS NOT NILLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"
         p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"

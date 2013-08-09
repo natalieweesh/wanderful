@@ -50,7 +50,9 @@ class Activity < ActiveRecord::Base
     else
       @activities_found_by_tags = nil
     end
-
+    p "ACTIVITIES FOUND BY TAGS ACTIVITIES FOUND BY TAGS ACTIVITIES FOUND BY TAGS ACTIVITIES FOUND BY TAGS "
+    p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+    p @activities_found_by_tags
     # if paramsneighborhood != ""
       # @activities_found_by_neighborhood = Activity.find_all_by_neighborhood(paramsneighborhood)
     # else
@@ -69,11 +71,11 @@ class Activity < ActiveRecord::Base
     p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
     p @activities_found_by_location
     
-    if @activities_found_by_tags.nil? && @activities_found_by_location.nil?
+    if @activities_found_by_tags.nil? && @activities_found_by_location.empty?
       @activities_found = []
-    elsif !@activities_found_by_tags.nil? && @activities_found_by_location.nil?
+    elsif !@activities_found_by_tags.nil? && @activities_found_by_location.empty?
       @activities_found = @activities_found_by_tags
-    elsif @activities_found_by_tags.nil? && !@activities_found_by_location.nil?
+    elsif @activities_found_by_tags.nil? && !@activities_found_by_location.empty?
       @activities_found = @activities_found_by_location
     else #if !@activities_found_by_tags.nil? && !@activities_found_by_location.nil?
       @activities_found = @activities_found_by_tags & @activities_found_by_location

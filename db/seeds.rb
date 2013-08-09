@@ -40,7 +40,7 @@ a9.tag_ids = [4, 10, 12, 14]
 a10 = Activity.create(description: "biking in central park", venue: "central park", neighborhood: nil, user_id: 5, latitude: 40.7711329, longitude: -73.97418739999999, address: "Central Park, New York, NY, USA")
 a10.tag_ids = [2, 9, 12, 15]
 
-i1 = Itinerary.create(description: "a cheap day out", time_it_takes: 5, user_id: 1)
+i1 = Itinerary.create(description: "a cheap day out", time_it_takes: 6, user_id: 1)
 i1.activity_ids = [2, 4, 5, 6]
 i2 = Itinerary.create(description: "a mellow day", time_it_takes: 3, user_id: 2)
 i2.activity_ids = [2, 3, 8]
@@ -50,7 +50,7 @@ i4 = Itinerary.create(description: "foodie tour", time_it_takes: 2, user_id: 4)
 i4.activity_ids = [6, 7]
 i5 = Itinerary.create(description: "for morning people", time_it_takes: 1, user_id: 5)
 i5.activity_ids = [5, 7]
-i6 = Itinerary.create(description: "when you're feeling restless", time_it_takes: 4, user_id: 1)
+i6 = Itinerary.create(description: "when you're feeling restless", time_it_takes: 5, user_id: 1)
 i6.activity_ids = [1, 5, 10]
 i7 = Itinerary.create(description: "a cheap night out", time_it_takes: 2, user_id: 2)
 i7.activity_ids = [3, 4]

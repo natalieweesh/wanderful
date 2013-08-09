@@ -20,11 +20,14 @@ class Itinerary < ActiveRecord::Base
   def time
     # time_hash = {"1": "less than an hour", "2": "two to three hours", "3": "four to six hours", "4": "half a day", "5": "a whole day"}
     # time_hash = ["less than an hour", "one to two hours", "three to four hours", "five to six hours", "half a day", "a whole day"]
-    return TIME_HASH[self.time_it_takes]
+    return TIME_HASH[self.time_it_takes - 1]
   end
   
   def self.search(params)
-    Itinerary.where('time_it_takes <= ?', params[:time])
+    p "PARAMSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"
+    p params
+    Itinerary.where('time_it_takes <= ?', params.to_i + 1)
+
   end
   
   def self.finer_search(activities_ids)

@@ -25,21 +25,7 @@
   <small>(<%= @itinerary.time %>)</small>
 </li>
 
-<li class="activity-group group">
-
-    <% @itinerary.activities.each do |activity| %>
-  <ul class="activity-blob">
-    <li class="activity-title"><%= link_to activity.description, activity_url(activity.id) %></li>
-    <ul>
-      <li>@ <%= activity.venue %></li>
-      <li class="address-line">[<%= activity.address %>]</li>
-      <li>#<%= activity.tags.map{|tag| tag.name}.join(" #") %></li>
-    </ul>
-  </ul>
-    <% end %>
-    
-
-</li>
+<%= render @itinerary %>
 
 
 <script>

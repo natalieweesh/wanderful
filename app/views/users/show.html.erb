@@ -31,29 +31,19 @@
 </section>
 <h3 class="header-text">added activities</h3>
 
-<ul class="activity-group group">
-  <% @user.activities.each do |activity| %>
-  <li class="activity-blob"><%= link_to activity.description, activity_url(activity.id), class: "activity-title" %>
-    <ul>
-      <li>@<%= activity.venue %></li>
-      <li class="address-line">[<%= activity.address %>]</li>
-      <li>#<%= activity.tags.map{|tag| tag.name}.join(" #") %></li>
-    </ul>
-  </li>
-  <% end %>
-</ul>
-
+<%= render @user %>
+  
 <h3>added itineraries</h3>
 <ul class="itinerary-group group">
   <% @user.itineraries.each do |itinerary| %>
+    <a class="itinerary-description-blob" href="<%= itinerary_url(itinerary.id) %>">
   <ul class="itinerary-search-result">
-
-    <li><%= link_to itinerary.description, itinerary_url(itinerary.id), class: "itinerary-description-blob" %>
-    
+    <li class="itinerary-title">
+    <%= itinerary.description %>
       <small class="time-blob">(<%= itinerary.time %>)</small>
       
     </li>
-  </ul>
+  </ul></a>
     
   <% end %>
 </ul>
