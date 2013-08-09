@@ -1,7 +1,7 @@
 <div id="users-accordion">
 
 
-<h3>your peeps</h3>
+<h3 class="people-title">your peeps</h3>
 <div>
 <ul class="group">
 <% current_user.friends.each do |friend| %>
@@ -11,7 +11,7 @@
 <% end %>
 </ul>
 </div>
-<h3>everyone else</h3>
+<h3 class="people-title">everyone else</h3>
 <div>
 <ul class="group">
 <% @users.all.each do |user| %>

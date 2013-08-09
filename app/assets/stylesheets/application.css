@@ -19,6 +19,14 @@ html, body, ul, li, a {
   border: 0;
   font-size: 16px;
   font-family: sans-serif;
+
+}
+a, h1, h2, h3, h4, h5, h6, strong {
+  font-family: 'Comfortaa', sans-serif;
+}
+
+input[type=submit], input[type=button], a, button {
+  font-size: 20px;
 }
 body {
   background: #242529;
@@ -26,11 +34,12 @@ body {
 }
 
 input[type=submit], button, input[type=button] {
-  marigin: 0;
+  margin: 0;
   padding: 10px;
   border-radius: 20px;
   border: none;
   cursor: pointer; 
+  font-family: 'Comfortaa', sans-serif;
 }
 a {
   text-decoration: none;
@@ -149,8 +158,7 @@ input[type=submit].unfavorite-button:hover {
   border: 5px solid orange;
 }*/
 
-.itinerary-description-blob a {
-  display: block;
+.itinerary-description-blob a, .itinerary-title {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.3em;
@@ -208,6 +216,12 @@ input[type=submit].unfavorite-button:hover {
   background: #65ACA6;
   border: 5px solid #65ACA6;
   transition: all .5s ease-in-out;
+}
+.itinerary-search-result a {
+  display: block;
+  color: yellow;
+  text-align: center;
+  text-transform: uppercase;
 }
 .mini-activity-blob {
   display: block;
@@ -518,6 +532,8 @@ a.friend-blob:active {
 
 }
 
+
+
 .ui-accordion-content {
   background: #242529; 
   color: white;
@@ -533,6 +549,10 @@ a.friend-blob:active {
   float: left;
   width: 100%;
 }
+#users-accordion h3.people-title {
+  color: yellow;
+  font-size: 20px;
+}
 
 input[type=submit].search-button {
   display: block;
@@ -541,8 +561,8 @@ input[type=submit].search-button {
 }
 .select-box-container {
   width: 300px;
-  display: block;
-  float: left;
+/*  display: block;*/
+/*  float: left;*/
 }
 #select-box-neighborhood, #select-box-neighborhood-2 {
   width: 200px;
@@ -568,3 +588,13 @@ input[type=submit].search-button {
               ;
 }
 
+.half-buttons-container {
+  float: left;
+  width: 200px;
+}
+input[type=button].pin-button {
+  float: right;
+}
+.map-box {
+  width: 400px;
+}

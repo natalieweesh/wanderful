@@ -11,24 +11,22 @@
   
   
   
-<!--   <label for="activity_neighborhood">neighborhood</label>
-  <input type="text" name="activity[neighborhood]" id="activity_neighborhood">
-  <br><br> -->
-  
   <input type="hidden" name="activity[address]" id="address_box">
   <input type="hidden" name="activity[latitude]" id="lat-box">
   <input type="hidden" name="activity[longitude]" id="long-box">
     
 
 
-
+  <div class="map-box">
         <div>
+          <label> location
           <input id="address" type="textbox" value="">
-          <input type="button" value="place pin" onclick="codeAddress()">
+        </label>
+          <input type="button" value="place pin" onclick="codeAddress()" class="pin-button">
         </div>
         <div id="map_canvas" style="height:200px; width:400px; color: black; position: relative; background-color: rgb(229, 227, 223); overflow: hidden;"></div>
 
-      
+      </div>
 
 
 
@@ -44,12 +42,16 @@
   
   
   
-  
+      <br><br>
+      <label>tags
   <div class="select-box-container">
   <div id="select-box">
   </div>
   </div>
+  </label>
+  <br><br>
   <input type="hidden" name="activity[tags]" id="tags">
+  
     
     
   <input id="new-activity-button" class="go-button" type="button" value="go!" onclick="changeTextBoxes();">

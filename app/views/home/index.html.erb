@@ -7,23 +7,27 @@
 
 </section>
 <section class="buttons_group group">
-  <button class="find_button">find something to do</button>
-  <button class="share_button">share something to do</button>
+  <button class="find_button">find <br>something <br>to <br>do</button>
+  <button class="share_button">share <br>something <br>to <br>do</button>
 </section>
 
 <section class="share_something">
   <h3>share stuff to do</h3>
-  <%= button_to "add an activity", new_activity_url, method: :get, class: "big-button bounce-in" %>
-  <%= button_to "add an itinerary", new_itinerary_url, method: :get, class: "big-button bounce-in" %>
+  <%= button_to "add \n an \n activity", new_activity_url, method: :get, class: "big-button bounce-in" %>
+  <%= button_to "add \n an \n itinerary", new_itinerary_url, method: :get, class: "big-button bounce-in" %>
   <input type="submit" class="back_button" value="back">
 </section>
 
 <section class="find_something group">
   <h3>find something to do</h3>
-  <button class="search_button left-right-bounce">search for something to do</button>
-  <%= button_to "see what other people are up to", all_users_url, method: :get, class: "big-button top-down-bounce" %>  
+  <button class="search_button left-right-bounce">search <br>for <br>something <br>to <br>do</button>
+  <%= button_to "see \n what \n other \n people \n are \n up to", all_users_url, method: :get, class: "big-button top-down-bounce" %>  
+
+<div class="half-buttons-container">
   <%= button_to "find something random to do", itinerary_url(Itinerary.get_random.id), method: :get, class: "half-big-button bounce-in-first" %>
   <%= button_to "top 10 favorited itineraries", itineraries_url, method: :get, class: "half-big-button bounce-in-second" %>
+</div>
+
   <input type="submit" class="back_button small-button" value="back">
 </section>
 
@@ -68,14 +72,15 @@
     <input type="hidden" name="search[latitude]" id="lat-box">
     <input type="hidden" name="search[longitude]" id="long-box">
     
-    
+    <div class="map-box">
           <div>
             <input id="address" type="textbox" value="">
-            <input type="button" value="place pin" onclick="codeAddress()">
+            <input type="button" value="place pin" onclick="codeAddress()" class="pin-button">
           </div>
           <br><br>
           <!-- <div style="display: block; position: relative; background:red; height: 200px; width: 300px"> -->
             <div id="map_canvas" style="height:200px; width:300px; color: black; position: fixed; background-color: rgb(229, 227, 223); overflow: hidden; z-index: 1000;"></div>
+          </div>
           <!-- </div> -->
           <br><br>
           
@@ -128,15 +133,17 @@
     <input type="hidden" name="search[activity][search][latitude]" id="lat-box-2">
     <input type="hidden" name="search[activity][search][longitude]" id="long-box-2">
     
-    
+    <div class="map-box">
           <div>
             <input id="address-2" type="textbox" value="">
-            <input type="button" value="place pin" onclick="codeAddress2()">
+            <input type="button" value="place pin" onclick="codeAddress2()" class="pin-button">
           </div>
           <br><br>
           <!-- <div style="display: block; position: relative; background:red; height: 200px; width: 300px"> -->
             <div id="map_canvas-2" style="height:200px; width:300px; color: black; position: fixed; background-color: rgb(229, 227, 223); overflow: hidden; z-index: 1000;"></div>
           <!-- </div> -->
+         
+        </div>
           <br><br>
           
           <label>search radius: 
@@ -420,7 +427,7 @@ $(document).ready(initialize());
 
   // var counter = 0;
 
-  $( "#accordion" ).accordion({collapsible: true, active: false, icons: false });
+  $( "#accordion" ).accordion({collapsible: true, active: false, icons: false, heightStyle: "content" });
 
   $(document).ready($('.find_button').addClass("animated fadeInLeftBig"));
   $(document).ready($('.share_button').addClass("animated fadeInRightBig"));
