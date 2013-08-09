@@ -21,16 +21,18 @@ html, body, ul, li, a {
   font-family: sans-serif;
 
 }
-a, h1, h2, h3, h4, h5, h6, strong {
-  font-family: 'Comfortaa', sans-serif;
+a, h1, h2, h3, h4, h5, h6, strong, li {
+  font-family: 'Maven Pro', sans-serif;
 }
 
 input[type=submit], input[type=button], a, button {
   font-size: 20px;
 }
+
 body {
   background: #242529;
   color: white;
+  font-family: 'Maven Pro', sans-serif;
 }
 
 input[type=submit], button, input[type=button] {
@@ -39,7 +41,7 @@ input[type=submit], button, input[type=button] {
   border-radius: 20px;
   border: none;
   cursor: pointer; 
-  font-family: 'Comfortaa', sans-serif;
+  font-family: 'Maven Pro', sans-serif;
 }
 a {
   text-decoration: none;
@@ -186,7 +188,6 @@ input[type=submit].unfavorite-button:hover {
   text-transform: uppercase;
   display: block;
   text-align: center;
-  font-weight: bold;
   color: #D4FF00;
 
 }
@@ -232,6 +233,7 @@ input[type=submit].unfavorite-button:hover {
   margin: 7px;
   transition: all .5s ease-in-out;
 }
+
 .mini-activity-blob:hover {
   background: purple;
   transition: all .5s ease-in-out;
@@ -597,4 +599,8 @@ input[type=button].pin-button {
 }
 .map-box {
   width: 400px;
+}
+
+.inner-text li {
+  font-size: 16px;
 }
