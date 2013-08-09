@@ -55,9 +55,7 @@
   <input id="new-activity-button" class="go-button" type="button" value="go!" onclick="changeTextBoxes();">
   
   
-  
-  <input type="button" value="testbttn">
-    
+      
     
 </form>
 
@@ -120,7 +118,7 @@ var result;
         marker.formatted_address = 'Cannot determine address at this location.';
       }
       infowindow.setContent(marker.formatted_address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
-      infowindow.open(map, marker);
+      // infowindow.open(map, marker);
     });
   }
   function codeAddress() {
@@ -163,8 +161,6 @@ var result;
   function codeLatLng() {
       // var input = document.getElementById("latlng").value;
       var input = marker.position.lb + "," + marker.position.mb;
-      alert("INPUT: ");
-      alert(input);
       var latlngStr = input.split(",",2);
       var lat = parseFloat(latlngStr[0]);
       var lng = parseFloat(latlngStr[1]);
@@ -177,13 +173,11 @@ var result;
                 position: latlng,
                 map: map
             });
-            alert(results[1].formatted_address);
+            // alert(results[1].formatted_address);
             $("#address_box").val(results[1].formatted_address);
             // infowindow.setContent(results[1].formatted_address);
             // infowindow.open(map, marker);
-            alert("SUBMIT THE FORM NOW!!!");
             $('#form-new-activity').submit();
-            alert('submitted');
           }
         } else {
           
@@ -193,13 +187,10 @@ var result;
     }
   
     function changeTextBoxes() {
-      alert("before codeLatLng()");
       codeLatLng();
-      alert("HERE");
       $('#address_box').val($('#address').val());
       $('#lat-box').val(marker.position.lb);
       $('#long-box').val(marker.position.mb);
-      alert("DONE");
 
     }
     
@@ -218,7 +209,7 @@ var result;
   $('#tester-button').on("click", function(event){
     event.preventDefault();
     console.log(marker)
-        alert(marker.formatted_address);
+        // alert(marker.formatted_address);
   })
 
 </script>

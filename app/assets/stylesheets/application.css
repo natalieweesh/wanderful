@@ -25,7 +25,7 @@ body {
   color: white;
 }
 
-input[type=submit], button {
+input[type=submit], button, input[type=button] {
   marigin: 0;
   padding: 10px;
   border-radius: 20px;
@@ -57,7 +57,7 @@ li {
   float: right;
 }
 
-input[type=submit] {
+input[type=submit], input[type=button] {
   display: block;
   float: left;
   border-radius: 0;
@@ -69,12 +69,12 @@ input[type=submit] {
   background: url("small-button-sprite.png") no-repeat 0 0;
   white-space: pre-wrap;
 }
-input[type=submit]:hover {
+input[type=submit]:hover, input[type=button]:hover {
   background-position: 0 -120px;
   padding-top: 30px;
   padding-left: 32px;
 }
-input[type=submit]:active {
+input[type=submit]:active, input[type=button]:active {
   background-position: 0 -240px;
   padding-top: 45px;
   padding-left: 45px;
@@ -567,3 +567,4 @@ input[type=submit].search-button {
               6px 5px 1px #3997D4          
               ;
 }
+

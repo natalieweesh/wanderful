@@ -1,0 +1,57 @@
+/*tag box*/
+.select2-container-multi .select2-choices {
+margin: 0;
+padding: 0;
+position: relative;
+border: 0px;
+outline: 0px;
+cursor: text;
+overflow: hidden;
+background-color: #fff;
+background-image: none;
+}
+
+/*focus*/
+.select2-container-multi.select2-container-active .select2-choices{
+  border: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+/*the bottom of the box when the list of suggested tags is active*/
+.select2-dropdown-open.select2-drop-above .select2-choice, .select2-dropdown-open.select2-drop-above .select2-choices{
+  background-image: none;
+  border: 0px;
+}
+
+/*menu of choices that pops up when you start typing*/
+.select2-drop.select2-drop-multi.select2-display-none.select2-drop-active.select2-drop-above{
+  border: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+/*the tag itself*/
+.select2-container-multi .select2-choices .select2-search-choice{
+  border: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background-image: none;
+/*  margin: 5px 5px 3px 4px;
+  padding: 4px 17px 4px 22px;
+  border: 1px solid #ccc;
+  background-color: #ddd;
+*/
+  background-color: #A9BEDF;
+  border-radius: none;
+}
+
+a.select2-search-choice-close {
+
+  
+}
+
+/*when the tag is focused, i.e. when it can be deleted with one more backspace.*/
+.select2-container-multi .select2-choices .select2-search-choice-focus{
+  background-color: #999;
+  color: #eee;
+}

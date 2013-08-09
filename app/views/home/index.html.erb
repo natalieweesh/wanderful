@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag "select2_overrides", media: "all" %>
+
 <section class="intro group">
 
 
@@ -29,7 +31,7 @@
   
   <div id="accordion">
   
-  <h2>search for activities</h2>
+  <h2 id="activities-search-tab">search for activities</h2>
   <div>
   <section class="activity-search-form group">
   
@@ -72,9 +74,9 @@
             <input type="button" value="place pin" onclick="codeAddress()">
           </div>
           <br><br>
-          <div style="display: block; position: relative; background:red; height: 200px; width: 300px">
+          <!-- <div style="display: block; position: relative; background:red; height: 200px; width: 300px"> -->
             <div id="map_canvas" style="height:200px; width:300px; color: black; position: fixed; background-color: rgb(229, 227, 223); overflow: hidden; z-index: 1000;"></div>
-          </div>
+          <!-- </div> -->
           <br><br>
           
           <label>search radius: 
@@ -93,7 +95,7 @@
   
   
   
-  <h2>search for itineraries</h2>
+  <h2 id="itineraries-search-tab">search for itineraries</h2>
   <div>
   <form class="itinerary-search-form group" action="<%= search_itineraries_url %>" method="get">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
@@ -108,17 +110,48 @@
     
     <br><br>
 
-    <!-- <label for"select-box-neighborhood">neighborhood</label>
-    
-    <div class="select-box-container">
-      <select id="select-box-neighborhood" name="search[activity][search][neighborhood]">
-        <option value=""></option>
-        <%# @all_neighborhoods.each do |neigh| %>
-        <option value="<%#= neigh %>"><%#= neigh %></option>
-        <%# end %>
+
+      
+      
+      
+      
+    <h3>and/or location</h3>  
+    <section class="group" id="#location-box-2">
         
-      </select>
-    </div> -->
+        
+    <form action="<%= search_activities_url %>" method="get">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    
+  
+    
+    <input type="hidden" name="search[activity][search][address]" id="address_box-2"> 
+    <input type="hidden" name="search[activity][search][latitude]" id="lat-box-2">
+    <input type="hidden" name="search[activity][search][longitude]" id="long-box-2">
+    
+    
+          <div>
+            <input id="address-2" type="textbox" value="">
+            <input type="button" value="place pin" onclick="codeAddress2()">
+          </div>
+          <br><br>
+          <!-- <div style="display: block; position: relative; background:red; height: 200px; width: 300px"> -->
+            <div id="map_canvas-2" style="height:200px; width:300px; color: black; position: fixed; background-color: rgb(229, 227, 223); overflow: hidden; z-index: 1000;"></div>
+          <!-- </div> -->
+          <br><br>
+          
+          <label>search radius: 
+          <input type="text" name="search[activity][search][radius]" value="5" style="width: 50px; text-align: right;"> miles</label>
+  
+    </section> <!-- end section location-box -->
+      
+      
+      
+      
+      
+      
+      
+      
+      
     
     <label>tags</label>
     <div class="select-box-container">
@@ -128,7 +161,9 @@
     <input type="hidden" name="search[activity][search][tags]" id="tags-2" value="">
  
     
-    <input class="search-button" type="submit" value="search">
+    
+    <input id="itinerary-search-button" class="search-button" type="submit" value="search">
+    
   </form>
   </div>
   
@@ -150,14 +185,18 @@
 
 <script>
 
-
-var result;
   var geocoder;
+  var geocoder2;
   var map;
+  var map2;
   var marker;
+  var marker2;
   var infowindow = new google.maps.InfoWindow({size: new google.maps.Size(100,50)});
+  var infowindow2 = new google.maps.InfoWindow({size: new google.maps.Size(100,50)});
+
   function initialize() {
     geocoder = new google.maps.Geocoder();
+    geocoder2 = new google.maps.Geocoder();
     var latlng = new google.maps.LatLng(40.730844, -74.005973);
     var mapOptions = {
       zoom: 8,
@@ -165,9 +204,13 @@ var result;
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+    map2 = new google.maps.Map(document.getElementById('map_canvas-2'), mapOptions);
     google.maps.event.addListener(map, 'click', function() {
       infowindow.close();
+      infowindow2.close();
     });
+    // map.setCenter(new google.maps.LatLng(40.730844, -74.005973));
+    // map2.setCenter(new google.maps.LatLng(40.730844, -74.005973));
   }
   function clone(obj){
     if(obj == null || typeof(obj) != 'object') return obj;
@@ -241,6 +284,76 @@ var result;
     });
   }
 
+
+
+  function codeAddress2() {
+    var address = document.getElementById('address-2').value;
+    geocoder2.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        map2.setCenter(results[0].geometry.location);
+        if (marker2) {
+          marker2.setMap(null);
+          marker2 = new google.maps.Marker();
+          
+          if (infowindow) infowindow.close();
+        }
+        marker2 = new google.maps.Marker({
+          map: map2,
+          draggable: true,
+          position: results[0].geometry.location
+        });
+        google.maps.event.addListener(marker2, 'dragend', function() {
+          // updateMarkerStatus('Drag ended');
+          geocodePosition2(marker2.getPosition());
+          $("#address").val('coordinates saved');
+        });
+        google.maps.event.addListener(marker2, 'click', function() {
+          if (marker2.formatted_address) {
+            infowindow2.setContent(marker2.formatted_address+"<br>coordinates: "+marker2.getPosition().toUrlValue(6));
+          } else  {
+            infowindow2.setContent(address+"<br>coordinates: "+marker2.getPosition().toUrlValue(6));
+          }
+          // infowindow.open(map, marker);
+          // $('#address_box').val(map);
+          console.log(marker2.position);
+          console.log("latitude");
+                    console.log(marker2.position.lb);
+                    console.log("longitude");
+                    console.log(marker2.position.mb)
+          
+          // alert(marker);
+        });
+        google.maps.event.trigger(marker2, 'click');
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+  
+  function geocodePosition2(pos) {
+    geocoder2.geocode({
+      latLng: pos
+    }, function(responses) {
+      if (responses && responses.length > 0) {
+        marker2.formatted_address = responses[0].formatted_address;
+        console.log("geocodePosition response:")
+        console.log(pos);
+      } else {
+        marker2.formatted_address = 'Cannot determine address at this location.';
+      }
+      infowindow2.setContent(marker.formatted_address+"<br>coordinates: "+marker2.getPosition().toUrlValue(6));
+      // infowindow.open(map, marker);
+      // $('#address_box').val(map);
+      console.log(marker2.position);
+      console.log("latitude");
+                console.log(marker2.position.lb);
+                console.log("longitude");
+                console.log(marker2.position.mb)
+      // alert(marker);
+    });
+  }
+
+
   $('#activity-search-button').on("click", function(event) {
     // event.preventDefault();
     console.log("MARKER.position");
@@ -251,8 +364,14 @@ var result;
     $('#long-box').val(marker.position.mb);
     
     
-    
   })
+  
+  $('#itinerary-search-button').on("click", function(event) {
+    $('#address_box-2').val($("#address-2").val());
+    $('#lat-box-2').val(marker2.position.lb);
+    $('#long-box-2').val(marker2.position.mb);
+    
+  });
 
 </script>
 
@@ -298,7 +417,8 @@ $(document).ready(initialize());
 
 <script type="application/javascript">
 
-  var counter = 0;
+
+  // var counter = 0;
 
   $( "#accordion" ).accordion({collapsible: true, active: false, icons: false });
 
@@ -312,13 +432,29 @@ $(document).ready(initialize());
 
   $(document).ready($('.share_something').find('.bounce-in').addClass("animated bounceIn"))
 
+
+
+
+  var counter1 = 0;
+  var counter2 = 0;
+  $('#activities-search-tab').on('click', function() {
+    counter1 += 1
+  });
+  $('#itineraries-search-tab').on('click', function() {
+    counter2 += 1
+  })
+
+
+
   $('.ui-accordion-header').on("click", function(){
-    counter += 1;
-    console.log("counter: ");
-    console.log(counter);
+
     google.maps.event.trigger(map, 'resize');
-    if (counter === 1) {
+    google.maps.event.trigger(map2, 'resize');
+    if (counter1 === 1) {
       map.setCenter(new google.maps.LatLng(40.730844, -74.005973));
+    }
+    if (counter2 === 1) {
+      map2.setCenter(new google.maps.LatLng(40.730844, -74.005973));
     }
   });
   

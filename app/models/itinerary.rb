@@ -29,7 +29,7 @@ class Itinerary < ActiveRecord::Base
   
   def self.finer_search(activities_ids)
     # @result = Itinerary.joins(:activities).where('activities.id in (?)', activities_ids).group('itineraries.id').having('COUNT(*) >= ?', activities_ids.length)
-    Itinerary.joins(:activities).where('activities.id in (?)', activities_ids)
+    Itinerary.select('DISTINCT itineraries.*').joins(:activities).where('activities.id in (?)', activities_ids)
   end
   
 end

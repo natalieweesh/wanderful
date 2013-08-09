@@ -40,11 +40,11 @@ class ItinerariesController < ApplicationController
     @tags_array = params[:search][:activity][:search][:tags].split(",")
     
     
-    @activities_search_result = Activity.search(@tags_array, params[:search][:activity][:search][:neighborhood])
+    # @activities_search_result = Activity.search(@tags_array, params[:search][:activity][:search][:neighborhood])
+    # FOR NOW, JUST SEARCH BY ACTIVITY TAGS, NOT LOCATION
+    @activities_search_result = Activity.search(@tags_array, [params[:search][:activity][:search][:latitude], params[:search][:activity][:search][:longitude]], params[:search][:activity][:search][:radius])
+    # @activities_search_result = Activity.search(@tags_array, "", "")
     
-    p "PARAMS[:SEARCH][:ACTIVITY] PARAMS[:SEARCH][:ACTIVITY] PARAMS[:SEARCH][:ACTIVITY] PARAMS[:SEARCH][:ACTIVITY]"
-    p params[:search][:activity]
-    p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
     p "ACTIVITIES SEARCH RESULT ACTIVITIES SEARCH RESULT ACTIVITIES SEARCH RESULT ACTIVITIES SEARCH RESULT"
     p @activities_search_result
     p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
@@ -57,6 +57,7 @@ class ItinerariesController < ApplicationController
         @search_results = Itinerary.finer_search(@activities_search_result.map{|act| act.id})
         p "DID FINER SEARCH DID FINER SEARCH DID FINER SEARCH DID FINER SEARCH DID FINER SEARCH"
         p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+        p @search_results
       end
     elsif params[:search][:itinerary][:time] != ""
       if @activities_search_result.nil? || @activities_search_result.empty?

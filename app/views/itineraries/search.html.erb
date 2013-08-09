@@ -14,7 +14,7 @@
       <li class="mini-activity-blob"><%= link_to activity.description, activity_url(activity.id), class: "activity-title" %>
         <ul>
           <li>@<%= activity.venue %></li>
-          <li>[<%= activity.neighborhood %>]</li>
+          <li>[<%= activity.address %>]</li>
 
           <li>#<%= activity.tags.map{|tag| tag.name}.join(" #") %></li>
         </ul>
