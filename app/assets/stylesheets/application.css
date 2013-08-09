@@ -94,6 +94,7 @@ input[type=submit]:active, input[type=button]:active {
 
 input[type=submit].favorite-button {
   display: block;
+  font-size: 17px;
   background: url("heart-button-sprite.png") no-repeat 0 0;
   width: 150px;
   height: 150px;
@@ -122,6 +123,7 @@ input[type=submit].unfavorite-button {
 }
 input[type=submit].unfavorite-button {
   background: url("heart-button-sprite.png") no-repeat 0 -300px;
+  font-size: 17px;
   width: 150px;
   height: 150px;
   padding-top: 35px;
@@ -544,10 +546,10 @@ a.friend-blob:active {
 }
 .ui-accordion-header {
   background: #242529;
-  border: 5px solid blue;
+  border: 5px solid #05275A;
   width: 200px;
   color: yellow;
-
+  font-size: 20px;
 }
 
 
@@ -570,6 +572,8 @@ a.friend-blob:active {
 #users-accordion h3.people-title {
   color: yellow;
   font-size: 20px;
+  border: 5px solid #05275A;
+  
 }
 
 input[type=submit].search-button {
