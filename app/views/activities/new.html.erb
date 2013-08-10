@@ -187,6 +187,33 @@ var result;
         }
       });
     }
+    
+    
+    function placeMarker(location) {
+      map.setCenter(location);
+      if (marker) {
+        marker.setMap(null);
+        marker = new google.maps.Marker();
+      
+      }
+      marker = new google.maps.Marker({
+        map: map,
+        draggable: true,
+        position: location
+      });
+      google.maps.event.addListener(marker, 'dragend', function() {
+        geocodePosition(marker.getPosition());
+        $("#address").val('coordinates saved');
+      });
+      google.maps.event.addListener(marker, 'click', function() {
+      
+
+      });
+      google.maps.event.trigger(marker, 'click');
+
+    }
+
+
   
     function changeTextBoxes() {
       codeLatLng();
@@ -214,10 +241,11 @@ var result;
         // alert(marker.formatted_address);
   })
 
-</script>
 
-<script>
 $(document).ready(initialize());
+google.maps.event.addListener(map, 'click', function(event) {
+  placeMarker(event.latLng);
+});
 </script>
 
 

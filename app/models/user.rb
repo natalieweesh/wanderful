@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
          
   # attr_accessible :title, :body
   validates :username, :uniqueness => { :case_sensitive => false }
+  validates :username, presence: true
   
   has_many :activities
   has_many :itineraries

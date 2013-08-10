@@ -92,8 +92,15 @@ class Activity < ActiveRecord::Base
   
   
   
-  def self.all_neighborhoods
-    Activity.uniq.pluck(:neighborhood)
-  end
+  # def self.all_neighborhoods
+  #   Activity.uniq.pluck(:neighborhood)
+  # end
+
+
+  # def self.sort_by_tags
+  #   
+  # end
+  
+  
   
 end

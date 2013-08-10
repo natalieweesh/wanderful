@@ -312,7 +312,7 @@
         google.maps.event.addListener(marker2, 'dragend', function() {
           // updateMarkerStatus('Drag ended');
           geocodePosition2(marker2.getPosition());
-          $("#address").val('coordinates saved');
+          $("#address-2").val('coordinates saved');
         });
         google.maps.event.addListener(marker2, 'click', function() {
           if (marker2.formatted_address) {
@@ -359,6 +359,58 @@
       // alert(marker);
     });
   }
+  
+  function placeMarker(location) {
+    map.setCenter(location);
+    if (marker) {
+      marker.setMap(null);
+      marker = new google.maps.Marker();
+      
+    }
+    marker = new google.maps.Marker({
+      map: map,
+      draggable: true,
+      position: location
+    });
+    google.maps.event.addListener(marker, 'dragend', function() {
+      // updateMarkerStatus('Drag ended');
+      geocodePosition(marker.getPosition());
+      $("#address").val('coordinates saved');
+    });
+    google.maps.event.addListener(marker, 'click', function() {
+      
+
+    });
+    google.maps.event.trigger(marker, 'click');
+
+    
+  }
+  
+  function placeMarker2(location) {
+    map2.setCenter(location);
+    if (marker2) {
+      marker2.setMap(null);
+      marker2 = new google.maps.Marker();
+      
+    }
+    marker2 = new google.maps.Marker({
+      map: map2,
+      draggable: true,
+      position: location
+    });
+    google.maps.event.addListener(marker2, 'dragend', function() {
+      // updateMarkerStatus('Drag ended');
+      geocodePosition2(marker2.getPosition());
+      $("#address-2").val('coordinates saved');
+    });
+    google.maps.event.addListener(marker2, 'click', function() {
+      
+
+    });
+    google.maps.event.trigger(marker2, 'click');
+
+    
+  }
 
 
   $('#activity-search-button').on("click", function(event) {
@@ -384,6 +436,12 @@
 
 <script>
 $(document).ready(initialize());
+google.maps.event.addListener(map, 'click', function(event) {
+  placeMarker(event.latLng);
+});
+google.maps.event.addListener(map2, 'click', function(event) {
+  placeMarker2(event.latLng);
+});
 </script>
 
 

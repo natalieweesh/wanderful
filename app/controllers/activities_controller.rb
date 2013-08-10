@@ -9,8 +9,8 @@ class ActivitiesController < ApplicationController
   def create
     @tags = params[:activity][:tags].split(",")
     if @tags.empty?
-      flash[:notice] = "must have at least one tag"
-      render :new
+      flash[:notice] = "please add at least one tag"
+      redirect_to new_activity_url # render :new
       return
     end
 

@@ -681,3 +681,7 @@ input[type=button].pin-button {
 		column-count: 5;
 	}
 }
+
+#error_explanation {
+  text-transform: lowercase;
+}
