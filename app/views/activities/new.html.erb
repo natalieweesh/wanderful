@@ -20,8 +20,7 @@
   <div class="map-box">
         <div>
           <label for="address">location</label>
-          <input id="address" type="textbox" value="" style="display:block; float:left;">
-
+          <input id="address" type="textbox" value="">
           <input type="button" value="place pin" onclick="codeAddress()" class="pin-button">
         </div>
         <div id="map_canvas" style="height:200px; width:400px; color: black; position: relative; background-color: rgb(229, 227, 223); overflow: hidden;"></div>
@@ -43,12 +42,12 @@
   
   
       <br><br>
-      <label>tags
-  <div class="select-box-container">
+      <label style="display: block; float: left">tags &nbsp;</label>
+  <div class="select-box-container" style="display: block; float: left;">
   <div id="select-box">
   </div>
   </div>
-  </label>
+
   <br><br>
   <input type="hidden" name="activity[tags]" id="tags">
   

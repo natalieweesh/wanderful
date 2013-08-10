@@ -44,6 +44,10 @@ input[type=submit], button, input[type=button] {
   cursor: pointer; 
   font-family: 'Maven Pro', sans-serif;
 }
+input[type=button] {
+  border-radius: 0;
+  
+}
 a {
   text-decoration: none;
 }
@@ -69,7 +73,7 @@ li {
   float: right;
 }
 
-input[type=submit], input[type=button] {
+input[type=submit] {
   display: block;
   float: left;
   border-radius: 0;
@@ -81,12 +85,12 @@ input[type=submit], input[type=button] {
   background: url("small-button-sprite.png") no-repeat 0 0;
   white-space: pre-wrap;
 }
-input[type=submit]:hover, input[type=button]:hover {
+input[type=submit]:hover {
   background-position: 0 -120px;
   padding-top: 30px;
   padding-left: 32px;
 }
-input[type=submit]:active, input[type=button]:active {
+input[type=submit]:active {
   background-position: 0 -240px;
   padding-top: 45px;
   padding-left: 45px;
@@ -700,7 +704,179 @@ input[type=submit].search-button {
   width: 200px;
 }
 input[type=button].pin-button {
+  font-size: 16px;
+  line-height: 10px;
+  background-image: none;
+  border-radius: none;
+  margin-bottom: 20px;
+  width: 100px;
+  height: 30px;
+  background: #FF3300;
+  box-shadow: 1px 0px 1px #FF8411,
+              0px 1px 1px #BE0079,
+              2px 1px 1px #FF8411,
+              1px 2px 1px #BE0079,
+              3px 2px 1px #FF8411,
+              2px 3px 1px #BE0079,
+              4px 3px 1px #FF8411,
+              3px 4px 1px #BE0079,
+              5px 4px 1px #FF8411,
+              4px 5px 1px #BE0079,
+              6px 5px 1px #FF8411
+              ;  
+}
+
+input[type=button].pin-button:hover {
+    box-shadow: 1px 0px 1px #FF8411,
+                0px 1px 1px #BE0079,
+                2px 1px 1px #FF8411,
+                1px 2px 1px #BE0079,
+                3px 2px 1px #FF8411;
+    -webkit-transform:translate(3px, 3px);
+    -moz-transform:translate(3px, 3px);
+    -ms-transform:translate(3px, 3px);
+    -o-transform:translate(3px, 3px);
+    transform:translate(3px, 3px)  
+  
+}
+input[type=button].pin-button:active {
+  text-indent: 10px;
+  padding-top: 6px;
+  padding-bottom: 0px;
+  background: #CF2900;
+  box-shadow: 1px 0px 1px #DF7410 inset,
+              0px 1px 1px #A30067 inset,
+              2px 1px 1px #DF7410 inset,
+              1px 2px 1px #A30067 inset,
+              3px 2px 1px #DF7410 inset,
+              2px 3px 1px #A30067 inset,
+              4px 3px 1px #DF7410 inset,
+              3px 4px 1px #A30067 inset,
+              5px 4px 1px #DF7410 inset,
+              4px 5px 1px #A30067 inset,
+              6px 5px 1px #DF7410 inset
+              ;
+  -webkit-transform:translate(6px, 6px);
+  -moz-transform:translate(6px, 6px);
+  -ms-transform:translate(6px, 6px);
+  -o-transform:translate(6px, 6px);
+  transform:translate(6px, 6px) 
+}
+input[type=button].go-button {
+  font-size: 20px;
+  line-height: 10px;
+  background-image: none;
+  border-radius: none;
+  margin-bottom: 20px;
   float: right;
+  width: 100px;
+  height: 100px;
+  background: #FF3300;
+  box-shadow: 1px 0px 1px #FF8411,
+              0px 1px 1px #BE0079,
+              2px 1px 1px #FF8411,
+              1px 2px 1px #BE0079,
+              3px 2px 1px #FF8411,
+              2px 3px 1px #BE0079,
+              4px 3px 1px #FF8411,
+              3px 4px 1px #BE0079,
+              5px 4px 1px #FF8411,
+              4px 5px 1px #BE0079,
+              6px 5px 1px #FF8411,
+              5px 6px 1px #BE0079,
+              7px 6px 1px #FF8411,
+              6px 7px 1px #BE0079,
+              8px 7px 1px #FF8411,
+              7px 8px 1px #BE0079,
+              9px 8px 1px #FF8411,
+              8px 9px 1px #BE0079,
+              10px 9px 1px #FF8411,
+              9px 10px 1px #BE0079,
+              11px 10px 1px #FF8411,
+              10px 11px 1px #BE0079,
+              12px 11px 1px #FF8411,
+              11px 12px 1px #BE0079,
+              13px 12px 1px #FF8411,
+              12px 13px 1px #BE0079,
+              14px 13px 1px #FF8411,
+              13px 14px 1px #BE0079,
+              15px 14px 1px #FF8411,
+              14px 15px 1px #BE0079,
+              16px 15px 1px #FF8411,
+              15px 16px 1px #BE0079,
+              17px 16px 1px #FF8411,
+              16px 17px 1px #BE0079,
+              18px 17px 1px #FF8411,
+              17px 18px 1px #BE0079,
+              19px 18px 1px #FF8411,
+              18px 19px 1px #BE0079,
+              20px 19px 1px #FF8411
+              ;  
+}
+input[type=button].go-button:hover {
+  box-shadow: 1px 0px 1px #FF8411,
+              0px 1px 1px #BE0079,
+              2px 1px 1px #FF8411,
+              1px 2px 1px #BE0079,
+              3px 2px 1px #FF8411;
+    -webkit-transform:translate(17px, 17px);
+    -moz-transform:translate(17px, 17px);
+    -ms-transform:translate(17px, 17px);
+    -o-transform:translate(17px, 17px);
+    transform:translate(17px, 17px)  
+  
+}
+input[type=button].go-button:active {
+  text-indent: 40px;
+  padding-top: 40px;
+  padding-bottom: 0px;
+  background: #CF2900;
+  box-shadow: 1px 0px 1px #FF8411 inset,
+              0px 1px 1px #BE0079 inset,
+              2px 1px 1px #FF8411 inset,
+              1px 2px 1px #BE0079 inset,
+              3px 2px 1px #FF8411 inset,
+              2px 3px 1px #BE0079 inset,
+              4px 3px 1px #FF8411 inset,
+              3px 4px 1px #BE0079 inset,
+              5px 4px 1px #FF8411 inset,
+              4px 5px 1px #BE0079 inset,
+              6px 5px 1px #FF8411 inset,
+              5px 6px 1px #BE0079 inset,
+              7px 6px 1px #FF8411 inset,
+              6px 7px 1px #BE0079 inset,
+              8px 7px 1px #FF8411 inset,
+              7px 8px 1px #BE0079 inset,
+              9px 8px 1px #FF8411 inset,
+              8px 9px 1px #BE0079 inset,
+              10px 9px 1px #FF8411 inset,
+              9px 10px 1px #BE0079 inset,
+              11px 10px 1px #FF8411 inset,
+              10px 11px 1px #BE0079 inset,
+              12px 11px 1px #FF8411 inset,
+              11px 12px 1px #BE0079 inset,
+              13px 12px 1px #FF8411 inset,
+              12px 13px 1px #BE0079 inset,
+              14px 13px 1px #FF8411 inset,
+              13px 14px 1px #BE0079 inset,
+              15px 14px 1px #FF8411 inset,
+              14px 15px 1px #BE0079 inset,
+              16px 15px 1px #FF8411 inset,
+              15px 16px 1px #BE0079 inset,
+              17px 16px 1px #FF8411 inset,
+              16px 17px 1px #BE0079 inset,
+              18px 17px 1px #FF8411 inset,
+              17px 18px 1px #BE0079 inset,
+              19px 18px 1px #FF8411 inset,
+              18px 19px 1px #BE0079 inset,
+              20px 19px 1px #FF8411 inset
+              ;  
+  
+  -webkit-transform:translate(19px, 19px);
+  -moz-transform:translate(19px, 19px);
+  -ms-transform:translate(19px, 19px);
+  -o-transform:translate(19px, 19px);
+  transform:translate(19px, 19px) 
 }
 .map-box {
   width: 400px;

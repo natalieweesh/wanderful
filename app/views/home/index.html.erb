@@ -104,7 +104,7 @@
   <div>
   <form class="itinerary-search-form group" action="<%= search_itineraries_url %>" method="get">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <label>time you have to spare
+    <label><h3>search by time you have to spare</h3>
     <select name="search[itinerary][time]">
       <option value=""></option>
       <% Itinerary.get_times.each_with_index do |time, index| %>
@@ -160,7 +160,7 @@
       
       
     
-    <label>tags</label>
+    <label><h3>and/or tags</h3></label>
     <div class="select-box-container">
     <div id="select-box-2">
     </div>
