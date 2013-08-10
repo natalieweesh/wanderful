@@ -545,12 +545,96 @@ a.friend-blob:active {
   font-family: inherit;
   font-size: inherit;
 }
+#users-accordion h3.people-title {
+  font-size: 20px;
+}
 .ui-accordion-header {
-  background: #242529;
-  border: 5px solid #05275A;
+  background: #61CD9A;
+  border-radius: 0;
+  margin-bottom: 20px;
   width: 200px;
   color: yellow;
   font-size: 20px;
+  box-shadow: 1px 0px 1px #3997D4,
+              0px 1px 1px #B9FF00,
+              2px 1px 1px #3997D4,
+              1px 2px 1px #B9FF00,
+              3px 2px 1px #3997D4,
+              2px 3px 1px #B9FF00,
+              4px 3px 1px #3997D4,
+              3px 4px 1px #B9FF00,
+              5px 4px 1px #3997D4,
+              4px 5px 1px #B9FF00,
+              6px 5px 1px #3997D4,
+              5px 6px 1px #B9FF00,
+              7px 6px 1px #3997D4,
+              6px 7px 1px #B9FF00,
+              8px 7px 1px #3997D4,
+              7px 8px 1px #B9FF00,
+              9px 8px 1px #3997D4,
+              8px 9px 1px #B9FF00,
+              10px 9px 1px #3997D4,
+              9px 10px 1px #B9FF00,
+              11px 10px 1px #3997D4,
+              10px 11px 1px #B9FF00,
+              12px 11px 1px #3997D4
+                       
+              ;
+}
+.ui-accordion-header:hover {
+  box-shadow: 1px 0px 1px #3997D4,
+              0px 1px 1px #B9FF00,
+              2px 1px 1px #3997D4,
+              1px 2px 1px #B9FF00,
+              3px 2px 1px #3997D4;
+  -webkit-transform:translate(9px, 9px);
+  -moz-transform:translate(9px, 9px);
+  -ms-transform:translate(9px, 9px);
+  -o-transform:translate(9px, 9px);
+  transform:translate(9px, 9px)  
+}
+.ui-state-default {
+  border: none;
+}
+.ui-accordion-header.tab-clicked, .ui-accordion-header:active {
+  text-indent: 12px;
+  padding-top: 20px;
+  padding-bottom: 0px;
+  border-radius: 0;
+  margin-bottom: 20px;
+  width: 200px;
+  color: #EBDC16;
+  font-size: 20px;
+  box-shadow: 1px 0px 1px #2A6891 inset,
+              0px 1px 1px #88B900 inset,
+              2px 1px 1px #2A6891 inset,
+              1px 2px 1px #88B900 inset,
+              3px 2px 1px #2A6891 inset,
+              2px 3px 1px #88B900 inset,
+              4px 3px 1px #2A6891 inset,
+              3px 4px 1px #88B900 inset,
+              5px 4px 1px #2A6891 inset,
+              4px 5px 1px #88B900 inset,
+              6px 5px 1px #2A6891 inset,
+              5px 6px 1px #88B900 inset,
+              7px 6px 1px #2A6891 inset,
+              6px 7px 1px #88B900 inset,
+              8px 7px 1px #2A6891 inset,
+              7px 8px 1px #88B900 inset,
+              9px 8px 1px #2A6891 inset,
+              8px 9px 1px #88B900 inset,
+              10px 9px 1px #2A6891 inset,
+              9px 10px 1px #88B900 inset,
+              11px 10px 1px #2A6891 inset,
+              10px 11px 1px #88B900 inset,
+              12px 11px 1px #2A6891 inset
+                       
+              ;
+    -webkit-transform:translate(12px, 12px);
+    -moz-transform:translate(12px, 12px);
+    -ms-transform:translate(12px, 12px);
+    -o-transform:translate(12px, 12px);
+    transform:translate(12px, 12px)
 }
 
 
@@ -562,7 +646,6 @@ a.friend-blob:active {
 }
 
 #users-accordion .ui-accordion-header {
-  color: white;
   border: none;
   
 }
@@ -570,12 +653,7 @@ a.friend-blob:active {
   float: left;
   width: 100%;
 }
-#users-accordion h3.people-title {
-  color: yellow;
-  font-size: 20px;
-  border: 5px solid #05275A;
-  
-}
+
 
 input[type=submit].search-button {
   display: block;

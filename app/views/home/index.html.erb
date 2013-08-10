@@ -592,7 +592,24 @@ google.maps.event.addListener(map2, 'click', function(event) {
     $(".find_something").css("display", "block");
   });
   
+  
+  
+  
+  
+  
+
 
   
 </script>
 
+<script>
+
+  $('#activities-search-tab').on("click", function() {
+    $(this).toggleClass('tab-clicked');
+    $(this).siblings().removeClass('tab-clicked');
+  });
+  $('#itineraries-search-tab').on("click", function() {
+    $(this).toggleClass('tab-clicked');
+    $(this).siblings().removeClass('tab-clicked');
+  });
+</script>

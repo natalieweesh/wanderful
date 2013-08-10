@@ -1,7 +1,7 @@
 <div id="users-accordion">
 
 
-<h3 class="people-title">your peeps</h3>
+<h3 class="people-title tab-clicked">your peeps</h3>
 <div>
 <ul class="group">
 <% current_user.friends.each do |friend| %>
@@ -28,5 +28,12 @@
 
 <script>
   $( "#users-accordion" ).accordion({collapsible: true, icons: false});
-
+  $('#ui-accordion-users-accordion-header-0').on("click", function() {
+    $(this).toggleClass('tab-clicked');
+    $(this).siblings().removeClass('tab-clicked');
+  });
+  $('#ui-accordion-users-accordion-header-1').on("click", function() {
+    $(this).toggleClass('tab-clicked');
+    $(this).siblings().removeClass('tab-clicked');
+  });
 </script>
