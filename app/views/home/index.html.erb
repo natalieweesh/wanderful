@@ -187,8 +187,10 @@
 
 
 
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
 
-<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
 
 <script>
 
@@ -200,22 +202,60 @@
   var marker2;
   var infowindow = new google.maps.InfoWindow({size: new google.maps.Size(100,50)});
   var infowindow2 = new google.maps.InfoWindow({size: new google.maps.Size(100,50)});
-
+  var geolocated;
+  
   function initialize() {
     geocoder = new google.maps.Geocoder();
     geocoder2 = new google.maps.Geocoder();
+    
     var latlng = new google.maps.LatLng(40.730844, -74.005973);
+    geolocated = latlng;
     var mapOptions = {
       zoom: 8,
       center: latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
+  
     map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
     map2 = new google.maps.Map(document.getElementById('map_canvas-2'), mapOptions);
-    google.maps.event.addListener(map, 'click', function() {
-      infowindow.close();
-      infowindow2.close();
-    });
+    
+    if(!!navigator.geolocation) {
+    
+      
+        var mapOptions = {
+            zoom: 13,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        
+        map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+        map2 = new google.maps.Map(document.getElementById('map_canvas-2'), mapOptions);
+    
+        navigator.geolocation.getCurrentPosition(function(position) {
+        
+            geolocated = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            
+            // var infowindow = new google.maps.InfoWindow({
+//                 map: map,
+//                 position: geolocate,
+//                 content:
+//                     '<h1>Location pinned from HTML5 Geolocation!</h1>' +
+//                     '<h2>Latitude: ' + position.coords.latitude + '</h2>' +
+//                     '<h2>Longitude: ' + position.coords.longitude + '</h2>'
+//             });
+//             
+            map.setCenter(geolocated);
+            map2.setCenter(geolocated);
+        });
+    
+      } 
+    
+    
+    
+  
+    // google.maps.event.addListener(map, 'click', function() {
+//       infowindow.close();
+//       infowindow2.close();
+//     });
     // map.setCenter(new google.maps.LatLng(40.730844, -74.005973));
     // map2.setCenter(new google.maps.LatLng(40.730844, -74.005973));
   }
@@ -243,8 +283,7 @@
       console.log("latitude");
                 console.log(marker.position.lb);
                 console.log("longitude");
-                console.log(marker.position.mb)
-      // alert(marker);
+                console.log(marker.position.mb);
     });
   }
   function codeAddress() {
@@ -282,7 +321,6 @@
                     console.log("longitude");
                     console.log(marker.position.mb)
           
-          // alert(marker);
         });
         google.maps.event.trigger(marker, 'click');
       } else {
@@ -328,7 +366,6 @@
                     console.log("longitude");
                     console.log(marker2.position.mb)
           
-          // alert(marker);
         });
         google.maps.event.trigger(marker2, 'click');
       } else {
@@ -356,7 +393,6 @@
                 console.log(marker2.position.lb);
                 console.log("longitude");
                 console.log(marker2.position.mb)
-      // alert(marker);
     });
   }
   
@@ -414,10 +450,8 @@
 
 
   $('#activity-search-button').on("click", function(event) {
-    // event.preventDefault();
     console.log("MARKER.position");
     console.log(marker.position);
-    // alert(marker);
     $('#address_box').val($("#address").val());
     $('#lat-box').val(marker.position.lb);
     $('#long-box').val(marker.position.mb);
@@ -474,16 +508,10 @@ google.maps.event.addListener(map2, 'click', function(event) {
   });
 </script>
 
- <script>
-// $("#select-box-neighborhood").select2({width: "element"});
-// $("#select-box-neighborhood-2").select2({width: "element"});
-// </script>
+
 
 
 <script type="application/javascript">
-
-
-  // var counter = 0;
 
   $( "#accordion" ).accordion({collapsible: true, active: false, icons: false, heightStyle: "content" });
 
@@ -513,15 +541,18 @@ google.maps.event.addListener(map2, 'click', function(event) {
 
   $('.ui-accordion-header').on("click", function(){
 
+    
     google.maps.event.trigger(map, 'resize');
     google.maps.event.trigger(map2, 'resize');
     if (counter1 === 1) {
-      map.setCenter(new google.maps.LatLng(40.730844, -74.005973));
+      map.setCenter(geolocated); 
     }
     if (counter2 === 1) {
-      map2.setCenter(new google.maps.LatLng(40.730844, -74.005973));
+      map2.setCenter(geolocated);      
     }
   });
+  
+  
   
   $(function() {
     $(".share_something").css("display", "none");

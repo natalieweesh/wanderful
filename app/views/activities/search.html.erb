@@ -3,19 +3,8 @@
   <p>no results found :(</p>
 
 <% else %>
-<ul class="activity-group">
-<% @search_results.each do |result| %>
-<li class="activity-blob">
-<%= link_to result.description, activity_url(result.id), class: "activity-title" %>
-  <ul>
-    <li>@<%= result.venue %></li>
-    <li>[<%= result.address %>]</li>
-    <li>#<%= result.tags.map{|tag| tag.name}.join(" #") %></li>
-  </ul>
-</li>
-<% end %>
 
+<ul class="activities-search-result group">
+<%= render @search_results %>
 </ul>
-
-
 <% end %>

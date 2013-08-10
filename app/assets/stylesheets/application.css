@@ -227,7 +227,8 @@ input[type=submit].unfavorite-button:hover {
 .itinerary-search-result .activity-blob {
   display: block;
   float: left;
-  height: 70px;
+  height: 120px;
+  overflow: hidden;
   background: #242529;
   border: 5px solid purple;
   margin: 7px;
@@ -586,6 +587,11 @@ input[type=submit].search-button {
 /*  display: block;*/
 /*  float: left;*/
 }
+.activities-search-result {
+  display: block;
+  clear: right;
+}
+
 #select-box-neighborhood, #select-box-neighborhood-2 {
   width: 200px;
 }
