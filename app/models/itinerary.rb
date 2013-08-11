@@ -3,6 +3,8 @@ class Itinerary < ActiveRecord::Base
   
   belongs_to :user
   
+  validates :description, :time_it_takes, :activity_ids, presence: true
+  
   has_many :itineraries_joins
   has_many :activities, through: :itineraries_joins
   

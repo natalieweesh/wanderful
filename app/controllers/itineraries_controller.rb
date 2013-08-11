@@ -13,7 +13,7 @@ class ItinerariesController < ApplicationController
     if @itinerary.save
       redirect_to itinerary_url(@itinerary.id)
     else
-      flash[:notice] = "error creating itinerary"
+      flash[:notice] = "please fill in all fields"
       render :new
     end
     
