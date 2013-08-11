@@ -52,11 +52,12 @@
 
 <ul class="itinerary-group favorites-group group">
   <% @user.favorite_itineraries.each do |itinerary| %>
+  <a class="itinerary-description-blob" href="<%= itinerary_url(itinerary.id) %>">
   <ul class="itinerary-search-result">
-  <li><%= link_to itinerary.description, itinerary_url(itinerary.id), class: "itinerary-description-blob" %>
+  <li class="itinerary-title"><%= itinerary.description %>
     <small class="time-blob">(<%= itinerary.time %>)</small>
   </li>
-  </ul>
+  </ul></a>
   <% end %>
 </ul>
 

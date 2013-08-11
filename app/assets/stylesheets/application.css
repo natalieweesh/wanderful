@@ -222,7 +222,7 @@ input[type=submit].unfavorite-button:hover {
   border: 5px solid #65ACA6;
   transition: all .5s ease-in-out;
 }
-.itinerary-search-result a {
+.itinerary-search-result > a {
   display: block;
   color: yellow;
   text-align: center;
@@ -256,7 +256,10 @@ input[type=submit].unfavorite-button:hover {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
+.mini-activity-blob {
+  width: 200px;
+  height: 100px;
+}
 .mini-activity-blob:hover {
   background: purple;
   transition: all .5s ease-in-out;
@@ -762,7 +765,7 @@ input[type=button].pin-button:active {
   -o-transform:translate(6px, 6px);
   transform:translate(6px, 6px) 
 }
-input[type=button].go-button {
+input[type=button].go-button, input[type=submit].friend-button, input[type=submit].unfriend-button {
   font-size: 20px;
   line-height: 10px;
   background-image: none;
@@ -813,7 +816,15 @@ input[type=button].go-button {
               20px 19px 1px #FF8411
               ;  
 }
-input[type=button].go-button:hover {
+input[type=submit].friend-button {
+  text-indent: 10px;
+  padding-top: 35px;
+}
+input[type=submit].unfriend-button {
+  text-indent: 0;
+  padding-top: 35px; 
+}
+input[type=button].go-button:hover, input[type=submit].friend-button:hover, input[type=submit].unfriend-button:hover {
   box-shadow: 1px 0px 1px #FF8411,
               0px 1px 1px #BE0079,
               2px 1px 1px #FF8411,
@@ -826,7 +837,11 @@ input[type=button].go-button:hover {
     transform:translate(17px, 17px)  
   
 }
-input[type=button].go-button:active {
+input[type=submit].friend-button:hover, input[type=submit].unfriend-button:hover {
+  padding-left: 12px;
+  padding-top: 35px;
+}
+input[type=button].go-button:active, input[type=submit].friend-button:active, input[type=submit].unfriend-button:active {
   text-indent: 40px;
   padding-top: 40px;
   padding-bottom: 0px;
@@ -878,6 +893,9 @@ input[type=button].go-button:active {
   -o-transform:translate(19px, 19px);
   transform:translate(19px, 19px) 
 }
+
+
+
 .map-box {
   width: 400px;
 }
@@ -945,3 +963,4 @@ input[type=button].go-button:active {
 #error_explanation {
   text-transform: lowercase;
 }
+

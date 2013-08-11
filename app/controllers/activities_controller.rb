@@ -43,6 +43,8 @@ class ActivitiesController < ApplicationController
     # @results_by_location = Activity.near(params[:search][:address], 20) #20 mile radius
     @search_results = Activity.search(@tags_array, [params[:search][:latitude], params[:search][:longitude]], params[:search][:radius])
     # @search_results = @tags_array & @results_by_location #THIS ASSUMES THAT NEITHER IS BLANK, CAN WORK THAT OUT LATER
+    @backup_results = Activity.select('activities.*').order('RANDOM()').limit(5)
+    
     
   end
   

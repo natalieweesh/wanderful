@@ -2,6 +2,9 @@ class ItinerariesController < ApplicationController
   
   def new
     @itinerary = Itinerary.new(params[:itinerary])
+    @tag_names = Tag.get_all_names
+    @activities = Activity.all
+    
   end
   
   def create
@@ -82,6 +85,7 @@ class ItinerariesController < ApplicationController
   
     @search_results
     
+    @backup_results = Itinerary.select('itineraries.*').order('RANDOM()').limit(3)
   end
   
   def index

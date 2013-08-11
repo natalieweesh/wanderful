@@ -25,42 +25,23 @@
     <!-- <button>sort by tags</button> -->
     <!-- Activity.sort_by_tags -->
     
-    
-    
-    
-    
-    
-    
+
     <ul>
 
   <% Activity.all.each do |activity| %>
-    <li class="activity-checkbox">
-    <input id="checkbox<%= activity.id %>" type="checkbox" name="itinerary[activity_ids][]" value="<%= activity.id %>">
-    <label for="checkbox<%= activity.id %>"><%= activity.description %></label>
-    </li>
+  
+      <li class="activity-checkbox">
+        <input id="checkbox<%= activity.id %>" type="checkbox" name="itinerary[activity_ids][]" value="<%= activity.id %>">
+        <label for="checkbox<%= activity.id %>"><%= activity.description %></label>
+      </li>
+
   <% end %>
-  <li class="activity-checkbox activity-checkbox-2" style=" padding: 10px; margin: 10px;
-  border: 1px solid green;
-  border-top: none;
-  border-left: none;
-  box-shadow: 1px 0px 1px #3997D4 inset,
-              0px 1px 1px #B9FF00 inset,
-              2px 1px 1px #3997D4 inset,
-              1px 2px 1px #B9FF00 inset,
-              3px 2px 1px #3997D4 inset,
-              2px 3px 1px #B9FF00 inset,
-              4px 3px 1px #3997D4 inset,
-              3px 4px 1px #B9FF00 inset,
-              5px 4px 1px #3997D4 inset,
-              4px 5px 1px #B9FF00 inset,
-              6px 5px 1px #3997D4  inset,
-              5px 6px 1px #B9FF00 inset,
-              7px 6px 1px #3997D4 inset
-              ;">
-    tester
-  </li>
+  
   </ul>
   </section>
   <br><br>
   <input class="go-button" type="submit" value="go!">
 </form>
+
+
+

@@ -2,35 +2,38 @@
 
 
 <% @top_ten.each do |itin| %>
-<ul class="itinerary-search-result group">
 
-<li class="itinerary-description-blob"><%= link_to itin.description, itinerary_url(itin.id) %>
-<small class="time-blob"><%= itin.time %></small>
 
-  <ul>
-    <li class="activity-group group">
+<a class="itinerary-description-blob" href="<%= itinerary_url(itin.id) %>">
+  <ul class="itinerary-search-result">
+    <li class="itinerary-title"><%= itin.description %>
+      <small class="time-blob">(<%= itin.time %>)</small>
+    </li>
+    
+    <ul>
+      <li class="activity-group group">
 
-        <% itin.activities.each do |activity| %>
-      <ul class="activity-blob" style="max-width: 200px; height: auto;">
-        <a href="<%= activity_url(activity.id) %>">
-        <li class="activity-title">
-          <%= activity.description %>
-        </li>
-        <ul>
+          <% itin.activities.each do |activity| %>
+        <ul class="activity-blob mini-activity-blob">
+          <a href="<%= activity_url(activity.id) %>">
+          <li class="activity-title">
+            <%= activity.description %>
+          </li>
+          <ul>
         
-          <li>@ <%= activity.venue %></li>
-          <li class="address-line">[ <%= activity.address %> ]</li>
-          <li>#<%= activity.tags.map{|tag| tag.name}.join(" #") %></li>
+            <li>@ <%= activity.venue %></li>
+            <li class="address-line">[ <%= activity.address %> ]</li>
+            <li>#<%= activity.tags.map{|tag| tag.name}.join(" #") %></li>
+          </ul>
+        </a>
         </ul>
-      </a>
-      </ul>
-        <% end %>
+          <% end %>
     
 
-    </li>
-  </ul>
+      </li>
+    </ul>
   
-</li>  
-
-</ul>
+  
+  
+</ul></a>
 <% end %>

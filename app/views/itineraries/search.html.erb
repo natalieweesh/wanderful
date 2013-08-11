@@ -1,20 +1,91 @@
 <h2>itineraries search results</h2>
 <% if @search_results.nil? || @search_results.empty? %>
   <p>no results found :(</p>
+  <h3>how bout taking a gander at these itineraries?</h3>
+  <% @backup_results.each do |result| %>
+  
+  
+    <a class="itinerary-description-blob" href="<%= itinerary_url(result.id) %>">
+    <ul class="itinerary-search-result">
+      <li class="itinerary-title"><%= result.description %>
+        <small class="time-blob">(<%= result.time %>)</small>
+      </li>
+    
+      <ul>
+        <li class="activity-group group">
+
+            <% result.activities.each do |activity| %>
+          <ul class="activity-blob mini-activity-blob">
+            <a href="<%= activity_url(activity.id) %>">
+            <li class="activity-title">
+              <%= activity.description %>
+            </li>
+            <ul>
+        
+              <li>@ <%= activity.venue %></li>
+              <li class="address-line">[ <%= activity.address %> ]</li>
+              <li>#<%= activity.tags.map{|tag| tag.name}.join(" #") %></li>
+            </ul>
+          </a>
+          </ul>
+            <% end %>
+    
+
+        </li>
+      </ul>
+  
+  
+  
+  </ul></a>
+  
+  
+  
+  
+  
+  <% end %>
+  
+  
+  
 
 <% else %>
-<ul>
-  <li>
-  <% @search_results.each do |result| %>
-  <li class="itinerary-search-result group">
+
+
+
+<% @search_results.each do |result| %>
+<a class="itinerary-description-blob" href="<%= itinerary_url(result.id) %>">
+  <ul class="itinerary-search-result">
+    <li class="itinerary-title"><%= result.description %>
+      <small class="time-blob">(<%= result.time %>)</small>
+    </li>
     
-    <%= link_to result.description, itinerary_url(result.id), class: "itinerary-description-blob" %>
-    <small class="time-blob">(<%= result.time %>)</small>
-    <%= render result %>
-  </li>
-  <% end %>
-</li>
-</ul>
+    <ul>
+      <li class="activity-group group">
+
+          <% result.activities.each do |activity| %>
+        <ul class="activity-blob mini-activity-blob">
+          <a href="<%= activity_url(activity.id) %>">
+          <li class="activity-title">
+            <%= activity.description %>
+          </li>
+          <ul>
+        
+            <li>@ <%= activity.venue %></li>
+            <li class="address-line">[ <%= activity.address %> ]</li>
+            <li>#<%= activity.tags.map{|tag| tag.name}.join(" #") %></li>
+          </ul>
+        </a>
+        </ul>
+          <% end %>
+    
+
+      </li>
+    </ul>
+  
+  
+  
+</ul></a>
+
+<% end %>
 
 
 <% end %>

@@ -200,8 +200,8 @@
   var map2;
   var marker;
   var marker2;
-  var infowindow = new google.maps.InfoWindow({size: new google.maps.Size(100,50)});
-  var infowindow2 = new google.maps.InfoWindow({size: new google.maps.Size(100,50)});
+  // var infowindow = new google.maps.InfoWindow({size: new google.maps.Size(100,50)});
+  // var infowindow2 = new google.maps.InfoWindow({size: new google.maps.Size(100,50)});
   var geolocated;
   
   function initialize() {
@@ -276,7 +276,7 @@
       } else {
         marker.formatted_address = 'Cannot determine address at this location.';
       }
-      infowindow.setContent(marker.formatted_address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
+      // infowindow.setContent(marker.formatted_address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
       // infowindow.open(map, marker);
       // $('#address_box').val(map);
       console.log(marker.position);
@@ -295,7 +295,7 @@
           marker.setMap(null);
           marker = new google.maps.Marker();
           
-          if (infowindow) infowindow.close();
+          // if (infowindow) infowindow.close();
         }
         marker = new google.maps.Marker({
           map: map,
@@ -309,9 +309,9 @@
         });
         google.maps.event.addListener(marker, 'click', function() {
           if (marker.formatted_address) {
-            infowindow.setContent(marker.formatted_address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
+            // infowindow.setContent(marker.formatted_address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
           } else  {
-            infowindow.setContent(address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
+            // infowindow.setContent(address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
           }
           // infowindow.open(map, marker);
           // $('#address_box').val(map);
@@ -340,7 +340,7 @@
           marker2.setMap(null);
           marker2 = new google.maps.Marker();
           
-          if (infowindow) infowindow.close();
+          // if (infowindow) infowindow.close();
         }
         marker2 = new google.maps.Marker({
           map: map2,
@@ -354,9 +354,9 @@
         });
         google.maps.event.addListener(marker2, 'click', function() {
           if (marker2.formatted_address) {
-            infowindow2.setContent(marker2.formatted_address+"<br>coordinates: "+marker2.getPosition().toUrlValue(6));
+            // infowindow2.setContent(marker2.formatted_address+"<br>coordinates: "+marker2.getPosition().toUrlValue(6));
           } else  {
-            infowindow2.setContent(address+"<br>coordinates: "+marker2.getPosition().toUrlValue(6));
+            // infowindow2.setContent(address+"<br>coordinates: "+marker2.getPosition().toUrlValue(6));
           }
           // infowindow.open(map, marker);
           // $('#address_box').val(map);
@@ -385,7 +385,7 @@
       } else {
         marker2.formatted_address = 'Cannot determine address at this location.';
       }
-      infowindow2.setContent(marker.formatted_address+"<br>coordinates: "+marker2.getPosition().toUrlValue(6));
+      // infowindow2.setContent(marker.formatted_address+"<br>coordinates: "+marker2.getPosition().toUrlValue(6));
       // infowindow.open(map, marker);
       // $('#address_box').val(map);
       console.log(marker2.position);
