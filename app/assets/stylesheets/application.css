@@ -969,9 +969,10 @@ input[type=button].go-button:active, input[type=submit].friend-button:active, in
 }
 input[type=button]#show-mini-form {
   font-size: 16px;
-
+  float: right;
 }
 .new-itinerary-form {
+  width: 100%;
   position: relative;
   margin-top: -500px;
   transition: all 1s ease-in-out;
@@ -982,7 +983,17 @@ input[type=button]#show-mini-form {
 }
 #mini-form-container {
   visibility: hidden;
+  clear: right;
+  
 }
 #mini-form-container .go-button {
+  margin: 0;
+  
+}
+#prepend-to-here {
+}
+.no-shadow {
+  box-shadow: none;
+  border: none;
   margin: 0;
 }

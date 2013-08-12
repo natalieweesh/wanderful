@@ -71,7 +71,6 @@
     <option value="5">a whole day</option>
   </select>
   </label>
-  <input type="button" id="show-mini-form" value="add another activity">
   
   <br><br>
   <section class="group checkboxes-group">
@@ -82,10 +81,19 @@
     <!-- <button>sort by tags</button> -->
     <!-- Activity.sort_by_tags -->
 
-    <!-- <button id="test-button">testme</button> -->
+    <label style="display:block; float:left">filter activities by tags &nbsp;</label>
+    <div class="select-box-container" style="display: block; float: left;">
+    <div id="select-box-2">
+    </div>
+    </div>
+    <input type="button" id="show-mini-form" value="add another activity">
+
+    <br><br>
+    <input type="hidden" name="activity[tags]" id="tags-to-search-for">
+    
     
 
-    <ul id="prepend-to-here">
+    <ul class="group" id="prepend-to-here">
       
       
 
@@ -129,6 +137,7 @@
 <!-- <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
 
 <script>
+google.maps.visualRefresh = true;
 var result;
   var geocoder;
   var map;
@@ -330,6 +339,13 @@ google.maps.event.addListener(map, 'click', function(event) {
     $("#tags").val($("#select-box").val());
   });
 </script>
+<script>
+  var allTags = JSON.parse($("#all_tags").html());
+  $("#select-box-2").select2({width: "element", tags: allTags});
+  $("#select-box-2").on("change", function(event) {
+    $("#tags-to-search-for").val($("#select-box-2").val());
+  });
+</script>
 
 
 
@@ -403,21 +419,31 @@ $('#close-mini-form').on('click', function(){
 
 <script>
 
-// $('#test-button').on("click", function(event){
-//   event.preventDefault();
-//   alert('yeah boi');
-//   var tempVar = 8;
-//   var showActivities = "<%#= Activity.filter_by_tags([escape_javascript(tempVar)]) %>";
-//   alert(showActivities);
-//   if ($('li.activity-checkbox').attr('id') === '1-3-4') {
-//     $('#1-3-4').css('display', 'none');
-//   }
-  // alert($('#1-3-4').attr('id'));
-  // $('#[1, 3, 4]').css('display': 'none');
-  // alert($('#[1, 3, 4]').val());
-  // $('li.activity-checkbox').css({'display': 'none'});
-  // alert('done');
-// });
+$('#select-box-2').on("change", function(event){
+  event.preventDefault();
+  
+  var theTags = $('#tags-to-search-for').val();
+  $('br').css('display', 'block');
+  if (theTags === "") {
+    $('.checkbox-label').css('display', 'block');
+    $('.activity-checkbox').removeClass('no-shadow');
+    // $('.activity-checkbox').css('margin', '10px');
+  }
+  else {
+    $('.checkbox-label').css('display', 'block');
+    $('.activity-checkbox').removeClass('no-shadow');
+    // $('.activity-checkbox').css('margin', '10px');
+    
+    theTags = theTags.split(",").map(function(x){return x.replace(' ', '-')}).join(".");
+    console.log(theTags);
+    var theClasses = ":not(" + "." + theTags + ")";
+    console.log(theClasses);
+    
+    $('#prepend-to-here .activity-checkbox' + theClasses).find(theClasses).css({'display': 'none'});
+    $('#prepend-to-here .activity-checkbox' + theClasses).addClass('no-shadow');
+  }
+
+});
 </script>
 
 

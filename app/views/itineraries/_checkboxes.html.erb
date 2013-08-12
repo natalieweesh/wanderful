@@ -1,4 +1,4 @@
-<li class="activity-checkbox">
+<li class="activity-checkbox <%= activity.tags.map{|tag| tag.name.gsub(/ /, '-') }.join(" ") %>">
   <input id="checkbox<%= activity.id %>" type="checkbox" name="itinerary[activity_ids][]" value="<%= activity.id %>">
   <label class="checkbox-label" for="checkbox<%= activity.id %>"><%= activity.description %><br>@<%= activity.venue %></label>
 </li>
