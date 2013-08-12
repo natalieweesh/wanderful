@@ -997,3 +997,6 @@ input[type=button]#show-mini-form {
   border: none;
   margin: 0;
 }
+.select2-search-choice-close {
+  background: image-url("select2.png") right top no-repeat;
+}
