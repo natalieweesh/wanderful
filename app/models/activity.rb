@@ -86,7 +86,19 @@ class Activity < ActiveRecord::Base
   end
   
   
-  
+  def self.filter_by_tags(tag_ids) # array of tag_ids, e.g. [8, 9]
+    result = []
+    
+    Activity.all.each do |activity|
+      if !(activity.tag_ids & tag_ids).empty?
+        result << activity
+      end
+    end
+    
+    result = result.uniq
+    result.map{ |activity| activity.id } #return the activity ids that include any of these tags
+
+  end
   
   
   

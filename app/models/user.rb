@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :login, :favorite_itinerary_ids, :friend_ids
+  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :login, :favorite_itinerary_ids, :friend_ids, :provider, :uid
   attr_accessor :login
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -8,10 +8,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, 
          :validatable, :authentication_keys => [:login]       
-         
+  devise :omniauthable, :omniauth_providers => [:facebook]
+  # devise :confirmable
+  
+    
   # attr_accessible :title, :body
   validates :username, :uniqueness => { :case_sensitive => false }
-  validates :username, presence: true
+  # validates :username, presence: true
   
   has_many :activities
   has_many :itineraries
@@ -30,6 +33,22 @@ class User < ActiveRecord::Base
     else
       where(conditions).first
     end
+  end
+  
+  def self.find_or_create_by_facebook_oauth(auth)
+    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+
+    unless user
+      user = User.create!(
+      provider: auth.provider,
+      uid: auth.uid,
+      email: auth.info.email,
+      username: auth.info.name,
+      password: Devise.friendly_token[0,20]
+    )
+    end
+
+    user
   end
   
 end

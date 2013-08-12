@@ -24,16 +24,23 @@
     
     <!-- <button>sort by tags</button> -->
     <!-- Activity.sort_by_tags -->
+
+    <!-- <button id="test-button">testme</button> -->
     
 
     <ul>
+      
+      
 
   <% Activity.all.each do |activity| %>
-  
-      <li class="activity-checkbox">
-        <input id="checkbox<%= activity.id %>" type="checkbox" name="itinerary[activity_ids][]" value="<%= activity.id %>">
-        <label for="checkbox<%= activity.id %>"><%= activity.description %></label>
-      </li>
+
+
+      <%= render partial: "checkboxes", object: activity, as: :activity %>
+      
+      <!-- <li class="activity-checkbox"> -->
+        <!-- <input id="checkbox<%= activity.id %>" type="checkbox" name="itinerary[activity_ids][]" value="<%#= activity.id %>"> -->
+        <!-- <label for="checkbox<%#= activity.id %>"><%#= activity.description %></label> -->
+      <!-- </li> -->
 
   <% end %>
   
@@ -43,5 +50,30 @@
   <input class="go-button" type="submit" value="go!">
 </form>
 
+
+<form>
+  
+</form>
+
+
+
+<script>
+
+// $('#test-button').on("click", function(event){
+//   event.preventDefault();
+//   alert('yeah boi');
+//   var tempVar = 8;
+//   var showActivities = "<%#= Activity.filter_by_tags([escape_javascript(tempVar)]) %>";
+//   alert(showActivities);
+//   if ($('li.activity-checkbox').attr('id') === '1-3-4') {
+//     $('#1-3-4').css('display', 'none');
+//   }
+  // alert($('#1-3-4').attr('id'));
+  // $('#[1, 3, 4]').css('display': 'none');
+  // alert($('#[1, 3, 4]').val());
+  // $('li.activity-checkbox').css({'display': 'none'});
+  // alert('done');
+// });
+</script>
 
 
