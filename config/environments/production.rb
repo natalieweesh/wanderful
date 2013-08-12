@@ -68,4 +68,7 @@ Capstone::Application.configure do
   
   config.assets.initialize_on_precompile = false
   
+  config.action_mailer.default_url_options = { :host => 'wanderful-app.heroku.com' }
+  
+  
 end
