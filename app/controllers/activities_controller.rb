@@ -18,11 +18,20 @@ class ActivitiesController < ApplicationController
     params[:activity][:tag_ids] = @tag_ids
     @activity = Activity.new(params[:activity].except("tags"))
     @activity.user_id = current_user.id
-    if @activity.save
-      redirect_to activity_url(@activity.id)
+    @activity.save
+    # if @activity.save
+#       redirect_to activity_url(@activity.id)
+#     else
+#       flash[:notice] = "error creating new activity"
+#       render :new
+#     end
+    
+    if request.xhr?
+      # Render a partial as response when using ajax requests.
+      render partial: "itineraries/checkboxes", locals: {activity: @activity}
     else
-      flash[:notice] = "error creating new activity"
-      render :new
+      # Redirect as usual for plain html requests.
+      redirect_to activity_url(@activity.id)
     end
     
   end
@@ -40,9 +49,9 @@ class ActivitiesController < ApplicationController
   def search
     @tags_array = params[:search][:tags].split(",")
     
-    # @results_by_location = Activity.near(params[:search][:address], 20) #20 mile radius
     @search_results = Activity.search(@tags_array, [params[:search][:latitude], params[:search][:longitude]], params[:search][:radius])
-    # @search_results = @tags_array & @results_by_location #THIS ASSUMES THAT NEITHER IS BLANK, CAN WORK THAT OUT LATER
+  
+    #recommend 5 random activities if search comes up empty
     @backup_results = Activity.select('activities.*').order('RANDOM()').limit(5)
     
     

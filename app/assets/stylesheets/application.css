@@ -967,4 +967,22 @@ input[type=button].go-button:active, input[type=submit].friend-button:active, in
 .checkbox-label {
   text-align: center;
 }
+input[type=button]#show-mini-form {
+  font-size: 16px;
 
+}
+.new-itinerary-form {
+  position: relative;
+  margin-top: -500px;
+  transition: all 1s ease-in-out;
+}
+.mini-form {
+  border: 5px solid blue;
+  padding: 20px;
+}
+#mini-form-container {
+  visibility: hidden;
+}
+#mini-form-container .go-button {
+  margin: 0;
+}

@@ -1,10 +1,65 @@
 <h3>add a new itinerary</h3>
 
-<form class="new-itinerary-form" action="<%= itineraries_url %>" method="post">
+
+
+
+<div id='mini-form-container'>
+  <input type="button" id="close-mini-form" value="X">
+<!-- mini new activity form -->
+<form class="new-activity-form mini-form group" action="<%= activities_url %>" method="post" id="form-new-activity" data-remote="true">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <label for="activity_description">description</label>
+  <input type="text" name="activity[description]" id="activity_description">
+  <br><br>
+  <label for="activity_venue">venue</label>
+  <input type="text" name="activity[venue]" id="activity_venue">
+  <br><br>
+  
+  
+  
+  <input type="hidden" name="activity[address]" id="address_box">
+  <input type="hidden" name="activity[latitude]" id="lat-box">
+  <input type="hidden" name="activity[longitude]" id="long-box">
+    
+
+
+  <div class="map-box">
+        <div>
+          <label for="address">location</label>
+          <input id="address" type="textbox" value="">
+          <input type="button" value="place pin" onclick="codeAddress()" class="pin-button">
+        </div>
+        <div id="map_canvas" style="height:200px; width:400px; color: black; position: relative; background-color: rgb(229, 227, 223); overflow: hidden;"></div>
+
+      </div>
+  
+  
+      <br><br>
+      <label style="display: block; float: left">tags &nbsp;</label>
+  <div class="select-box-container" style="display: block; float: left;">
+  <div id="select-box">
+  </div>
+  </div>
+
+  <br><br>
+  <input type="hidden" name="activity[tags]" id="tags">
+    
+  <input id="new-activity-button" class="go-button" type="button" value="go!" onclick="changeTextBoxes();">
+  
+    
+</form>
+<!-- end mini add new activity form -->
+</div>
+
+
+
+<form class="new-itinerary-form group" action="<%= itineraries_url %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  
   <label>description
   <input type="text" name="itinerary[description]">
   </label>
+  
   <br><br>
   <label>time it takes
   <select name="itinerary[time_it_takes]">
@@ -16,8 +71,10 @@
     <option value="5">a whole day</option>
   </select>
   </label>
+  <input type="button" id="show-mini-form" value="add another activity">
+  
   <br><br>
-  <section class="group">
+  <section class="group checkboxes-group">
     
     
     
@@ -28,14 +85,14 @@
     <!-- <button id="test-button">testme</button> -->
     
 
-    <ul>
+    <ul id="prepend-to-here">
       
       
 
-  <% Activity.all.each do |activity| %>
+  <% @activities.each do |activity| %>
 
 
-      <%= render partial: "checkboxes", object: activity, as: :activity %>
+      <%= render partial: "checkboxes", locals: {activity: activity} %>
       
       <!-- <li class="activity-checkbox"> -->
         <!-- <input id="checkbox<%= activity.id %>" type="checkbox" name="itinerary[activity_ids][]" value="<%#= activity.id %>"> -->
@@ -51,9 +108,296 @@
 </form>
 
 
-<form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
+
+<script>
+var result;
+  var geocoder;
+  var map;
+  var marker;
   
-</form>
+  
+  
+  
+  
+  
+  
+  var infowindow = new google.maps.InfoWindow({size: new google.maps.Size(100,50)});
+  function initialize() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(40.730844, -74.005973);
+    var mapOptions = {
+      zoom: 8,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+    google.maps.event.addListener(map, 'click', function() {
+      infowindow.close();
+    });
+  }
+  function clone(obj){
+    if(obj == null || typeof(obj) != 'object') return obj;
+    var temp = new obj.constructor(); 
+    for(var key in obj) temp[key] = clone(obj[key]);
+    return temp;
+  }
+  function geocodePosition(pos) {
+    geocoder.geocode({
+      latLng: pos
+    }, function(responses) {
+      if (responses && responses.length > 0) {
+        marker.formatted_address = responses[0].formatted_address;
+        console.log("geocodePosition response:")
+        console.log(pos);
+      } else {
+        marker.formatted_address = 'Cannot determine address at this location.';
+      }
+      infowindow.setContent(marker.formatted_address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
+      // infowindow.open(map, marker);
+    });
+  }
+  function codeAddress() {
+    var address = document.getElementById('address').value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        if (marker) {
+          marker.setMap(null);
+          marker = new google.maps.Marker();
+          if (infowindow) infowindow.close();
+        }
+        marker = new google.maps.Marker({
+          map: map,
+          draggable: true,
+          position: results[0].geometry.location
+        });
+        google.maps.event.addListener(marker, 'dragend', function() {
+          // updateMarkerStatus('Drag ended');
+          geocodePosition(marker.getPosition());
+          $('#address').val('coordinates saved');
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+          if (marker.formatted_address) {
+            infowindow.setContent(marker.formatted_address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
+          } else  {
+            infowindow.setContent(address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
+          }
+          // infowindow.open(map, marker);
+
+        });
+        google.maps.event.trigger(marker, 'click');
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+  
+  
+  function codeLatLng() {
+      // var input = document.getElementById("latlng").value;
+      var input = marker.position.lb + "," + marker.position.mb;
+      var latlngStr = input.split(",",2);
+      var lat = parseFloat(latlngStr[0]);
+      var lng = parseFloat(latlngStr[1]);
+      var latlng = new google.maps.LatLng(lat, lng);
+      geocoder.geocode({'latLng': latlng}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          if (results[1]) {
+            // map.setZoom(11);
+            marker = new google.maps.Marker({
+                position: latlng,
+                map: map
+            });
+            // alert(results[1].formatted_address);
+            $("#address_box").val(results[1].formatted_address);
+            // infowindow.setContent(results[1].formatted_address);
+            // infowindow.open(map, marker);
+            $('#form-new-activity').submit();
+          }
+        } else {
+          
+          alert("Geocoder failed due to: " + status);
+        }
+      });
+    }
+    
+    
+    function placeMarker(location) {
+      map.setCenter(location);
+      if (marker) {
+        marker.setMap(null);
+        marker = new google.maps.Marker();
+      
+      }
+      marker = new google.maps.Marker({
+        map: map,
+        draggable: true,
+        position: location
+      });
+      google.maps.event.addListener(marker, 'dragend', function() {
+        geocodePosition(marker.getPosition());
+        $("#address").val('coordinates saved');
+      });
+      google.maps.event.addListener(marker, 'click', function() {
+      
+
+      });
+      google.maps.event.trigger(marker, 'click');
+
+    }
+
+
+  
+    function changeTextBoxes() {
+      codeLatLng();
+      $('#address_box').val($('#address').val());
+      $('#lat-box').val(marker.position.lb);
+      $('#long-box').val(marker.position.mb);
+      
+    }
+    
+  // $('#new-activity-button').on("click", function(event) {
+  //   alert("HERE!");
+  //   // event.preventDefault();
+  //   console.log("MARKER.position");
+  //   console.log(marker.position);
+  //  
+  //   $('#address_box').val($("#address").val());
+  //   $('#lat-box').val(marker.position.lb);
+  //   $('#long-box').val(marker.position.mb);
+  //  
+  // })
+  
+  $('#tester-button').on("click", function(event){
+    event.preventDefault();
+    console.log(marker)
+        // alert(marker.formatted_address);
+  })
+
+
+$(document).ready(initialize());
+google.maps.event.addListener(map, 'click', function(event) {
+  placeMarker(event.latLng);
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="application/json" id="all_tags">
+  <%= @tag_names.to_json.html_safe %>
+</script>
+
+<script>
+  var allTags = JSON.parse($("#all_tags").html());
+  console.log(allTags);
+  $("#select-box").select2({width: "element", tags: allTags});
+  $("#select-box").on("change", function(event) {
+    $("#tags").val($("#select-box").val());
+  });
+</script>
+
+
+
+
+
+<script>
+
+
+$(document).ready(function(){
+  
+  // Using Rails UJS, bind an event listener to the form
+  // Read more about UJS Ajax events here:
+  // https://github.com/rails/jquery-ujs/wiki/ajax
+  $("#form-new-activity").on("ajax:success", function(event, data){
+
+    // We want the data passed in to be a single rendered partial.
+    // That way we can easily prepend it to the container tag.
+    // var template = $('#new-checkbox-template').html();
+//     var templateFunction = _.template(template);
+//     var renderedHTML = templateFunction({activity: data});
+    $('#prepend-to-here').prepend(data);
+    
+    // Don't forget to clear out your form fields.
+    $("#form-new-activity input[type=text]").val("");
+    $('#address').val("");
+    marker = null;
+    initialize();
+    google.maps.event.addListener(map, 'click', function(event) {
+      placeMarker(event.latLng);
+    });
+
+    $('#select-box').select2("data", null);
+    closeMiniForm();
+    
+  });
+});
+
+
+
+$('#show-mini-form').on('click', function(){
+  openMiniForm();
+});
+
+var closeMiniForm = function() {
+  $('.new-itinerary-form').css({'margin-top': '-500px', 'transition': 'all 1s ease-in-out'});
+  $('#mini-form-container').css({'visibility': 'hidden'});
+  $('#mini-form-container').removeClass('animated fadeInLeftBig');
+  $('#show-mini-form').css({'visibility': 'visible'});
+
+}
+
+var openMiniForm = function() {
+  $('.new-itinerary-form').css({'margin-top': '10px', 'transition': 'all 1s ease-in-out'});
+  $('#mini-form-container').css({'visibility': 'visible'});
+  $('#mini-form-container').addClass('animated fadeInLeftBig');
+  $('#show-mini-form').css({'visibility': "hidden"});
+}
+
+
+$('#close-mini-form').on('click', function(){
+  closeMiniForm();
+});
+
+</script>
+
+
+
+
 
 
 

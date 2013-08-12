@@ -3,7 +3,7 @@ class ItinerariesController < ApplicationController
   def new
     @itinerary = Itinerary.new(params[:itinerary])
     @tag_names = Tag.get_all_names
-    @activities = Activity.all
+    @activities = Activity.select('activities.*').order('activities.created_at DESC')
     
   end
   
@@ -85,6 +85,7 @@ class ItinerariesController < ApplicationController
   
     @search_results
     
+    # recommend 3 random itineraries if search comes up empty
     @backup_results = Itinerary.select('itineraries.*').order('RANDOM()').limit(3)
   end
   
