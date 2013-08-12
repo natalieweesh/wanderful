@@ -21,3 +21,74 @@
   </li>
 
 </ul>
+<section class="comments-section">
+<h2>comments</h2>
+
+
+
+
+
+
+<% if @activity.comments.count == 0 %>
+<p>no comments yet</p>
+<% end %>
+
+<form class="new-comment-section first-one" action="<%= comments_url %>" method="post" data-remote="true">
+  <input class="body-stuff" type="text" name="comment[body]" class="lefty">
+  <input type="hidden" name="comment[activity_id]" value="<%= @activity.id %>">
+  <input type="hidden" name="comment[user_id]" value="<%= current_user.id %>">
+  <input type="submit" value="add comment" class="add-comment-button">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+</form>
+
+
+
+
+<ul class="outer-list">
+  
+<% unless @activity.comments.count == 0 %>
+
+  <% hash = @activity.comments_by_parent %>
+  <% @first_comment = hash[nil] %>
+  <% @first_comment.each do |child| %>
+  <li>
+    <%= render partial: "comments", locals: {comment: child, children: hash[child.id] }  %>
+  </li>
+  <% end %>
+<% end %>
+
+</ul>
+
+
+</section>
+
+<script>
+
+
+$(document).ready(function(){
+
+  $(".outer-list").on("ajax:success", '.comments-form', function(event, data){
+    
+    
+    console.log(data);
+    $(this).parent().append(data);
+    
+    $('.body-stuff').val("");
+    
+  });
+  
+  $(".first-one").on("ajax:success", function(event, data){
+    
+    $('.outer-list').append(data);
+    
+    $('.body-stuff').val("");
+    
+  });
+  
+});
+
+
+
+
+
+</script>

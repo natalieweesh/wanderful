@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   has_many :friendships
   has_many :friends, through: :friendships, source: :friend
   
+  has_many :comments
   
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup

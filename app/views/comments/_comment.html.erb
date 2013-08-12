@@ -1,0 +1,17 @@
+<li>
+<ul>
+  <small class="lefty"><%= comment.user.username %> wrote</small> 
+  <small class="righty"><%= time_ago_in_words(comment.created_at) %> ago</small>
+  <br><br>
+  <p><%= comment.body %></p>
+  <br><br>
+  <form class="new-comment-section comments-form" action="<%= comments_url %>" method="post" data-remote="true">
+    <input class="body-stuff" type="text" name="comment[body]" class="lefty">
+    <input type="hidden" name="comment[parent_comment_id]" value="<%= comment.id %>">
+    <input type="hidden" name="comment[activity_id]" value="<%= comment.activity.id %>">
+    <input type="hidden" name="comment[user_id]" value="<%= current_user.id %>">
+    <input type="submit" value="add comment" class="add-comment-button">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  </form>
+</ul>
+</li>

@@ -13,12 +13,12 @@
  *= require_tree .
  */
 
-html, body, ul, li, a {
+html, body, ul, li, a, textarea {
   margin: 0;
   padding: 0;
   border: 0;
   font-size: 16px;
-  font-family: sans-serif;
+  font-family: 'Maven Pro', sans-serif;
 
 }
 a, h1, h2, h3, h4, h5, h6, strong, li {
@@ -999,4 +999,38 @@ input[type=button]#show-mini-form {
 }
 .select2-search-choice-close {
   background: url("select2.png") right top no-repeat;
+}
+.new-comment-section {
+  float: right;
+  margin-top: -50px;
+}
+
+.comments-section li {
+  border-top: 5px solid blue;
+  border-left: 5px solid blue;
+  padding-left: 10px;
+  clear: both;
+}
+.lefty {
+  float: left;
+}
+.righty {
+  float: right;
+}
+input[type=submit].add-comment-button {
+  background: red;
+  padding: 0;
+  font-size: 16px;
+  width: auto;
+  height: 20px;
+}
+.new-comment-section textarea, textarea {
+  width: 300px;
+  resize: none;
+  background: #50525A;
+  color: lightgray;
+}
+.outer-list {
+  border-right: 5px solid blue;
+  border-bottom: 5px solid blue;
 }

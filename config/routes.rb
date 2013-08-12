@@ -15,6 +15,8 @@ Capstone::Application.routes.draw do
     end
   end
   
+  resources :comments
+  
   resources :itineraries do
     collection do
       get 'search'

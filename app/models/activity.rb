@@ -20,6 +20,17 @@ class Activity < ActiveRecord::Base
   has_many :itineraries, through: :itineraries_joins
   
 
+  has_many :comments
+  
+  def comments_by_parent
+    hash = Hash.new([])
+    comments.each do |comment|
+      hash[comment.parent_comment_id] += [comment]
+    end
+    hash
+  end
+  
+
   private
   
   # def at_least_one_tag
