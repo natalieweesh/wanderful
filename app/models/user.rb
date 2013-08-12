@@ -11,8 +11,6 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook]
   # devise :confirmable
   
-    
-  # attr_accessible :title, :body
   validates :username, :uniqueness => { :case_sensitive => false }
   # validates :username, presence: true
   
