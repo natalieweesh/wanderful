@@ -7,6 +7,7 @@
   <input type="button" id="close-mini-form" value="X">
 <!-- mini new activity form -->
 <form class="new-activity-form mini-form group" action="<%= activities_url %>" method="post" id="form-new-activity" data-remote="true">
+  <h3>add an activity</h3>
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <label for="activity_description">description</label>
   <input type="text" name="activity[description]" id="activity_description">
@@ -26,7 +27,7 @@
   <div class="map-box">
         <div>
           <label for="address">location</label>
-          <input id="address" type="textbox" value="">
+          <input id="address" type="text" value="">
           <input type="button" value="place pin" onclick="codeAddress()" class="pin-button">
         </div>
         <div id="map_canvas" style="height:200px; width:400px; color: black; position: relative; background-color: rgb(229, 227, 223); overflow: hidden;"></div>
@@ -81,10 +82,12 @@
     <!-- <button>sort by tags</button> -->
     <!-- Activity.sort_by_tags -->
     <input type="button" id="show-mini-form" value="add another activity">
-
+    <br><br>
+    <div id="filter-section">
     <label style="display:block; float:left">filter activities by tags &nbsp;</label>
     <div class="select-box-container" style="display: block; float: left;">
     <div id="select-box-2">
+    </div>
     </div>
     </div>
 
@@ -92,6 +95,7 @@
     <input type="hidden" name="activity[tags]" id="tags-to-search-for">
     
     
+    <label>activities</label>
 
     <ul class="group" id="prepend-to-here">
       
@@ -318,15 +322,6 @@ google.maps.event.addListener(map, 'click', function(event) {
 
 
 
-
-
-
-
-
-
-
-
-
 <script type="application/json" id="all_tags">
   <%= @tag_names.to_json.html_safe %>
 </script>
@@ -356,13 +351,8 @@ google.maps.event.addListener(map, 'click', function(event) {
 
 $(document).ready(function(){
   
-  // Using Rails UJS, bind an event listener to the form
-  // Read more about UJS Ajax events here:
-  // https://github.com/rails/jquery-ujs/wiki/ajax
   $("#form-new-activity").on("ajax:success", function(event, data){
 
-    // We want the data passed in to be a single rendered partial.
-    // That way we can easily prepend it to the container tag.
     // var template = $('#new-checkbox-template').html();
 //     var templateFunction = _.template(template);
 //     var renderedHTML = templateFunction({activity: data});
@@ -384,10 +374,7 @@ $(document).ready(function(){
       $(this).parent().toggleClass('shadowless');
     });
     
-
-    
-
-    
+   
   });
   
 });

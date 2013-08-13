@@ -24,6 +24,11 @@ html, body, ul, li, a, textarea {
 a, h1, h2, h3, h4, h5, h6, strong, li {
   font-family: 'Maven Pro', sans-serif;
 }
+input[type=text] {
+  font-family: 'Maven Pro', sans-serif;
+  font-size: 16px;
+  padding: 4px;
+}
 
 input[type=submit], input[type=button], a, button {
   font-size: 20px;
@@ -810,7 +815,7 @@ input[type=button].pin-button:active {
 #activity_venue {
   width: 345px;
 }
-#address {
+#address, #address-2 {
   width: 210px;
 }
 input[type=button].go-button, input[type=submit].friend-button, input[type=submit].unfriend-button {
@@ -947,7 +952,7 @@ input[type=button].go-button:active, input[type=submit].friend-button:active, in
 .map-box {
   width: 400px;
 }
-.map-box a {
+.map-box a, #map-canvas a {
   font-size: 8px;
 }
 .inner-text li {
@@ -1016,7 +1021,7 @@ input[type=button].go-button:active, input[type=submit].friend-button:active, in
 }
 
 input[type=button]#show-mini-form {
-  margin-top: -10px;
+  margin-top: -20px;
   font-size: 16px;
   float: right;
   background: #8CA3FF;
@@ -1074,7 +1079,7 @@ input[type=button]#show-mini-form:active {
   transition: all 1s ease-in-out;
 }
 .mini-form {
-  border: 5px solid blue;
+  background: #222419;
   padding: 20px;
 }
 #mini-form-container {
@@ -1131,8 +1136,15 @@ input[type=submit].add-comment-button {
   border-bottom: 5px solid blue;
 }
 #close-mini-form {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 10px;
   width: 30px;
   height: 30px;
+  margin-left: -30px;
+  background: black;
+  color: #222419;
+  font-weight: bold;
+}
+#filter-section {
+  float: right;
 }
