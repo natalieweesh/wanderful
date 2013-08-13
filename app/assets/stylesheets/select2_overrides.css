@@ -7,7 +7,7 @@ border: 0px;
 outline: 0px;
 cursor: text;
 font-family: 'Maven Pro', sans-serif;
-
+width: 360px;
 overflow: hidden;
 background-color: #fff;
 background-image: none;
@@ -18,17 +18,23 @@ background-image: none;
   border: 0px;
   -webkit-box-shadow: none;
   box-shadow: none;
+  width: 360px;
 }
-
+#select2-drop, .select2-results {
+  width: 355px;
+  background: white;
+}
 /*the bottom of the box when the list of suggested tags is active*/
 .select2-dropdown-open.select2-drop-above .select2-choice, .select2-dropdown-open.select2-drop-above .select2-choices{
   background-image: none;
   border: 0px;
+  width: 360px;
 }
 
 /*menu of choices that pops up when you start typing*/
 .select2-drop.select2-drop-multi.select2-display-none.select2-drop-active.select2-drop-above{
   border: 0px;
+  width: 360px;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
@@ -43,7 +49,7 @@ background-image: none;
   border: 1px solid #ccc;
   background-color: #ddd;
 */
-  background-color: #A9BEDF;
+  background-color: #C9F543;
   border-radius: none;
 }
 

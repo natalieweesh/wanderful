@@ -272,19 +272,19 @@ google.maps.visualRefresh = true;
     }, function(responses) {
       if (responses && responses.length > 0) {
         marker.formatted_address = responses[0].formatted_address;
-        console.log("geocodePosition response:")
-        console.log(pos);
+        // console.log("geocodePosition response:")
+        // console.log(pos);
       } else {
         marker.formatted_address = 'Cannot determine address at this location.';
       }
       // infowindow.setContent(marker.formatted_address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
       // infowindow.open(map, marker);
       // $('#address_box').val(map);
-      console.log(marker.position);
-      console.log("latitude");
-                console.log(marker.position.lb);
-                console.log("longitude");
-                console.log(marker.position.mb);
+      // console.log(marker.position);
+//       console.log("latitude");
+//                 console.log(marker.position.lb);
+//                 console.log("longitude");
+//                 console.log(marker.position.mb);
     });
   }
   function codeAddress() {
@@ -316,11 +316,11 @@ google.maps.visualRefresh = true;
           }
           // infowindow.open(map, marker);
           // $('#address_box').val(map);
-          console.log(marker.position);
-          console.log("latitude");
-                    console.log(marker.position.lb);
-                    console.log("longitude");
-                    console.log(marker.position.mb)
+          // console.log(marker.position);
+          // console.log("latitude");
+          //           console.log(marker.position.lb);
+          //           console.log("longitude");
+          //           console.log(marker.position.mb)
           
         });
         google.maps.event.trigger(marker, 'click');
@@ -361,11 +361,11 @@ google.maps.visualRefresh = true;
           }
           // infowindow.open(map, marker);
           // $('#address_box').val(map);
-          console.log(marker2.position);
-          console.log("latitude");
-                    console.log(marker2.position.lb);
-                    console.log("longitude");
-                    console.log(marker2.position.mb)
+          // console.log(marker2.position);
+          // console.log("latitude");
+          //           console.log(marker2.position.lb);
+          //           console.log("longitude");
+          //           console.log(marker2.position.mb)
           
         });
         google.maps.event.trigger(marker2, 'click');
@@ -381,19 +381,19 @@ google.maps.visualRefresh = true;
     }, function(responses) {
       if (responses && responses.length > 0) {
         marker2.formatted_address = responses[0].formatted_address;
-        console.log("geocodePosition response:")
-        console.log(pos);
+        // console.log("geocodePosition response:")
+        // console.log(pos);
       } else {
         marker2.formatted_address = 'Cannot determine address at this location.';
       }
       // infowindow2.setContent(marker.formatted_address+"<br>coordinates: "+marker2.getPosition().toUrlValue(6));
       // infowindow.open(map, marker);
       // $('#address_box').val(map);
-      console.log(marker2.position);
-      console.log("latitude");
-                console.log(marker2.position.lb);
-                console.log("longitude");
-                console.log(marker2.position.mb)
+      // console.log(marker2.position);
+      // console.log("latitude");
+      //           console.log(marker2.position.lb);
+      //           console.log("longitude");
+      //           console.log(marker2.position.mb)
     });
   }
   
@@ -451,19 +451,19 @@ google.maps.visualRefresh = true;
 
 
   $('#activity-search-button').on("click", function(event) {
-    console.log("MARKER.position");
-    console.log(marker.position);
+    // console.log("MARKER.position");
+    // console.log(marker.position);
     $('#address_box').val($("#address").val());
-    $('#lat-box').val(marker.position.lb);
-    $('#long-box').val(marker.position.mb);
+    $('#lat-box').val(marker.getPosition().lat());
+    $('#long-box').val(marker.getPosition().lng());
     
     
   })
   
   $('#itinerary-search-button').on("click", function(event) {
     $('#address_box-2').val($("#address-2").val());
-    $('#lat-box-2').val(marker2.position.lb);
-    $('#long-box-2').val(marker2.position.mb);
+    $('#lat-box-2').val(marker2.getPosition().lat());
+    $('#long-box-2').val(marker2.getPosition().lng());
     
   });
 

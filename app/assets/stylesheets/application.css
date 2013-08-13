@@ -784,7 +784,7 @@ input[type=button].pin-button:hover {
 input[type=button].pin-button:active {
   text-indent: 10px;
   padding-top: 6px;
-  padding-bottom: 0px;
+  padding-bottom: 0;
   background: #CF2900;
   box-shadow: 1px 0px 1px #DF7410 inset,
               0px 1px 1px #A30067 inset,
@@ -803,6 +803,15 @@ input[type=button].pin-button:active {
   -ms-transform:translate(6px, 6px);
   -o-transform:translate(6px, 6px);
   transform:translate(6px, 6px) 
+}
+#activity_description {
+  width: 310px;
+}
+#activity_venue {
+  width: 345px;
+}
+#address {
+  width: 210px;
 }
 input[type=button].go-button, input[type=submit].friend-button, input[type=submit].unfriend-button {
   font-size: 20px;
