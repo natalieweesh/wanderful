@@ -176,12 +176,7 @@ input[type=submit].unfavorite-button:hover {
 }
 
 
-.activity-checkbox {
-  display: block;
-  float: left;
-  border: 5px solid #36D59E;
-  margin: 2px;
-}
+
 
 .activity-title, .activity-title a {
   text-transform: uppercase;
@@ -354,14 +349,17 @@ input[type="checkbox"] {
 }
 input[type="checkbox"] + label {
   display: block;
+  color: black;
+  background: #36D59E;
   padding: 10px 5px;
 }
 input[type="checkbox"]:checked + label {
-  background: #36D59E;
-  color: black;
+  background: #2BAD80;
+  color: #FFD321;
 }
 input[type="checkbox"] + label:hover {
-  background: #36D59E;
+  color: #FFD321;
+  
 }
 
 .friend-form {
@@ -688,7 +686,14 @@ input[type=submit].search-button {
 }
 
 .activity-checkbox {
+  display: block;
+  float: left;
+  margin: 2px;
   margin: 10px;
+
+}
+
+.activity-checkbox {
   box-shadow: 1px 0px 1px #3997D4,
               0px 1px 1px #B9FF00,
               2px 1px 1px #3997D4,
@@ -699,8 +704,41 @@ input[type=submit].search-button {
               3px 4px 1px #B9FF00,
               5px 4px 1px #3997D4,
               4px 5px 1px #B9FF00,
-              6px 5px 1px #3997D4          
+              6px 5px 1px #3997D4,
+              5px 6px 1px #B9FF00,
+              7px 6px 1px #3997D4,
+              6px 7px 1px #B9FF00,
+              8px 7px 1px #3997D4
               ;
+}
+.activity-checkbox.shadowless {
+  box-shadow: none;
+}
+.activity-checkbox.shadowless > label.checkbox-label {
+  padding-left: 9px;
+  padding-right: 1px;
+  overflow: hidden;
+  box-shadow: 1px 0px 1px #2974A7 inset,
+              0px 1px 1px #80AF00 inset,
+              2px 1px 1px #2974A7 inset,
+              1px 2px 1px #80AF00 inset,
+              3px 2px 1px #2974A7 inset,
+              2px 3px 1px #80AF00 inset,
+              4px 3px 1px #2974A7 inset,
+              3px 4px 1px #80AF00 inset,
+              5px 4px 1px #2974A7 inset,
+              4px 5px 1px #80AF00 inset,
+              6px 5px 1px #2974A7 inset,
+              5px 6px 1px #80AF00 inset,
+              7px 6px 1px #2974A7 inset,
+              6px 7px 1px #80AF00 inset,
+              8px 7px 1px #2974A7 inset         
+              ;
+  -webkit-transform:translate(8px, 8px);
+  -moz-transform:translate(8px, 8px);
+  -ms-transform:translate(8px, 8px);
+  -o-transform:translate(8px, 8px);
+  transform:translate(8px, 8px) 
 }
 
 .half-buttons-container {
@@ -970,7 +1008,54 @@ input[type=button].go-button:active, input[type=submit].friend-button:active, in
 input[type=button]#show-mini-form {
   font-size: 16px;
   float: right;
+  background: #8CA3FF;
+  box-shadow: 1px 0px 1px #DB8CFF,
+              0px 1px 1px #6021FF,
+              2px 1px 1px #DB8CFF,
+              1px 2px 1px #6021FF,
+              3px 2px 1px #DB8CFF,
+              2px 3px 1px #6021FF,
+              4px 3px 1px #DB8CFF,
+              3px 4px 1px #6021FF,
+              5px 4px 1px #DB8CFF,
+              4px 5px 1px #6021FF,
+              6px 5px 1px #DB8CFF,
+              5px 6px 1px #6021FF,
+              7px 6px 1px #DB8CFF,
+              6px 7px 1px #6021FF,
+              8px 7px 1px #DB8CFF
+              ;
 }
+input[type=button]#show-mini-form:hover  {
+  box-shadow: 1px 0px 1px #DB8CFF,
+              0px 1px 1px #6021FF,
+              2px 1px 1px #DB8CFF,
+              1px 2px 1px #6021FF,
+              3px 2px 1px #DB8CFF,
+              2px 3px 1px #6021FF,
+              4px 3px 1px #DB8CFF
+              ;
+  -webkit-transform:translate(4px, 4px);
+  -moz-transform:translate(4px, 4px);
+  -ms-transform:translate(4px, 4px);
+  -o-transform:translate(4px, 4px);
+  transform:translate(4px, 4px)  
+}
+input[type=button]#show-mini-form:active {
+  color: yellow;
+  box-shadow: 1px 0px 1px #DB8CFF,
+              0px 1px 1px #6021FF,
+              2px 1px 1px #DB8CFF,
+              1px 2px 1px #6021FF,
+              3px 2px 1px #DB8CFF
+              ;
+  -webkit-transform:translate(5px, 5px);
+  -moz-transform:translate(5px, 5px);
+  -ms-transform:translate(5px, 5px);
+  -o-transform:translate(5px, 5px);
+  transform:translate(5px, 5px) 
+}
+
 .new-itinerary-form {
   width: 100%;
   position: relative;
@@ -1033,4 +1118,10 @@ input[type=submit].add-comment-button {
 .outer-list {
   border-right: 5px solid blue;
   border-bottom: 5px solid blue;
+}
+#close-mini-form {
+  font-size: 15px;
+  line-height: 10px;
+  width: 30px;
+  height: 30px;
 }
