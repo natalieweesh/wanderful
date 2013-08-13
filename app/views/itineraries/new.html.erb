@@ -97,7 +97,7 @@
 
     <ul class="group" id="prepend-to-here">
       
-      
+      <% @activities ||= Activity.select('activities.*').order('activities.created_at DESC') %>
 
   <% @activities.each do |activity| %>
 

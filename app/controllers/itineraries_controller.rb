@@ -14,7 +14,7 @@ class ItinerariesController < ApplicationController
       redirect_to itinerary_url(@itinerary.id)
     else
       flash[:notice] = "please fill in all fields"
-      render :new
+      redirect_to new_itinerary_url
     end
     
   end
