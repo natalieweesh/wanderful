@@ -24,7 +24,7 @@ html, body, ul, li, a, textarea {
 a, h1, h2, h3, h4, h5, h6, strong, li {
   font-family: 'Maven Pro', sans-serif;
 }
-input[type=text] {
+input[type=text], input[type=password], input[type=number] {
   font-family: 'Maven Pro', sans-serif;
   font-size: 16px;
   padding: 4px;
@@ -1191,7 +1191,8 @@ input[type=submit].add-comment-button:active {
 .body-stuff {
   width: 300px;
 }
-input[type=button].reply-button {
+
+input[type=button].reply-button, input[type=submit]#delete-button {
   float: right;
   height: 20px;
   font-size: 12px;
@@ -1217,7 +1218,7 @@ input[type=button].reply-button {
   
 
 }
-input[type=button].reply-button:active {
+input[type=button].reply-button:active, input[type=submit]#delete-button:active {
   box-shadow: 1px 0px 1px #F57600,
               0px 1px 1px #F50000,
               2px 1px 1px #F57600,
@@ -1230,4 +1231,9 @@ input[type=button].reply-button:active {
   -ms-transform:translate(2px, 2px);
   -o-transform:translate(2px, 2px);
   transform:translate(2px, 2px) 
+}
+input[type=submit]#delete-button {
+  font-size: 12px;
+  line-height: 10px;
+  margin-top: -70px;
 }

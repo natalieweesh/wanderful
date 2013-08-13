@@ -1,13 +1,26 @@
 <% hash = @activity.comments_by_parent %>
 
-<ul>
+<ul class="inner-ul">
   
   <small class="lefty"><%= comment.user.username %> wrote</small> 
+  <% if comment.user.id == current_user.id && comment.body != "This comment has been deleted." %>
+  <form data-remote="true" action="<%= comment_url(comment.id) %>" id="delete-comment" method="post">
+    <input type="submit" value="delete comment" id="delete-button">
+    <input type="hidden" name="_method" value="delete">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  </form>
+  <% end %>
   <small class="righty"><%= time_ago_in_words(comment.created_at) %> ago</small>
+  <br>
+
+  
+  
+  <br>
+  <p class="comment-body"><%= comment.body %></p>
   <br><br>
-  <p><%= comment.body %></p>
-  <br><br>
+  <% if comment.body != "This comment has been deleted." %>
   <input type="button" value="reply" class="reply-button">
+  <% end %>
   <form class="new-comment-section comments-form" action="<%= comments_url %>" method="post" data-remote="true" style="visibility: hidden;">
 
     <input class="body-stuff" type="text" name="comment[body]" class="lefty">
@@ -34,5 +47,20 @@ $('.reply-button').on('click', function(event){
   $(this).parent().find('.comments-form').first().css('visibility', 'visible');
   $(this).css('display', 'none');
 });
+
+$(".inner-ul").on("ajax:success", '#delete-comment', function(event, data){
+  console.log(data);
+  if (data === "This comment has been deleted."){
+    $(this).siblings(".comment-body").html(data);
+    $(this).siblings(".comments-form").remove();
+    $(this).remove();
+    
+  } else{
+    $(this).parent().remove();
+  }
+  // $('.body-stuff').val("");
+  
+});
+
 
 </script>
