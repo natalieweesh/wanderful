@@ -379,8 +379,17 @@ $(document).ready(function(){
 
     $('#select-box').select2("data", null);
     closeMiniForm();
+
+    $('#prepend-to-here li:first-child').find('label').on('click', function(){
+      $(this).parent().toggleClass('shadowless');
+    });
+    
+
+    
+
     
   });
+  
 });
 
 
