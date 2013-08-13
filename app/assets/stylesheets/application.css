@@ -1117,8 +1117,8 @@ input[type=button]#show-mini-form:active {
   padding: 5px;
 }
 .comments-section li {
-  border-top: 5px solid #A0C403;
-  border-left: 5px solid #A0C403;
+  border-top: 5px solid #B8FF00;
+  border-left: 5px solid #B8FF00;
   padding-left: 10px;
   clear: both;
 }
@@ -1169,8 +1169,8 @@ input[type=submit].add-comment-button:active {
   color: lightgray;
 }
 .outer-list {
-  border-right: 5px solid #A0C403;
-  border-bottom: 5px solid #A0C403;
+  border-right: 5px solid #B8FF00;
+  border-bottom: 5px solid #B8FF00;
 }
 #close-mini-form {
   font-size: 16px;
@@ -1190,4 +1190,44 @@ input[type=submit].add-comment-button:active {
 }
 .body-stuff {
   width: 300px;
+}
+input[type=button].reply-button {
+  float: right;
+  height: 20px;
+  font-size: 12px;
+  line-height: 6px;
+  margin-top: -30px;
+  background: #FF2C79;
+  padding: 0;
+  
+  width: 60px;
+  
+  
+  margin-right: 20px;
+  box-shadow: 1px 0px 1px #F57600,
+              0px 1px 1px #F50000,
+              2px 1px 1px #F57600,
+              1px 2px 1px #F50000,
+              3px 2px 1px #F57600,
+              2px 3px 1px #F50000,
+              4px 3px 1px #F57600,
+              3px 4px 1px #F50000,
+              5px 4px 1px #F57600
+              ;
+  
+
+}
+input[type=button].reply-button:active {
+  box-shadow: 1px 0px 1px #F57600,
+              0px 1px 1px #F50000,
+              2px 1px 1px #F57600,
+              1px 2px 1px #F50000,
+              3px 2px 1px #F57600
+              ;
+  
+  -webkit-transform:translate(2px, 2px);
+  -moz-transform:translate(2px, 2px);
+  -ms-transform:translate(2px, 2px);
+  -o-transform:translate(2px, 2px);
+  transform:translate(2px, 2px) 
 }

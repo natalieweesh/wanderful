@@ -7,7 +7,8 @@
   <br><br>
   <p><%= comment.body %></p>
   <br><br>
-  <form class="new-comment-section comments-form" action="<%= comments_url %>" method="post" data-remote="true">
+  <input type="button" value="reply" class="reply-button">
+  <form class="new-comment-section comments-form" action="<%= comments_url %>" method="post" data-remote="true" style="visibility: hidden;">
 
     <input class="body-stuff" type="text" name="comment[body]" class="lefty">
     <input type="hidden" name="comment[parent_comment_id]" value="<%= comment.id %>">
@@ -25,3 +26,13 @@
   <% end %>
 
 </ul>
+
+<script>
+$('.reply-button').on('click', function(event){
+  event.preventDefault();
+  
+  $(this).parent().find('.comments-form').first().css('visibility', 'visible');
+  $(this).css('display', 'none');
+});
+
+</script>
