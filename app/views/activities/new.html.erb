@@ -78,15 +78,9 @@
 <script>
 google.maps.visualRefresh = true;
 
-var result;
   var geocoder;
   var map;
   var marker;
-  
-  
-  
-  
-  
   
   
   var infowindow = new google.maps.InfoWindow({size: new google.maps.Size(100,50)});
@@ -99,9 +93,9 @@ var result;
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-    google.maps.event.addListener(map, 'click', function() {
-      infowindow.close();
-    });
+    // google.maps.event.addListener(map, 'click', function() {
+    //   infowindow.close();
+    // });
   }
   function clone(obj){
     if(obj == null || typeof(obj) != 'object') return obj;
@@ -115,12 +109,10 @@ var result;
     }, function(responses) {
       if (responses && responses.length > 0) {
         marker.formatted_address = responses[0].formatted_address;
-        console.log("geocodePosition response:")
-        console.log(pos);
       } else {
         marker.formatted_address = 'Cannot determine address at this location.';
       }
-      infowindow.setContent(marker.formatted_address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
+      // infowindow.setContent(marker.formatted_address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
       // infowindow.open(map, marker);
     });
   }
@@ -132,7 +124,7 @@ var result;
         if (marker) {
           marker.setMap(null);
           marker = new google.maps.Marker();
-          if (infowindow) infowindow.close();
+          // if (infowindow) infowindow.close();
         }
         marker = new google.maps.Marker({
           map: map,

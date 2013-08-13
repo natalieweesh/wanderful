@@ -34,18 +34,9 @@
 
 
 
-<% if @activity.comments.count == 0 %>
+<!-- <%# if @activity.comments.count == 0 %>
 <p>no comments yet</p>
-<% end %>
-
-<form class="new-comment-section first-one" action="<%= comments_url %>" method="post" data-remote="true">
-  <input class="body-stuff" type="text" name="comment[body]" class="lefty">
-  <input type="hidden" name="comment[activity_id]" value="<%= @activity.id %>">
-  <input type="hidden" name="comment[user_id]" value="<%= current_user.id %>">
-  <input type="submit" value="add comment" class="add-comment-button">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-</form>
-
+<%# end %> -->
 
 
 
@@ -63,6 +54,19 @@
 <% end %>
 
 </ul>
+
+
+<form class="new-comment-section first-one" action="<%= comments_url %>" method="post" data-remote="true">
+  <input class="body-stuff" type="text" name="comment[body]" class="lefty">
+  <input type="hidden" name="comment[activity_id]" value="<%= @activity.id %>">
+  <input type="hidden" name="comment[user_id]" value="<%= current_user.id %>">
+  <input type="submit" value="comment" class="add-comment-button">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+</form>
+
+
+
+
 
 
 </section>

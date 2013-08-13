@@ -1104,11 +1104,21 @@ input[type=button]#show-mini-form:active {
 .new-comment-section {
   float: right;
   margin-top: -50px;
+  width: 400px;
 }
-
+.first-one {
+  margin-top: 50px;
+  float: left;
+}
+.comments-section ul {
+  font-size: 13px;
+}
+.comments-section ul small {
+  padding: 5px;
+}
 .comments-section li {
-  border-top: 5px solid blue;
-  border-left: 5px solid blue;
+  border-top: 5px solid #A0C403;
+  border-left: 5px solid #A0C403;
   padding-left: 10px;
   clear: both;
 }
@@ -1119,11 +1129,38 @@ input[type=button]#show-mini-form:active {
   float: right;
 }
 input[type=submit].add-comment-button {
-  background: red;
+  background: #FF2C79;
   padding: 0;
-  font-size: 16px;
-  width: auto;
+  font-size: 12px;
+  width: 60px;
   height: 20px;
+  float: right;
+  margin-right: 20px;
+  box-shadow: 1px 0px 1px #F57600,
+              0px 1px 1px #F50000,
+              2px 1px 1px #F57600,
+              1px 2px 1px #F50000,
+              3px 2px 1px #F57600,
+              2px 3px 1px #F50000,
+              4px 3px 1px #F57600,
+              3px 4px 1px #F50000,
+              5px 4px 1px #F57600
+              ;
+  
+}
+input[type=submit].add-comment-button:active {
+  box-shadow: 1px 0px 1px #F57600,
+              0px 1px 1px #F50000,
+              2px 1px 1px #F57600,
+              1px 2px 1px #F50000,
+              3px 2px 1px #F57600
+              ;
+  
+  -webkit-transform:translate(2px, 2px);
+  -moz-transform:translate(2px, 2px);
+  -ms-transform:translate(2px, 2px);
+  -o-transform:translate(2px, 2px);
+  transform:translate(2px, 2px) 
 }
 .new-comment-section textarea, textarea {
   width: 300px;
@@ -1132,8 +1169,8 @@ input[type=submit].add-comment-button {
   color: lightgray;
 }
 .outer-list {
-  border-right: 5px solid blue;
-  border-bottom: 5px solid blue;
+  border-right: 5px solid #A0C403;
+  border-bottom: 5px solid #A0C403;
 }
 #close-mini-form {
   font-size: 16px;
@@ -1147,4 +1184,10 @@ input[type=submit].add-comment-button {
 }
 #filter-section {
   float: right;
+}
+#itin-description {
+  width: 300px;
+}
+.body-stuff {
+  width: 300px;
 }

@@ -58,7 +58,7 @@
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   
   <label>description
-  <input type="text" name="itinerary[description]">
+  <input type="text" name="itinerary[description]" id="itin-description">
   </label>
   
   <br><br>
@@ -78,9 +78,7 @@
     
     
     
-    
-    <!-- <button>sort by tags</button> -->
-    <!-- Activity.sort_by_tags -->
+
     <input type="button" id="show-mini-form" value="add another activity">
     <br><br>
     <div id="filter-section">
@@ -106,10 +104,6 @@
 
       <%= render partial: "checkboxes", locals: {activity: activity} %>
       
-      <!-- <li class="activity-checkbox"> -->
-        <!-- <input id="checkbox<%= activity.id %>" type="checkbox" name="itinerary[activity_ids][]" value="<%#= activity.id %>"> -->
-        <!-- <label for="checkbox<%#= activity.id %>"><%#= activity.description %></label> -->
-      <!-- </li> -->
 
   <% end %>
   
@@ -142,7 +136,6 @@
 
 <script>
 google.maps.visualRefresh = true;
-var result;
   var geocoder;
   var map;
   var marker;
@@ -163,9 +156,9 @@ var result;
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-    google.maps.event.addListener(map, 'click', function() {
-      infowindow.close();
-    });
+    // google.maps.event.addListener(map, 'click', function() {
+    //   infowindow.close();
+    // });
   }
   function clone(obj){
     if(obj == null || typeof(obj) != 'object') return obj;
@@ -179,12 +172,10 @@ var result;
     }, function(responses) {
       if (responses && responses.length > 0) {
         marker.formatted_address = responses[0].formatted_address;
-        console.log("geocodePosition response:")
-        console.log(pos);
       } else {
         marker.formatted_address = 'Cannot determine address at this location.';
       }
-      infowindow.setContent(marker.formatted_address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
+      // infowindow.setContent(marker.formatted_address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
       // infowindow.open(map, marker);
     });
   }
@@ -196,7 +187,7 @@ var result;
         if (marker) {
           marker.setMap(null);
           marker = new google.maps.Marker();
-          if (infowindow) infowindow.close();
+          // if (infowindow) infowindow.close();
         }
         marker = new google.maps.Marker({
           map: map,
@@ -208,15 +199,15 @@ var result;
           geocodePosition(marker.getPosition());
           $('#address').val('coordinates saved');
         });
-        google.maps.event.addListener(marker, 'click', function() {
-          if (marker.formatted_address) {
-            infowindow.setContent(marker.formatted_address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
-          } else  {
-            infowindow.setContent(address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
-          }
-          // infowindow.open(map, marker);
-
-        });
+        // google.maps.event.addListener(marker, 'click', function() {
+//           if (marker.formatted_address) {
+//             infowindow.setContent(marker.formatted_address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
+//           } else  {
+//             infowindow.setContent(address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
+//           }
+//           // infowindow.open(map, marker);
+// 
+//         });
         google.maps.event.trigger(marker, 'click');
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
@@ -287,24 +278,7 @@ var result;
       $('#long-box').val(marker.getPosition().lng());
       
     }
-    
-  // $('#new-activity-button').on("click", function(event) {
-  //   alert("HERE!");
-  //   // event.preventDefault();
-  //   console.log("MARKER.position");
-  //   console.log(marker.position);
-  //  
-  //   $('#address_box').val($("#address").val());
-  //   $('#lat-box').val(marker.position.lb);
-  //   $('#long-box').val(marker.position.mb);
-  //  
-  // })
-  
-  $('#tester-button').on("click", function(event){
-    event.preventDefault();
-    console.log(marker)
-        // alert(marker.formatted_address);
-  })
+
 
 
 $(document).ready(initialize());
@@ -358,7 +332,6 @@ $(document).ready(function(){
 //     var renderedHTML = templateFunction({activity: data});
     $('#prepend-to-here').prepend(data);
     
-    // Don't forget to clear out your form fields.
     $("#form-new-activity input[type=text]").val("");
     $('#address').val("");
     marker = null;
