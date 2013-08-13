@@ -12,14 +12,14 @@
 </section>
 
 <section class="share_something">
-  <h3>share stuff to do</h3>
+  <h1>share stuff to do</h1>
   <%= button_to "add \n an \n activity", new_activity_url, method: :get, class: "big-button bounce-in" %>
   <%= button_to "add \n an \n itinerary", new_itinerary_url, method: :get, class: "big-button bounce-in" %>
   <input type="submit" class="back_button" value="back">
 </section>
 
 <section class="find_something group">
-  <h3>find something to do</h3>
+  <h1>find something to do</h1>
   <button class="search_button left-right-bounce">search <br>for <br>something <br>to <br>do</button>
   <%= button_to "see \n what \n other \n people \n are \n up to", all_users_url, method: :get, class: "big-button top-down-bounce" %>  
 
@@ -35,7 +35,7 @@
   
   <div id="accordion">
   
-  <h2 id="activities-search-tab">search for activities</h2>
+  <h1 id="activities-search-tab">search for activities</h1>
   <div>
   <section class="activity-search-form group">
   
@@ -100,7 +100,7 @@
   
   
   
-  <h2 id="itineraries-search-tab">search for itineraries</h2>
+  <h1 id="itineraries-search-tab">search for itineraries</h1>
   <div>
   <form class="itinerary-search-form group" action="<%= search_itineraries_url %>" method="get">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
