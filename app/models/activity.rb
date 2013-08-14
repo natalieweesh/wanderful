@@ -43,7 +43,7 @@ class Activity < ActiveRecord::Base
   
   def randomize_file_name
     extension = File.extname(activity_photo_file_name).downcase
-    self.activity_photo.instance_write(:file_name, "#{ActiveSupport::SecureRandom.hex(16)}#{extension}")
+    self.activity_photo.instance_write(:file_name, "#{SecureRandom.urlsafe_base64(16)}#{extension}")
   end
   
   # def at_least_one_tag
