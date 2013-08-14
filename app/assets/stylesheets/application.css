@@ -180,9 +180,6 @@ input[type=submit].unfavorite-button:hover {
   color: lightgray;
 }
 
-
-
-
 .activity-title, .activity-title a {
   text-transform: uppercase;
   display: block;
@@ -327,7 +324,7 @@ input[type=submit].half-big-button:active {
 
 .activity-blob:hover {
   background: #222419;
-  border: 5px solid #222419;
+  border: 5px solid #B8FF00;
   transition: all .5s ease-in-out;
 }
 
@@ -817,6 +814,16 @@ input[type=button].pin-button:active {
 }
 #address, #address-2 {
   width: 210px;
+  color: black;
+}
+.pac-item {
+  color: black;
+}
+.pac-item.pac-selected {
+  background: #B8FF00;
+}
+.pac-item:hover {
+  background: #E8FFAD;
 }
 input[type=button].go-button, input[type=submit].friend-button, input[type=submit].unfriend-button {
   font-size: 20px;

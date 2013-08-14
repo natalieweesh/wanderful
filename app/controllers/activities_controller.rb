@@ -19,13 +19,7 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new(params[:activity].except("tags"))
     @activity.user_id = current_user.id
     @activity.save
-    # if @activity.save
-#       redirect_to activity_url(@activity.id)
-#     else
-#       flash[:notice] = "error creating new activity"
-#       render :new
-#     end
-    
+
     if request.xhr?
       # Render a partial as response when using ajax requests.
       render partial: "itineraries/checkboxes", locals: {activity: @activity}
@@ -40,12 +34,6 @@ class ActivitiesController < ApplicationController
     @activity = Activity.find(params[:id])
   end
 
-# the original search method :   
-  # def search
-  #   @tags_array = params[:search][:tags].split(",")
-  #   @search_results = Activity.search(@tags_array, params[:search][:neighborhood])
-  # end
-  
   def search
     @tags_array = params[:search][:tags].split(",")
     
@@ -53,7 +41,6 @@ class ActivitiesController < ApplicationController
   
     #recommend 5 random activities if search comes up empty
     @backup_results = Activity.select('activities.*').order('RANDOM()').limit(5)
-    
     
   end
   

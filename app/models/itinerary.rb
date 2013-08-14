@@ -29,14 +29,10 @@ class Itinerary < ActiveRecord::Base
   end
   
   def self.search(params)
-    p "PARAMSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"
-    p params
     Itinerary.where('time_it_takes <= ?', params.to_i + 1)
-
   end
   
   def self.finer_search(activities_ids)
-    # @result = Itinerary.joins(:activities).where('activities.id in (?)', activities_ids).group('itineraries.id').having('COUNT(*) >= ?', activities_ids.length)
     Itinerary.select('DISTINCT itineraries.*').joins(:activities).where('activities.id in (?)', activities_ids)
   end
   

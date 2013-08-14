@@ -23,11 +23,6 @@ Capstone::Application.routes.draw do
     end
   end
   
-  resource :tags do
-    get :autocomplete_tag_name, :on => :collection
-  end
-  
-  
   resources :favorites, only: [:create, :destroy]
   
   resources :friendships, only: [:create, :destroy]

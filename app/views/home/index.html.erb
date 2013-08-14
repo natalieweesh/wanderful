@@ -74,7 +74,7 @@
     
     <div class="map-box">
           <div>
-            <input id="address" type="text" value="">
+            <input id="address" type="text" value="" placeholder="">
             <input type="button" value="place pin" onclick="codeAddress()" class="pin-button">
           </div>
           <br><br>
@@ -135,7 +135,7 @@
     
     <div class="map-box">
           <div>
-            <input id="address-2" type="text" value="">
+            <input id="address-2" type="text" value="" placeholder="">
             <input type="button" value="place pin" onclick="codeAddress2()" class="pin-button">
           </div>
           <br><br>
@@ -186,8 +186,9 @@
 
 
 
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 
-<script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+<!-- <script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script> -->
 <!-- <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
 
 
@@ -259,6 +260,62 @@ google.maps.visualRefresh = true;
 //     });
     // map.setCenter(new google.maps.LatLng(40.730844, -74.005973));
     // map2.setCenter(new google.maps.LatLng(40.730844, -74.005973));
+  
+  
+  
+    var input = (document.getElementById('address'));
+    var input2 = (document.getElementById('address-2'));
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    var autocomplete2 = new google.maps.places.Autocomplete(input2);
+    autocomplete.bindTo('bounds', map);
+    autocomplete2.bindTo('bounds', map2);
+    
+    
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        marker.setVisible(false);
+        input.className = '';
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+          // Inform the user that the place was not found and return.
+          input.className = 'notfound';
+          return;
+        }
+
+        var address = '';
+        if (place.address_components) {
+          address = [
+            (place.address_components[0] && place.address_components[0].short_name || ''),
+            (place.address_components[1] && place.address_components[1].short_name || ''),
+            (place.address_components[2] && place.address_components[2].short_name || '')
+          ].join(' ');
+        }
+
+
+      });
+  
+      google.maps.event.addListener(autocomplete2, 'place_changed', function() {
+          marker2.setVisible(false);
+          input2.className = '';
+          var place2 = autocomplete2.getPlace();
+          if (!place2.geometry) {
+            // Inform the user that the place was not found and return.
+            input2.className = 'notfound';
+            return;
+          }
+
+          var address2 = '';
+          if (place2.address_components) {
+            address2 = [
+              (place2.address_components[0] && place2.address_components[0].short_name || ''),
+              (place2.address_components[1] && place2.address_components[1].short_name || ''),
+              (place2.address_components[2] && place2.address_components[2].short_name || '')
+            ].join(' ');
+          }
+
+
+        });
+  
+  
   }
   function clone(obj){
     if(obj == null || typeof(obj) != 'object') return obj;

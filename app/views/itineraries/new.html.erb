@@ -27,7 +27,7 @@
   <div class="map-box">
         <div>
           <label for="address">location</label>
-          <input id="address" type="text" value="">
+          <input id="address" type="text" value="" placeholder="">
           <input type="button" value="place pin" onclick="codeAddress()" class="pin-button">
         </div>
         <div id="map_canvas" style="height:200px; width:400px; color: black; position: relative; background-color: rgb(229, 227, 223); overflow: hidden;"></div>
@@ -64,12 +64,12 @@
   <br><br>
   <label>time it takes
   <select name="itinerary[time_it_takes]">
-    <option value="0">less than an hour</option>
-    <option value="1">one to two hours</option>
-    <option value="2">three to four hours</option>
-    <option value="3">five to six hours</option>
-    <option value="4">half a day</option>
-    <option value="5">a whole day</option>
+    <option value="1">less than an hour</option>
+    <option value="2">one to two hours</option>
+    <option value="3">three to four hours</option>
+    <option value="4">five to six hours</option>
+    <option value="5">half a day</option>
+    <option value="6">a whole day</option>
   </select>
   </label>
   
@@ -129,9 +129,10 @@
 
 
 
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 
 
-<script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+<!-- <script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script> -->
 <!-- <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
 
 <script>
@@ -159,6 +160,39 @@ google.maps.visualRefresh = true;
     // google.maps.event.addListener(map, 'click', function() {
     //   infowindow.close();
     // });
+    
+    var input = (document.getElementById('address'));
+    var autocomplete = new google.maps.places.Autocomplete(input);
+
+    autocomplete.bindTo('bounds', map);
+    
+    
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        marker.setVisible(false);
+        input.className = '';
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+          // Inform the user that the place was not found and return.
+          input.className = 'notfound';
+          return;
+        }
+
+        var address = '';
+        if (place.address_components) {
+          address = [
+            (place.address_components[0] && place.address_components[0].short_name || ''),
+            (place.address_components[1] && place.address_components[1].short_name || ''),
+            (place.address_components[2] && place.address_components[2].short_name || '')
+          ].join(' ');
+        }
+
+
+      });
+    
+    
+    
+  
+    
   }
   function clone(obj){
     if(obj == null || typeof(obj) != 'object') return obj;

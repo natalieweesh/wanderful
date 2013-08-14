@@ -1,24 +1,24 @@
 <% if activity.activity_photo_file_size %>
 
-<% content_for :head do %>
-<style>
-#activity-blob-<%= activity.id %> {
-  position: relative;
-  z-index: 1;
-}
-#activity-blob-<%= activity.id %>:before {
-  content:"";
-  position:absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background: url(<%= activity.activity_photo.url(:medium) %>) no-repeat 0 0;
-  opacity: 0.5;
-}
-</style>
-<% end %>
+  <% content_for :head do %>
+    <style>
+      #activity-blob-<%= activity.id %> {
+        position: relative;
+        z-index: 1;
+      }
+      #activity-blob-<%= activity.id %>:before {
+        content:"";
+        position:absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: url(<%= activity.activity_photo.url(:medium) %>) no-repeat 0 0;
+        opacity: 0.5;
+      }
+    </style>
+  <% end %>
 
 <% end %>
 
@@ -26,18 +26,11 @@
   <ul class="activity-blob" id="activity-blob-<%= activity.id %>">
     <li class="activity-title">
       <%= activity.description %>
-
-</li>
+    </li>
     <ul>
       <li>@ <%= activity.venue %></li>
       <li class="address-line">[<%= activity.address %>]</li>
       <li>#<%= activity.tags.map{|tag| tag.name}.join(" #") %></li>
-    </ul>
-
-  
+    </ul>  
   </ul>
-  
-  
-  
 </a>
-

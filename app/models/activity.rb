@@ -42,27 +42,14 @@ class Activity < ActiveRecord::Base
   private
   
   def randomize_file_name
-    extension = File.extname(activity_photo_file_name).downcase
-    self.activity_photo.instance_write(:file_name, "#{SecureRandom.urlsafe_base64(16)}#{extension}")
+    if activity_photo_file_name
+      extension = File.extname(activity_photo_file_name).downcase
+      self.activity_photo.instance_write(:file_name, "#{SecureRandom.urlsafe_base64(16)}#{extension}")
+    end
   end
   
-  # def at_least_one_tag
-    # errors.add(:tags, "must have at least one tag") unless self.tag_ids.length > 1  
-  # end
-  
-  # def self.search(params)
-
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  # "REFACTORED" CODE BELOW
   def self.search(paramstags, paramslatlong, paramsradius)
     @activities_found = []
     if !paramstags.empty? # if any tags are given
@@ -74,27 +61,9 @@ class Activity < ActiveRecord::Base
     else
       @activities_found_by_tags = nil
     end
-    p "ACTIVITIES FOUND BY TAGS ACTIVITIES FOUND BY TAGS ACTIVITIES FOUND BY TAGS ACTIVITIES FOUND BY TAGS "
-    p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
-    p @activities_found_by_tags
-    # if paramsneighborhood != ""
-      # @activities_found_by_neighborhood = Activity.find_all_by_neighborhood(paramsneighborhood)
-    # else
-      # @activities_found_by_neighborhood = nil
-    # end
-    p "PARAMS LATLONG PARAMS LATLONG PARAMS LATLONG PARAMS LATLONG PARAMS LATLONG PARAMS LATLONG "
-    p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
-    p paramslatlong
-    
-    p "PARAMS RADIUS PARAMS RADIUS PARAMS RADIUS PARAMS RADIUS PARAMS RADIUS PARAMS RADIUS PARAMS RADIUS "
-    p paramsradius
-    
+
     @activities_found_by_location = Activity.near(paramslatlong, paramsradius.to_i)
-    
-    p "ACTIVITIES NEAR PARAMSADDRESS ACTIVITIES NEAR PARAMSADDRESS ACTIVITIES NEAR PARAMSADDRESS"
-    p "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
-    p @activities_found_by_location
-    
+
     if @activities_found_by_tags.nil? && @activities_found_by_location.empty?
       @activities_found = []
     elsif !@activities_found_by_tags.nil? && @activities_found_by_location.empty?
@@ -124,19 +93,6 @@ class Activity < ActiveRecord::Base
 
   end
   
-  
-  
-  
-  
-  # def self.all_neighborhoods
-  #   Activity.uniq.pluck(:neighborhood)
-  # end
 
-
-  # def self.sort_by_tags
-  #   
-  # end
-  
-  
   
 end
