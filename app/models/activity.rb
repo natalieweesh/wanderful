@@ -7,6 +7,8 @@ class Activity < ActiveRecord::Base
     :small => "50x50#"
   }
   
+  before_create :randomize_file_name
+  
   validates :description, :venue, presence: true
   # validate :at_least_one_tag
   # validates_associated :tags_joins, presence: true, allow_blank: false
@@ -38,6 +40,11 @@ class Activity < ActiveRecord::Base
   
 
   private
+  
+  def randomize_file_name
+    extension = File.extname(activity_photo_file_name).downcase
+    self.activity_photo.instance_write(:file_name, "#{ActiveSupport::SecureRandom.hex(16)}#{extension}")
+  end
   
   # def at_least_one_tag
     # errors.add(:tags, "must have at least one tag") unless self.tag_ids.length > 1  
