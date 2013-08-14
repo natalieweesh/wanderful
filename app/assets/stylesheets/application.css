@@ -24,7 +24,7 @@ html, body, ul, li, a, textarea {
 a, h1, h2, h3, h4, h5, h6, strong, li {
   font-family: 'Maven Pro', sans-serif;
 }
-input[type=text], input[type=password], input[type=number], input[type=email] {
+input[type=text], input[type=password], input[type=number], input[type=email], input[type=file] {
   font-family: 'Maven Pro', sans-serif;
   font-size: 16px;
   padding: 4px;

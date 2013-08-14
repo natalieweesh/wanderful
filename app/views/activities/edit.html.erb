@@ -41,7 +41,10 @@
   
   <input type="hidden" name="activity[tags]" id="tags">
   
+  <br><br>
+  
   <!-- add photo! -->
+  <label for="activity_photo">photo (optional)</label>
   <input type="file" id="activity_photo" name="activity[activity_photo]">
   <% if @activity.activity_photo_file_size %>
     <%= image_tag @activity.activity_photo.url(:small) %>

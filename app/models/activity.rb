@@ -11,12 +11,9 @@ class Activity < ActiveRecord::Base
   before_update :escape_file_name
   
   validates :description, :venue, presence: true
-  # validate :at_least_one_tag
-  # validates_associated :tags_joins, presence: true, allow_blank: false
+
   validates_associated :tags, presence: true, allow_blank: false
 
-  geocoded_by :address
-  after_validation :geocode          # auto-fetch coordinates
 
 
 
