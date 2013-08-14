@@ -7,8 +7,8 @@ class Activity < ActiveRecord::Base
     :small => "50x50#"
   }
   
-  before_create :randomize_file_name
-  before_update :randomize_file_name
+  before_create :escape_file_name
+  before_update :escape_file_name
   
   validates :description, :venue, presence: true
   # validate :at_least_one_tag
@@ -42,10 +42,10 @@ class Activity < ActiveRecord::Base
 
   private
   
-  def randomize_file_name
+  def escape_file_name
     if activity_photo_file_name
       extension = File.extname(activity_photo_file_name).downcase
-      self.activity_photo.instance_write(:file_name, "#{SecureRandom.urlsafe_base64(16)}#{extension}")
+      self.activity_photo.instance_write(:file_name, "#{URI.escape(activity_photo_file_name)}")
     end
   end
   

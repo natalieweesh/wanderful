@@ -14,7 +14,7 @@
 
   <br><br>
     
-  <input type="hidden" name="activity[address]" id="address_box">
+  <input type="hidden" name="activity[address]" id="address_box" value="<%= @activity.address %>">
   <input type="hidden" name="activity[latitude]" id="lat-box" value="<%= @activity.latitude %>">
   <input type="hidden" name="activity[longitude]" id="long-box" value="<%= @activity.longitude %>">
 
@@ -87,9 +87,6 @@ $('#select-box').val("<%= @activity.tags.map{|tag| tag.name}.join(",") %>");
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-    // google.maps.event.addListener(map, 'click', function() {
-    //   infowindow.close();
-    // });
     
     marker = new google.maps.Marker({
        map:map,
@@ -109,7 +106,6 @@ $('#select-box').val("<%= @activity.tags.map{|tag| tag.name}.join(",") %>");
         input.className = '';
         var place = autocomplete.getPlace();
         if (!place.geometry) {
-          // Inform the user that the place was not found and return.
           input.className = 'notfound';
           return;
         }
@@ -124,9 +120,6 @@ $('#select-box').val("<%= @activity.tags.map{|tag| tag.name}.join(",") %>");
         }
 
       });
-    
-    
-    
   }
   
   function clone(obj){
@@ -144,8 +137,6 @@ $('#select-box').val("<%= @activity.tags.map{|tag| tag.name}.join(",") %>");
       } else {
         marker.formatted_address = 'Cannot determine address at this location.';
       }
-      // infowindow.setContent(marker.formatted_address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
-      // infowindow.open(map, marker);
     });
   }
   function codeAddress() {
@@ -156,7 +147,6 @@ $('#select-box').val("<%= @activity.tags.map{|tag| tag.name}.join(",") %>");
         if (marker) {
           marker.setMap(null);
           marker = new google.maps.Marker();
-          // if (infowindow) infowindow.close();
         }
         marker = new google.maps.Marker({
           map: map,
@@ -164,7 +154,6 @@ $('#select-box').val("<%= @activity.tags.map{|tag| tag.name}.join(",") %>");
           position: results[0].geometry.location
         });
         google.maps.event.addListener(marker, 'dragend', function() {
-          // updateMarkerStatus('Drag ended');
           geocodePosition(marker.getPosition());
           $('#address').val('coordinates saved');
         });
@@ -174,8 +163,6 @@ $('#select-box').val("<%= @activity.tags.map{|tag| tag.name}.join(",") %>");
           } else  {
             infowindow.setContent(address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
           }
-          // infowindow.open(map, marker);
-
         });
         google.maps.event.trigger(marker, 'click');
       } else {
@@ -186,24 +173,15 @@ $('#select-box').val("<%= @activity.tags.map{|tag| tag.name}.join(",") %>");
   
   
   function codeLatLng() {
-      // var input = document.getElementById("latlng").value;
-      // var input = marker.position.lb + "," + marker.position.mb;
-//       var latlngStr = input.split(",",2);
-//       var lat = parseFloat(latlngStr[0]);
-//       var lng = parseFloat(latlngStr[1]);
       var latlng = marker.getPosition();
       geocoder.geocode({'latLng': latlng}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           if (results[1]) {
-            // map.setZoom(11);
             marker = new google.maps.Marker({
                 position: latlng,
                 map: map
             });
-            // alert(results[1].formatted_address);
             $("#address_box").val(results[1].formatted_address);
-            // infowindow.setContent(results[1].formatted_address);
-            // infowindow.open(map, marker);
             $('#form-new-activity').submit();
           }
         } else {
@@ -248,18 +226,7 @@ $('#select-box').val("<%= @activity.tags.map{|tag| tag.name}.join(",") %>");
       
     }
     
-  // $('#new-activity-button').on("click", function(event) {
-  //   alert("HERE!");
-  //   // event.preventDefault();
-  //   console.log("MARKER.position");
-  //   console.log(marker.position);
-  //  
-  //   $('#address_box').val($("#address").val());
-  //   $('#lat-box').val(marker.position.lb);
-  //   $('#long-box').val(marker.position.mb);
-  //  
-  // })
-  
+
   $('#tester-button').on("click", function(event){
     event.preventDefault();
     console.log(marker)
@@ -310,6 +277,7 @@ google.maps.event.addListener(map, 'click', function(event) {
     $("#tags").val($("#select-box").val());
   });
   $('#new-activity-button').on('click', function(event){
+    changeTextBoxes();
     $('#tags').val($('#select-box').val());
   });
 </script>

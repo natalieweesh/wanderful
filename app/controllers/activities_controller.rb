@@ -22,7 +22,18 @@ class ActivitiesController < ApplicationController
 
     @tag_ids = Tag.process_tags(@tags)
     params[:activity][:tag_ids] = @tag_ids
-    @activity.update_attributes(params[:activity].except("tags"))
+    
+    p "BLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH"
+    p params[:activity][:activity_photo]
+    p "BLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH"
+    p params[:activity].except("tags", "activity_photo")
+    p "BLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH"
+    
+    if params[:activity][:activity_photo].nil?
+      @activity.update_attributes(params[:activity].except("tags", "activity_photo"))
+    else
+      @activity.update_attributes(params[:activity].except("tags"))
+    end
     
     
     redirect_to activity_url(@activity.id)
