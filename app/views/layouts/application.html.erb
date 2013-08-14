@@ -15,7 +15,7 @@
   
   <%= javascript_include_tag "autocomplete-rails.js" %>
 
-  
+  <%= yield :head %>
 </head>
 <body>
   <div class="container">
@@ -29,7 +29,7 @@
 
 
   <% if user_signed_in? %>
-    <%= button_to " sign \nout", destroy_user_session_url, method: :delete, class: "logout-button" %>
+    <%= button_to " sign \nout", destroy_user_session_url, method: :delete, class: "logout-button", id: "sign-out-button" %>
   <% end %>
   
     </div>

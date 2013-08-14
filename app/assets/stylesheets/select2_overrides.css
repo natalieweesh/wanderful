@@ -7,13 +7,10 @@ border: 0px;
 outline: 0px;
 cursor: text;
 font-family: 'Maven Pro', sans-serif;
-width: 360px;
+width: 300px;
 overflow: hidden;
 background-color: #fff;
 background-image: none;
-}
-#filter-section .select2-container-multi .select2-choices {
-  width: 300px;
 }
 
 /*focus*/
@@ -21,38 +18,31 @@ background-image: none;
   border: 0px;
   -webkit-box-shadow: none;
   box-shadow: none;
-  width: 360px;
-}
-#filter-section .select2-container-multi.select2-container-active .select2-choices {
   width: 300px;
 }
+
 #select2-drop, .select2-results {
-  width: 355px;
+  width: 295px;
   background: white;
 }
-#filter-section #select2-drop, .select2-results {
-  width: 295px;
-}
+
 /*the bottom of the box when the list of suggested tags is active*/
 .select2-dropdown-open.select2-drop-above .select2-choice, .select2-dropdown-open.select2-drop-above .select2-choices{
   background-image: none;
   border: 0px;
-  width: 360px;
-}
-#filter-section .select2-dropdown-open.select2-drop-above .select2-choice, .select2-dropdown-open.select2-drop-above .select2-choices {
   width: 300px;
 }
+
+
 
 /*menu of choices that pops up when you start typing*/
 .select2-drop.select2-drop-multi.select2-display-none.select2-drop-active.select2-drop-above{
   border: 0px;
-  width: 360px;
+  width: 300px;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#filter-section .select2-drop.select2-drop-multi.select2-display-none.select2-drop-active.select2-drop-above {
-  width: 300px;
-}
+
 /*the tag itself*/
 .select2-container-multi .select2-choices .select2-search-choice{
   border: 0px;
@@ -78,3 +68,4 @@ a.select2-search-choice-close {
   background-color: #999;
   color: #eee;
 }
+

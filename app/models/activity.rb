@@ -1,6 +1,12 @@
 class Activity < ActiveRecord::Base
-  attr_accessible :description, :neighborhood, :user_id, :venue, :tag_ids, :latitude, :longitude, :address
-
+  attr_accessible :description, :neighborhood, :user_id, :venue, :tag_ids, :latitude, :longitude, :address, :activity_photo
+  
+  has_attached_file :activity_photo, :styles => {
+    :big => "400x400>",
+    :medium => "190x190#",
+    :small => "50x50#"
+  }
+  
   validates :description, :venue, presence: true
   # validate :at_least_one_tag
   # validates_associated :tags_joins, presence: true, allow_blank: false
@@ -21,7 +27,7 @@ class Activity < ActiveRecord::Base
   
 
   has_many :comments
-  
+    
   def comments_by_parent
     hash = Hash.new([])
     comments.each do |comment|

@@ -51,6 +51,16 @@ gem "figaro"
 
 gem "letter_opener", "~> 1.1.2"
 
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'debugger'
+end
+
+gem "paperclip"
+gem "aws-sdk"
+
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

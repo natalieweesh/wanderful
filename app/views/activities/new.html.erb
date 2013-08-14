@@ -1,6 +1,6 @@
 <h1>add a new activity</h1>
 
-<form class="new-activity-form" action="<%= activities_url %>" method="post" id="form-new-activity">
+<form class="new-activity-form" action="<%= activities_url %>" method="post" id="form-new-activity" enctype="multipart/form-data">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <label for="activity_description">description</label>
   <input type="text" name="activity[description]" id="activity_description">
@@ -51,6 +51,14 @@
   <br><br>
   <input type="hidden" name="activity[tags]" id="tags">
   
+  
+  
+  <!-- add photo! -->
+  
+  <input type="file" id="activity_photo" name="activity[activity_photo]">
+  
+  
+  <!-- end add photo section -->
     
     
   <input id="new-activity-button" class="go-button" type="button" value="go!" onclick="changeTextBoxes();">

@@ -11,18 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130812183248) do
+ActiveRecord::Schema.define(:version => 20130814145627) do
 
   create_table "activities", :force => true do |t|
     t.string   "description"
     t.string   "venue"
     t.string   "neighborhood"
     t.integer  "user_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.float    "latitude"
     t.float    "longitude"
     t.string   "address"
+    t.string   "activity_photo_file_name"
+    t.string   "activity_photo_content_type"
+    t.integer  "activity_photo_file_size"
+    t.datetime "activity_photo_updated_at"
   end
 
   create_table "comments", :force => true do |t|

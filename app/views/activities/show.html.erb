@@ -24,6 +24,13 @@
     <!-- tags:  -->
     #<%= @activity.tags.map{|tag| tag.name}.join(" #") %>
   </li>
+  <br><br>
+  <li>
+    <% if @activity.activity_photo_file_size %>
+      <%= image_tag @activity.activity_photo.url(:big) %>
+    <% end %>
+    
+  </li>
 
 </ul>
 <section class="comments-section">

@@ -1,7 +1,7 @@
 <div id="users-accordion">
 
 
-<h3 class="people-title tab-clicked">your peeps</h3>
+<h3 id="peeps-tab" class="people-title <% if !current_user.friends.empty? %> tab-clicked <% end %>" aria-selected="false">your peeps</h3>
 <div>
 <ul class="group">
 <% current_user.friends.each do |friend| %>
@@ -27,8 +27,15 @@
 </div>
 
 <script>
-  $( "#users-accordion" ).accordion({collapsible: true, icons: false});
-  $('#ui-accordion-users-accordion-header-0').on("click", function() {
+if ($('#peeps-tab').hasClass('tab-clicked')) {
+  $( "#users-accordion" ).accordion({collapsible: true, icons: false, heightStyle: "content" });
+} else {
+  $( "#users-accordion" ).accordion({collapsible: true, active: false, icons: false, heightStyle: "content" });
+}
+  
+  
+  
+  $('#peeps-tab').on("click", function() {
     $(this).toggleClass('tab-clicked');
     $(this).siblings().removeClass('tab-clicked');
   });

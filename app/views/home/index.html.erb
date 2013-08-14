@@ -11,14 +11,14 @@
   <button class="share_button">share <br>something <br>to <br>do</button>
 </section>
 
-<section class="share_something">
+<section class="share_something" style="display: none;">
   <h1>share stuff to do</h1>
   <%= button_to "add \n an \n activity", new_activity_url, method: :get, class: "big-button bounce-in" %>
   <%= button_to "add \n an \n itinerary", new_itinerary_url, method: :get, class: "big-button bounce-in" %>
   <input type="submit" class="back_button" value="back">
 </section>
 
-<section class="find_something group">
+<section class="find_something group" style="display: none;">
   <h1>find something to do</h1>
   <button class="search_button left-right-bounce">search <br>for <br>something <br>to <br>do</button>
   <%= button_to "see \n what \n other \n people \n are \n up to", all_users_url, method: :get, class: "big-button top-down-bounce" %>  
@@ -31,7 +31,7 @@
   <input type="submit" class="back_button small-button" value="back">
 </section>
 
-<section class="query_group group">
+<section class="query_group group" style="display: none;">
   
   <div id="accordion">
   
@@ -555,11 +555,11 @@ google.maps.event.addListener(map2, 'click', function(event) {
   
   
   
-  $(function() {
-    $(".share_something").css("display", "none");
-    $(".find_something").css("display", "none");
-    $(".query_group").css("display", "none");
-  });
+  // $(function() {
+  //   $(".share_something").css("display", "none");
+  //   $(".find_something").css("display", "none");
+  //   $(".query_group").css("display", "none");
+  // });
 
   $(".find_button").on("click", function(){
     $(".find_something").css("display", "block");
