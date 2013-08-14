@@ -1,5 +1,10 @@
 <!-- <h3>activity show page</h3> -->
 
+<% if @activity.user_id == current_user.id %>
+  <%= link_to "edit this activity", edit_activity_url(@activity.id) %>
+<% end %>
+
+
 <ul>
   <li class="activity-title">
     <%= @activity.description %>

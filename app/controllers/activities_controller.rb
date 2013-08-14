@@ -5,7 +5,28 @@ class ActivitiesController < ApplicationController
     @tags = Tag.all
     @tag_names = Tag.get_all_names
   end
-  
+  def edit
+    @activity = Activity.find(params[:id])
+    @tags = Tag.all
+    @tag_names = Tag.get_all_names
+  end
+  def update
+    @activity = Activity.find(params[:id])
+    
+    @tags = params[:activity][:tags].split(",")
+    if @tags.empty?
+      flash[:notice] = "please fill in all fields"
+      redirect_to new_activity_url # render :new
+      return
+    end
+
+    @tag_ids = Tag.process_tags(@tags)
+    params[:activity][:tag_ids] = @tag_ids
+    @activity.update_attributes(params[:activity].except("tags"))
+    
+    
+    redirect_to activity_url(@activity.id)
+  end
   def create
     @tags = params[:activity][:tags].split(",")
     if @tags.empty?

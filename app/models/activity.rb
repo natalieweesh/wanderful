@@ -8,6 +8,7 @@ class Activity < ActiveRecord::Base
   }
   
   before_create :randomize_file_name
+  before_update :randomize_file_name
   
   validates :description, :venue, presence: true
   # validate :at_least_one_tag
