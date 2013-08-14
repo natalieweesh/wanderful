@@ -16,9 +16,6 @@ class CommentsController < ApplicationController
   end
   
   
-  def show
-    @comment = Comment.find(params[:id])
-  end
   
   def destroy
     @comment = Comment.find(params[:id])
@@ -31,9 +28,8 @@ class CommentsController < ApplicationController
     end
     
     if request.xhr?
-      p "STUFFF STUFFF STUFFF STUFFF STUFFF STUFFF STUFFF STUFFF STUFFF STUFFF STUFFF STUFFF STUFFF STUFFF"
       if @comment.child_comments.empty?
-        render json: "Hahaha.".to_json 
+        render json: "Hahaha!".to_json 
       else
         render json: "This comment has been deleted.".to_json
 

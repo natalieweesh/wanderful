@@ -1235,5 +1235,5 @@ input[type=button].reply-button:active, input[type=submit]#delete-button:active 
 input[type=submit]#delete-button {
   font-size: 12px;
   line-height: 10px;
-  margin-top: -70px;
+  margin-top: -10px;
 }

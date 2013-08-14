@@ -1,6 +1,9 @@
 <li>
 <ul class="inner-ul">
   <small class="lefty"><%= comment.user.username %> wrote</small> 
+
+  <small class="righty"><%= time_ago_in_words(comment.created_at) %> ago</small>
+  <br>
   <% if comment.user.id == current_user.id && comment.body != "This comment has been deleted." %>
   <form data-remote="true" action="<%= comment_url(comment.id) %>" id="delete-comment" method="post">
     <input type="submit" value="delete comment" id="delete-button">
@@ -8,9 +11,6 @@
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   </form>
   <% end %>
-  <small class="righty"><%= time_ago_in_words(comment.created_at) %> ago</small>
-  <br>
-
 
   <br>
   <p class="comment-body"><%= comment.body %></p>
@@ -39,7 +39,6 @@ $('.reply-button').on('click', function(event){
 });
 
 $(".inner-ul").on("ajax:success", '#delete-comment', function(event, data){
-  console.log(data);
   if (data === "This comment has been deleted."){
     $(this).siblings(".comment-body").html(data);
     $(this).siblings(".comments-form").remove();
@@ -48,7 +47,6 @@ $(".inner-ul").on("ajax:success", '#delete-comment', function(event, data){
   } else{
     $(this).parent().remove();
   }
-  // $('.body-stuff').val("");
   
 });
 
