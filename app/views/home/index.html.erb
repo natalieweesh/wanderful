@@ -29,12 +29,14 @@
 
   <input type="submit" class="back_button small-button" value="back">
 </section>
+<div id="temp" style="display: none;"></div>
+<div id="temp-2" style="display: none;"></div>
 
 <section class="query_group group" style="display: none;">
   
   <div id="accordion">
-  
   <h1 id="activities-search-tab">search for activities</h1>
+  
   <div>
   <section class="activity-search-form group">
   
@@ -504,10 +506,10 @@ google.maps.event.addListener(map2, 'click', function(event) {
   $(document).ready($('.share_button').addClass("animated fadeInRightBig"));
   $(document).ready($('.find_something').find('.left-right-bounce').addClass("animated bounceInLeft"));
   $(document).ready($('.find_something').find('.top-down-bounce').addClass("animated bounceInDown"))
-
+  
   $(document).ready($('.find_something').find('.bounce-in-first').addClass("animated bounceIn"));
   $(document).ready($('.find_something').find('.bounce-in-second').addClass("animated bounceIn"));
-
+  
   $(document).ready($('.share_something').find('.bounce-in').addClass("animated bounceIn"))
 
 
@@ -570,11 +572,15 @@ google.maps.event.addListener(map2, 'click', function(event) {
   $(".search_button").on("click", function() {
     $(".find_something").css("display", "none");
     $(".query_group").css("display", "block")
+    $('#temp').css('display', 'block');
+    $('#temp-2').css('display', 'block');
   });
   
   $(".query_group").find(".back_button").on("click", function() {
     $(".query_group").css("display", "none");
     $(".find_something").css("display", "block");
+    $('#temp').css('display', 'none');
+    $('#temp-2').css('display', 'none');
   });
   
   
@@ -589,12 +595,56 @@ google.maps.event.addListener(map2, 'click', function(event) {
 
 <script>
 
-  $('#activities-search-tab').on("click", function() {
-    $(this).toggleClass('tab-clicked');
-    $(this).siblings().removeClass('tab-clicked');
-  });
-  $('#itineraries-search-tab').on("click", function() {
-    $(this).toggleClass('tab-clicked');
-    $(this).siblings().removeClass('tab-clicked');
-  });
+
+$('#temp').on('click', function(){
+  $('#activities-search-tab').click();
+})
+
+$('#temp').on('click', function(){
+  if ($('#activities-search-tab').hasClass('clickey')) {
+    $('#temp-2').css('margin-top', '65px');
+  } else {
+    $('#temp-2').css('margin-top', '740px')
+  }
+  $('#activities-search-tab').toggleClass('clickey');
+  
+  $('#itineraries-search-tab').removeClass('clickey');
+  
+
+})
+$('#temp').on('mouseover', function(){
+  $('#activities-search-tab').addClass('hover')
+})
+$('#temp').on('mouseout', function(){
+  $('#activities-search-tab').removeClass('hover')
+})
+
+$('#temp-2').on('click', function(){
+  $('#itineraries-search-tab').click();
+})
+
+$('#temp-2').on('click', function(){
+  $('#itineraries-search-tab').removeClass('expanded');
+  if ($('#itineraries-search-tab').hasClass('clickey')) {
+    
+  } else {
+    $('#itineraries-search-tab').addClass('expanded');
+  }
+  
+  if ($('#activities-search-tab').hasClass('clickey')) {
+    $('#temp-2').css('margin-top', '65px')
+  }
+  $('#itineraries-search-tab').toggleClass('clickey');
+  $('#activities-search-tab').removeClass('clickey');
+  
+
+})
+$('#temp-2').on('mouseover', function(){
+  $('#itineraries-search-tab').addClass('hover')
+})
+$('#temp-2').on('mouseout', function(){
+  $('#itineraries-search-tab').removeClass('hover')
+})
+
+
 </script>

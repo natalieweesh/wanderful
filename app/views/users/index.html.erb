@@ -1,7 +1,10 @@
+<div id="users-temp"></div>
+<div id="users-temp-2"></div>
+
 <div id="users-accordion">
 
 
-<h3 id="peeps-tab" class="people-title <% if !current_user.friends.empty? %> tab-clicked <% end %>" aria-selected="false">your peeps</h3>
+<h3 id="peeps-tab" class="people-title <% if !current_user.friends.empty? %> clickey <% end %>" aria-selected="false">your peeps</h3>
 <div>
 <ul class="group">
 <% current_user.friends.each do |friend| %>
@@ -11,7 +14,7 @@
 <% end %>
 </ul>
 </div>
-<h3 class="people-title">everyone else</h3>
+<h3 id="everyone-tab" class="people-title">everyone else</h3>
 <div>
 <ul class="group">
 <% @users.all.each do |user| %>
@@ -27,20 +30,125 @@
 </div>
 
 <script>
-if ($('#peeps-tab').hasClass('tab-clicked')) {
+if (<%= current_user.friends.count %> > 0) { 
+  var displacement = 60 * <%= current_user.friends.count %>;
+} else {
+  var displacement = 0;
+}
+
+$('#users-temp').css('margin-top', '135px');
+if (<%= current_user.friends.count %> === 0) {
+  $('#users-temp-2').css('margin-top', (displacement + 200) + 'px');
+} else {
+  $('#users-temp-2').css('margin-top', (displacement + 242) + 'px');  
+}
+
+
+if ($('#peeps-tab').hasClass('clickey')) {
   $( "#users-accordion" ).accordion({collapsible: true, icons: false, heightStyle: "content" });
+  // $('#peeps-tab').addClass('clickey');
 } else {
   $( "#users-accordion" ).accordion({collapsible: true, active: false, icons: false, heightStyle: "content" });
 }
+
   
+$('#users-temp').on('click', function(){  // you click on tab 1
+  if ($('#peeps-tab').hasClass('clickey')) { // tab1 is clicked
+    $('#peeps-tab').removeClass('clickey');
+    if ($('#users-temp-2').hasClass('clickey')) {
+      $('#users-temp-2').css('margin-top', '200px');
+    }
+    else {
+      $('#users-temp-2').css('margin-top', '200px')      
+    }
+  }
+  else {
+    $('#peeps-tab').addClass('clickey');
+    $('#users-temp-2').css('margin-top', (displacement + 242) + 'px');
+  }
+  $('#everyone-tab').removeClass('clickey');
+  $('#peeps-tab').click();
+
+});
+
+$('#users-temp-2').on('click', function(){
+  if ($('#everyone-tab').hasClass('clickey')) { // you are unclicking tab 2
+    $('#users-temp-2').css('margin-top', '200px');
+  } else { // you are clicking tab 2 in
+    if ($('#peeps-tab').hasClass('clickey')) { // tab1 was already clicked
+      $('#users-temp-2').css('margin-top', '200px')
+    } else { // tab1 was not clicked
+      $('#users-temp-2').css('margin-top', '200px')
+    }
+  }
+  $('#everyone-tab').toggleClass('clickey');
+  $('#peeps-tab').removeClass('clickey');
+  $('#everyone-tab').click();
   
+});
+
+
+
+
+$('#users-temp').on('mouseover', function(){
+  $('#peeps-tab').addClass('hover');
+});
+$('#users-temp').on('mouseout', function(){
+  $('#peeps-tab').removeClass('hover');
+});
+
+// $('#users-temp-2').on('click', function(){
+//   $('#everyone-tab').click();
+//   // $('#everyone-tab').removeClass('expanded');
+//   
+//   $('#everyone-tab').toggleClass('clickey');
+//   
+//   if ($('#peeps-tab').hasClass('clickey')) {
+//     $('#users-temp-2').css('margin-top', '200px')
+//   } else {
+//     $('#users-temp-2').css('margin-top', (displacement + 200) + 'px')
+//   }
+//   
+//   
+//   $('#peeps-tab').removeClass('clickey');
+//   
+//   
+//   
+//   
+//   
+//   $('#everyone-tab').toggleClass('clickey');
+//   $('#peeps-tab').removeClass('clickey');
+//   
+//   if ($('#everyone-tab').hasClass('clickey')) {
+//     $('#everyone-tab').css('margin-top', (displacement + 200) + 'px')
+//   } 
+//   
+//     // $('#everyone-tab').addClass('expanded');
+//     $('#everyone-tab').css('margin-top', displacement + 'px');
+//   
+//   if ($('#peeps-tab').hasClass('clickey')) {
+//     $('#users-temp-2').css('margin-top', '135px');
+//   }
+//   
+//   
+//   
+// });
+$('#users-temp-2').on('mouseover', function(){
+  $('#everyone-tab').addClass('hover');
+});
+$('#users-temp-2').on('mouseout', function(){
+  $('#everyone-tab').removeClass('hover');
+});
+
+
   
-  $('#peeps-tab').on("click", function() {
-    $(this).toggleClass('tab-clicked');
-    $(this).siblings().removeClass('tab-clicked');
-  });
-  $('#ui-accordion-users-accordion-header-1').on("click", function() {
-    $(this).toggleClass('tab-clicked');
-    $(this).siblings().removeClass('tab-clicked');
-  });
+  // $('#peeps-tab').on("click", function() {
+  //   $(this).toggleClass('tab-clicked');
+  //   $(this).siblings().removeClass('tab-clicked');
+  //   
+  // });
+  // $('#ui-accordion-users-accordion-header-1').on("click", function() {
+  //   $(this).toggleClass('tab-clicked');
+  //   $(this).siblings().removeClass('tab-clicked');
+  // });
 </script>

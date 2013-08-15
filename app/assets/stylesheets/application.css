@@ -94,6 +94,7 @@ li {
 .container {  
   width: 90%;
   margin: 20px auto;
+  position: relative;
   
 }
 .nav-buttons {
@@ -192,6 +193,16 @@ input[type=submit].unfavorite-button:hover {
   letter-spacing: 0.3em;
   color: yellow;
 }
+.itinerary-description-blob.padded, .activity-title.padded, .padded {
+  padding-top: 120px;
+}
+.padded {
+  display: block;
+  width: 415px;
+  margin: 0 auto;
+}
+
+
 .time-blob {
   display: block;
 
@@ -611,7 +622,8 @@ a.friend-blob:active {
                        
               ;
 }
-.ui-accordion-header:hover {
+
+.ui-accordion-header:hover, #activities-search-tab.hover, #itineraries-search-tab.hover, #peeps-tab.hover, #everyone-tab.hover {
   box-shadow: 1px 0px 1px #3997D4,
               0px 1px 1px #B9FF00,
               2px 1px 1px #3997D4,
@@ -626,7 +638,7 @@ a.friend-blob:active {
 .ui-state-default {
   border: none;
 }
-.ui-accordion-header.tab-clicked, .ui-accordion-header:active {
+.ui-accordion-header.tab-clicked, .ui-accordion-header:active, #activities-search-tab.clickey, #itineraries-search-tab.clickey, #peeps-tab.clickey, #everyone-tab.clickey {
   text-indent: 12px;
   padding-top: 20px;
   padding-bottom: 0px;
@@ -666,7 +678,35 @@ a.friend-blob:active {
     -o-transform:translate(12px, 12px);
     transform:translate(12px, 12px)
 }
-
+#temp {
+   height: 60px;
+   width: 240px;
+   position: absolute;
+   z-index: 1000;
+}
+#users-temp {
+  height: 60px;
+  width: 240px;
+  position: absolute;
+  z-index: 1000;
+}
+#temp-2 {
+  height: 60px;
+  width: 240px;
+  margin-top: 65px;
+  position: absolute;
+  z-index: 1000;
+}
+#users-temp-2 {
+  height: 60px;
+  width: 240px;
+  position: absolute;
+  z-index: 1000;
+  margin-top: 135px;
+}
+#temp-2.expanded {
+  margin-top: 740px;
+}
 
 
 .ui-accordion-content {
@@ -692,6 +732,7 @@ input[type=submit].search-button {
 }
 .select-box-container {
   width: 300px;
+  
 /*  display: block;*/
 /*  float: left;*/
 }
