@@ -16,7 +16,7 @@
   <div class="map-box">
         <div>
           <label for="address">location</label>
-          <input id="address" type="text" placeholder="" value="">
+          <input id="address" type="text" placeholder="" value="" onblur="codeAddress()">
           <input type="button" value="place pin" onclick="codeAddress()" class="pin-button">
         </div>
         <div id="map_canvas" style="height:200px; width:400px; color: black; position: relative; background-color: rgb(229, 227, 223); overflow: hidden;"></div>
