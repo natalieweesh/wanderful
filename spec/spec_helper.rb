@@ -27,19 +27,19 @@ def sign_up(username)
   visit "/users/sign_up"
   fill_in "user_username", with: username
   fill_in "user_email", with: "#{username}@gmail.com"
-  fill_in "user_password", with: 'abcdef'
-  fill_in "user_password_confirmation", with: 'abcdef'
+  fill_in "user_password", with: 'password'
+  fill_in "user_password_confirmation", with: 'password'
   click_button 'sign up'
 end
 
 def sign_up_as_hello_world
-  sign_up("hello_world")
+  sign_up("helloworld")
 end
 
 def sign_in(username)
   visit "/users/sign_in"
   fill_in "user_login", with: username
-  fill_in "user_password", with: 'abcdef'
+  fill_in "user_password", with: 'password'
   click_button 'sign in'
 end
 

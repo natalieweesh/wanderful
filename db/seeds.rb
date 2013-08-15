@@ -40,35 +40,43 @@ a9.tag_ids = [4, 10, 12, 14]
 a10 = Activity.create(description: "biking in central park", venue: "central park", neighborhood: nil, user_id: 5, latitude: 40.7711329, longitude: -73.97418739999999, address: "Central Park, New York, NY, USA")
 a10.tag_ids = [2, 9, 12, 15]
 
-i1 = Itinerary.create(description: "a cheap day out", time_it_takes: 6, user_id: 1)
+i1 = Itinerary.new(description: "a cheap day out", time_it_takes: 6, user_id: 1)
 i1.activity_ids = [2, 4, 5, 6]
-i2 = Itinerary.create(description: "a mellow day", time_it_takes: 3, user_id: 2)
+i2 = Itinerary.new(description: "a mellow day", time_it_takes: 3, user_id: 2)
 i2.activity_ids = [2, 3, 8]
-i3 = Itinerary.create(description: "throwback thursday", time_it_takes: 4, user_id: 3)
+i3 = Itinerary.new(description: "throwback thursday", time_it_takes: 4, user_id: 3)
 i3.activity_ids = [1, 3, 9, 10]
-i4 = Itinerary.create(description: "foodie tour", time_it_takes: 2, user_id: 4)
+i4 = Itinerary.new(description: "foodie tour", time_it_takes: 2, user_id: 4)
 i4.activity_ids = [6, 7]
-i5 = Itinerary.create(description: "for morning people", time_it_takes: 1, user_id: 5)
+i5 = Itinerary.new(description: "for morning people", time_it_takes: 1, user_id: 5)
 i5.activity_ids = [5, 7]
-i6 = Itinerary.create(description: "when you're feeling restless", time_it_takes: 5, user_id: 1)
+i6 = Itinerary.new(description: "when you're feeling restless", time_it_takes: 5, user_id: 1)
 i6.activity_ids = [1, 5, 10]
-i7 = Itinerary.create(description: "a cheap night out", time_it_takes: 2, user_id: 2)
+i7 = Itinerary.new(description: "a cheap night out", time_it_takes: 2, user_id: 2)
 i7.activity_ids = [3, 4]
+i1.save
+i2.save
+i3.save
+i4.save
+i5.save
+i6.save
+i7.save
 
-Friendship.create(user_id: 1, friend_id: 2)
-Friendship.create(user_id: 1, friend_id: 3)
-Friendship.create(user_id: 1, friend_id: 4)
-Friendship.create(user_id: 2, friend_id: 1)
-Friendship.create(user_id: 2, friend_id: 3)
-Friendship.create(user_id: 3, friend_id: 5)
-Friendship.create(user_id: 4, friend_id: 2)
-Friendship.create(user_id: 4, friend_id: 5)
-Friendship.create(user_id: 5, friend_id: 1)
-Friendship.create(user_id: 5, friend_id: 2)
 
-Favorite.create(user_id: 1, itinerary_id: 1)
-Favorite.create(user_id: 2, itinerary_id: 3)
-Favorite.create(user_id: 3, itinerary_id: 6)
-Favorite.create(user_id: 4, itinerary_id: 5)
-Favorite.create(user_id: 5, itinerary_id: 4)
+Friendship.create!(user_id: 1, friend_id: 2)
+Friendship.create!(user_id: 1, friend_id: 3)
+Friendship.create!(user_id: 1, friend_id: 4)
+Friendship.create!(user_id: 2, friend_id: 1)
+Friendship.create!(user_id: 2, friend_id: 3)
+Friendship.create!(user_id: 3, friend_id: 5)
+Friendship.create!(user_id: 4, friend_id: 2)
+Friendship.create!(user_id: 4, friend_id: 5)
+Friendship.create!(user_id: 5, friend_id: 1)
+Friendship.create!(user_id: 5, friend_id: 2)
+
+Favorite.create!(user_id: 1, itinerary_id: 1)
+Favorite.create!(user_id: 2, itinerary_id: 3)
+Favorite.create!(user_id: 3, itinerary_id: 6)
+Favorite.create!(user_id: 4, itinerary_id: 5)
+Favorite.create!(user_id: 5, itinerary_id: 4)
 

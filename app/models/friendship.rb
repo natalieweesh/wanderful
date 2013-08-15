@@ -4,6 +4,6 @@ class Friendship < ActiveRecord::Base
   belongs_to :friend, class_name: "User", primary_key: :id
   belongs_to :user
   
-  validates_uniqueness_of :user_id, scope: :friend_id
+  validates_uniqueness_of :user_id, scope: [:friend_id, :user_id]
   
 end

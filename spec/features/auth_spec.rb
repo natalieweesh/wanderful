@@ -21,12 +21,12 @@ feature "Sign up" do
     page.should have_content 'sign up'
   end
 
-  # it "validates that the password is at least 6 characters long" do
-  #   fill_in "Username", with: 'hello_world'
-  #   fill_in "Password", with: 'short'
-  #   click_button 'Sign Up'
-  #   page.should have_content 'Sign Up'
-  # end
+  it "validates that the password is at least 8 characters long" do
+    fill_in "user_username", with: 'helloworld'
+    fill_in "user_password", with: 'short'
+    click_button 'sign up'
+    page.should have_content 'sign up'
+  end
 
   it "logs the user in and redirects them to home page on success" do
     sign_up_as_hello_world
@@ -66,7 +66,7 @@ feature "Sign in" do
 
   it "returns to sign in on failure" do
     visit "/users/sign_in"
-    fill_in "user_login", with: 'hello_world'
+    fill_in "user_login", with: 'helloworld'
     fill_in "user_password", with: 'hello'
     click_button "sign in"
 
@@ -74,15 +74,15 @@ feature "Sign in" do
     page.should have_content "sign in"
   end
 
-  it "takes a user to posts index on success" do
+  it "takes a user to home on success" do
     sign_up_as_hello_world
     # add button to sign out in application.html.erb layout
     click_button 'sign-out-button'
 
     # Sign in as newly created user
     visit "/users/sign_in"
-    fill_in "user_login", with: 'hello_world'
-    fill_in "user_password", with: 'abcdef'
+    fill_in "user_login", with: 'helloworld'
+    fill_in "user_password", with: 'password'
     click_button "sign in"
     page.should have_button "your profile"
   end
