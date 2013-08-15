@@ -25,6 +25,8 @@ gem 'jquery-ui-rails'
 
 gem 'devise'
 
+gem 'geocoder'
+
 group :development do
   gem "better_errors"
   gem 'sqlite3'

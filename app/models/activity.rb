@@ -14,7 +14,8 @@ class Activity < ActiveRecord::Base
 
   validates_associated :tags, presence: true, allow_blank: false
 
-
+  geocoded_by :address
+  after_validation :geocode          # auto-fetch coordinates
 
 
   belongs_to :user

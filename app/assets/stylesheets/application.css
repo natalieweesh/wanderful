@@ -1244,3 +1244,35 @@ input[type=submit]#delete-button {
   line-height: 10px;
   margin-top: -10px;
 }
+
+a.edit-link {
+  font-size: 14px;
+  background: #FF934B;
+  padding: 5px;
+  color: black;
+  
+  box-shadow: 1px 0px 1px #FFD21D,
+              0px 1px 1px #FF1919,
+              2px 1px 1px #FFD21D,
+              1px 2px 1px #FF1919,
+              3px 2px 1px #FFD21D,
+              2px 3px 1px #FF1919,
+              4px 3px 1px #FFD21D,
+              3px 4px 1px #FF1919,
+              5px 4px 1px #FFD21D
+              ;
+}
+a.edit-link:active {
+  box-shadow: 1px 0px 1px #FFD21D,
+              0px 1px 1px #FF1919,
+              2px 1px 1px #FFD21D,
+              1px 2px 1px #FF1919,
+              3px 2px 1px #FFD21D
+              ;
+
+  -webkit-transform:translate(20px, 20px);
+  -moz-transform:translate(20px, 20px);
+  -ms-transform:translate(20px, 20px);
+  -o-transform:translate(20px, 20px);
+  transform:translate(20px, 20px) 
+}
