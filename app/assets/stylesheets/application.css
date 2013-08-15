@@ -65,12 +65,19 @@ li {
   display: table;
   clear: both;
 }
+#logo-div {
+  position: relative;
+}
 #wanderful-logo {
-  width: 410px;
-  height: 75px;
-  background: url('wanderful-logo-small.png') no-repeat 0 0;
+  width: 420px;
+  height: 85px;
+  background: url('wanderful-b.png') no-repeat 0 0;
+
+  overflow: auto;
+  margin: 15px auto 0;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
   
-  margin-right: 10px;
 }
 
 .top-buttons {
@@ -1089,12 +1096,30 @@ input[type=button]#show-mini-form:active {
 .new-itinerary-form {
   width: 100%;
   position: relative;
-  margin-top: -500px;
+  margin-top: -600px;
   transition: all 1s ease-in-out;
 }
 .mini-form {
-  background: #222419;
-  padding: 20px;
+  background: #4F4D4F;
+  padding: 30px;
+  margin-bottom: 10px;
+  box-shadow: 1px 0px 1px #666566,
+              0px 1px 1px #242529,
+              2px 1px 1px #666566,
+              1px 2px 1px #242529,
+              3px 2px 1px #666566,
+              2px 3px 1px #242529,
+              4px 3px 1px #666566,
+              3px 4px 1px #242529,
+              5px 4px 1px #666566,
+              4px 5px 1px #242529,
+              6px 5px 1px #666566,
+              5px 6px 1px #242529,
+              7px 6px 1px #666566,
+              6px 7px 1px #242529,
+              8px 7px 1px #666566
+              ;
+  
 }
 #mini-form-container {
   visibility: hidden;
@@ -1189,12 +1214,20 @@ input[type=submit].add-comment-button:active {
 #close-mini-form {
   font-size: 16px;
   line-height: 10px;
+  font-family: 'Maven Pro', sans-serif;
   width: 30px;
   height: 30px;
-  margin-left: -30px;
-  background: black;
-  color: #222419;
+  margin-left: -35px;
+  margin-top: 5px;
+  background: #36D58A;
+  color: #4F4D4F;
   font-weight: bold;
+  box-shadow: 1px 0px 1px #3997D4,
+              0px 1px 1px #B8FF00,
+              2px 1px 1px #3997D4,
+              1px 2px 1px #B8FF00,
+              3px 2px 1px #3997D4
+              ;
 }
 #filter-section {
   float: right;
