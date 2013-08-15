@@ -65,6 +65,13 @@ li {
   display: table;
   clear: both;
 }
+#wanderful-logo {
+  width: 410px;
+  height: 75px;
+  background: url('wanderful-logo-small.png') no-repeat 0 0;
+  
+  margin-right: 10px;
+}
 
 .top-buttons {
   width: 240px;

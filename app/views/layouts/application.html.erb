@@ -17,23 +17,28 @@
   <%= yield :head %>
 </head>
 <body>
+
   <div class="container">
     
     <div class="nav-buttons">
+
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
+      <figure id="wanderful-logo"></figure>
+
       <div class="top-buttons group">
+        
         <%= button_to "home", root_url, class: "home-button" %>
 
 
-  <% if user_signed_in? %>
-    <%= button_to " sign \nout", destroy_user_session_url, method: :delete, class: "logout-button", id: "sign-out-button" %>
-  <% end %>
+        <% if user_signed_in? %>
+          <%= button_to " sign \nout", destroy_user_session_url, method: :delete, class: "logout-button", id: "sign-out-button" %>
+        <% end %>
+  
+      </div>
   
     </div>
-  
-  </div>
-<%= yield %>
+    <%= yield %>
 
   </div>
   
