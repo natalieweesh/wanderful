@@ -29,7 +29,7 @@ class Itinerary < ActiveRecord::Base
   end
   
   def self.search(params)
-    Itinerary.where('time_it_takes <= ?', params + 1)
+    Itinerary.where('time_it_takes <= ?', (params.to_i + 1))
   end
   
   def self.finer_search(activities_ids)
