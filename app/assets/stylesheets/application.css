@@ -74,12 +74,20 @@ li {
   background: url('wanderful-b.png') no-repeat 0 0;
 
   overflow: auto;
-  margin: 15px auto 0;
+  margin: 10px auto 0;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
   
 }
-
+.lefty #wanderful-logo {
+  position: relative;
+  display: block;
+  margin-bottom: 15px;
+}
+#sign-in-form {
+  display: block;
+  clear: both;
+}
 .top-buttons {
   width: 240px;
 }
@@ -1315,4 +1323,17 @@ a.edit-link:active {
   -ms-transform:translate(20px, 20px);
   -o-transform:translate(20px, 20px);
   transform:translate(20px, 20px) 
+}
+
+#reset-password-button {
+  font-size: 16px;
+}
+#sign-in-form > a {
+  color: #11C7D8;
+  padding: 5px;
+  font-size: 16px;
+}
+#new_user > a {
+ color: #11C7D8;
+ font-size: 16px;
 }

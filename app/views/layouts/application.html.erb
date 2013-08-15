@@ -4,7 +4,6 @@
   <title>Wanderful</title>
   <link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
 
@@ -18,10 +17,16 @@
 </head>
 <body>
   
+
+  
+  
   <div class="container">
-    <div id="logo-div">
+
+    <% if !user_signed_in? %>
+    <div id="logo-div" class="lefty">
       <figure id="wanderful-logo"></figure>
     </div>
+    <% end %>    
     
     <div class="nav-buttons">
 
@@ -29,17 +34,26 @@
       <p class="alert"><%= alert %></p>
 
       <div class="top-buttons group">
-        
-        <%= button_to "home", root_url, class: "home-button" %>
+
+
+
 
 
         <% if user_signed_in? %>
+          <%= button_to "home", root_url, class: "home-button" %>
           <%= button_to " sign \nout", destroy_user_session_url, method: :delete, class: "logout-button", id: "sign-out-button" %>
         <% end %>
   
       </div>
   
     </div>
+    
+    <% if user_signed_in? %>
+    <div id="logo-div">
+      <figure id="wanderful-logo"></figure>
+    </div>
+    <% end %>
+    
     <%= yield %>
 
   </div>
