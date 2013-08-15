@@ -1,5 +1,3 @@
-<%= stylesheet_link_tag "select2_overrides", media: "all" %>
-
 <section class="intro group">
 
 
@@ -8,7 +6,7 @@
 </section>
 <section class="buttons_group group">
   <button class="find_button">find <br>something <br>to <br>do</button>
-  <button class="share_button">share <br>something <br>to <br>do</button>
+  <button class="share_button" id="share-something">share <br>something <br>to <br>do</button>
 </section>
 
 <section class="share_something" style="display: none;">
@@ -78,10 +76,8 @@
             <input type="button" value="place pin" onclick="codeAddress()" class="pin-button">
           </div>
           <br><br>
-          <!-- <div style="display: block; position: relative; background:red; height: 200px; width: 300px"> -->
             <div id="map_canvas" style="height:200px; width:400px; color: black; position: fixed; background-color: rgb(229, 227, 223); overflow: hidden; z-index: 1000;"></div>
           </div>
-          <!-- </div> -->
           <br><br>
           
           <label>search radius: 
@@ -235,33 +231,13 @@ google.maps.visualRefresh = true;
         navigator.geolocation.getCurrentPosition(function(position) {
         
             geolocated = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            
-            // var infowindow = new google.maps.InfoWindow({
-//                 map: map,
-//                 position: geolocate,
-//                 content:
-//                     '<h1>Location pinned from HTML5 Geolocation!</h1>' +
-//                     '<h2>Latitude: ' + position.coords.latitude + '</h2>' +
-//                     '<h2>Longitude: ' + position.coords.longitude + '</h2>'
-//             });
-//             
+                       
             map.setCenter(geolocated);
             map2.setCenter(geolocated);
         });
     
       } 
     
-    
-    
-  
-    // google.maps.event.addListener(map, 'click', function() {
-//       infowindow.close();
-//       infowindow2.close();
-//     });
-    // map.setCenter(new google.maps.LatLng(40.730844, -74.005973));
-    // map2.setCenter(new google.maps.LatLng(40.730844, -74.005973));
-  
-  
   
     var input = (document.getElementById('address'));
     var input2 = (document.getElementById('address-2'));
@@ -298,7 +274,6 @@ google.maps.visualRefresh = true;
           input2.className = '';
           var place2 = autocomplete2.getPlace();
           if (!place2.geometry) {
-            // Inform the user that the place was not found and return.
             input2.className = 'notfound';
             return;
           }
@@ -329,19 +304,10 @@ google.maps.visualRefresh = true;
     }, function(responses) {
       if (responses && responses.length > 0) {
         marker.formatted_address = responses[0].formatted_address;
-        // console.log("geocodePosition response:")
-        // console.log(pos);
+
       } else {
         marker.formatted_address = 'Cannot determine address at this location.';
       }
-      // infowindow.setContent(marker.formatted_address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
-      // infowindow.open(map, marker);
-      // $('#address_box').val(map);
-      // console.log(marker.position);
-//       console.log("latitude");
-//                 console.log(marker.position.lb);
-//                 console.log("longitude");
-//                 console.log(marker.position.mb);
     });
   }
   function codeAddress() {
@@ -365,21 +331,7 @@ google.maps.visualRefresh = true;
           geocodePosition(marker.getPosition());
           $("#address").val('coordinates saved');
         });
-        google.maps.event.addListener(marker, 'click', function() {
-          if (marker.formatted_address) {
-            // infowindow.setContent(marker.formatted_address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
-          } else  {
-            // infowindow.setContent(address+"<br>coordinates: "+marker.getPosition().toUrlValue(6));
-          }
-          // infowindow.open(map, marker);
-          // $('#address_box').val(map);
-          // console.log(marker.position);
-          // console.log("latitude");
-          //           console.log(marker.position.lb);
-          //           console.log("longitude");
-          //           console.log(marker.position.mb)
-          
-        });
+        
         google.maps.event.trigger(marker, 'click');
       } else {
         if ($('#address').val() != "") {
@@ -399,33 +351,15 @@ google.maps.visualRefresh = true;
         if (marker2) {
           marker2.setMap(null);
           marker2 = new google.maps.Marker();
-          
-          // if (infowindow) infowindow.close();
-        }
+                  }
         marker2 = new google.maps.Marker({
           map: map2,
           draggable: true,
           position: results[0].geometry.location
         });
         google.maps.event.addListener(marker2, 'dragend', function() {
-          // updateMarkerStatus('Drag ended');
           geocodePosition2(marker2.getPosition());
           $("#address-2").val('coordinates saved');
-        });
-        google.maps.event.addListener(marker2, 'click', function() {
-          if (marker2.formatted_address) {
-            // infowindow2.setContent(marker2.formatted_address+"<br>coordinates: "+marker2.getPosition().toUrlValue(6));
-          } else  {
-            // infowindow2.setContent(address+"<br>coordinates: "+marker2.getPosition().toUrlValue(6));
-          }
-          // infowindow.open(map, marker);
-          // $('#address_box').val(map);
-          // console.log(marker2.position);
-          // console.log("latitude");
-          //           console.log(marker2.position.lb);
-          //           console.log("longitude");
-          //           console.log(marker2.position.mb)
-          
         });
         google.maps.event.trigger(marker2, 'click');
       } else {
@@ -442,19 +376,9 @@ google.maps.visualRefresh = true;
     }, function(responses) {
       if (responses && responses.length > 0) {
         marker2.formatted_address = responses[0].formatted_address;
-        // console.log("geocodePosition response:")
-        // console.log(pos);
       } else {
         marker2.formatted_address = 'Cannot determine address at this location.';
       }
-      // infowindow2.setContent(marker.formatted_address+"<br>coordinates: "+marker2.getPosition().toUrlValue(6));
-      // infowindow.open(map, marker);
-      // $('#address_box').val(map);
-      // console.log(marker2.position);
-      // console.log("latitude");
-      //           console.log(marker2.position.lb);
-      //           console.log("longitude");
-      //           console.log(marker2.position.mb)
     });
   }
   
@@ -471,7 +395,6 @@ google.maps.visualRefresh = true;
       position: location
     });
     google.maps.event.addListener(marker, 'dragend', function() {
-      // updateMarkerStatus('Drag ended');
       geocodePosition(marker.getPosition());
       $("#address").val('coordinates saved');
     });
@@ -497,7 +420,6 @@ google.maps.visualRefresh = true;
       position: location
     });
     google.maps.event.addListener(marker2, 'dragend', function() {
-      // updateMarkerStatus('Drag ended');
       geocodePosition2(marker2.getPosition());
       $("#address-2").val('coordinates saved');
     });
@@ -506,14 +428,11 @@ google.maps.visualRefresh = true;
 
     });
     google.maps.event.trigger(marker2, 'click');
-
-    
+ 
   }
 
 
   $('#activity-search-button').on("click", function(event) {
-    // console.log("MARKER.position");
-    // console.log(marker.position);
     if ($('#address').val() === "") {
       codeAddress();
     }
@@ -552,9 +471,6 @@ google.maps.event.addListener(map2, 'click', function(event) {
 
 
 
- <script type="application/json" id="all_neighbs">
-//   <%= @all_neighborhoods.to_json.html_safe %>
- </script>
 
 <script type="application/json" id="all_tags">
   <%= @tag_names.to_json.html_safe %>
