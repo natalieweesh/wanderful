@@ -382,7 +382,9 @@ google.maps.visualRefresh = true;
         });
         google.maps.event.trigger(marker, 'click');
       } else {
-        alert('Geocode was not successful for the following reason: ' + status);
+        if ($('#address').val() != "") {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
       }
     });
   }
@@ -427,7 +429,9 @@ google.maps.visualRefresh = true;
         });
         google.maps.event.trigger(marker2, 'click');
       } else {
-        alert('Geocode was not successful for the following reason: ' + status);
+        if ($('#address-2').val() != "") {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
       }
     });
   }
@@ -510,6 +514,9 @@ google.maps.visualRefresh = true;
   $('#activity-search-button').on("click", function(event) {
     // console.log("MARKER.position");
     // console.log(marker.position);
+    if ($('#address').val() === "") {
+      codeAddress();
+    }
     $('#address_box').val($("#address").val());
     $('#lat-box').val(marker.getPosition().lat());
     $('#long-box').val(marker.getPosition().lng());
@@ -518,6 +525,9 @@ google.maps.visualRefresh = true;
   })
   
   $('#itinerary-search-button').on("click", function(event) {
+    if ($('#address-2').val() === "") {
+      codeAddress2();
+    }
     $('#address_box-2').val($("#address-2").val());
     $('#lat-box-2').val(marker2.getPosition().lat());
     $('#long-box-2').val(marker2.getPosition().lng());

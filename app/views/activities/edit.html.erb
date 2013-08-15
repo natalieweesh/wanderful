@@ -21,7 +21,7 @@
   <div class="map-box">
     <div>
       <label for="address">location</label>
-      <input id="address" type="text" placeholder="" value="<%= @activity.address %>">
+      <input id="address" type="text" placeholder="" value="<%= @activity.address %>" onblur="codeAddress()">
       
       <input type="button" value="place pin" onclick="codeAddress()" class="pin-button">
     </div>
@@ -169,7 +169,9 @@ $('#select-box').val("<%= @activity.tags.map{|tag| tag.name}.join(",") %>");
         });
         google.maps.event.trigger(marker, 'click');
       } else {
-        alert('Geocode was not successful for the following reason: ' + status);
+        if ($('#address').val() != "") {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
       }
     });
   }
