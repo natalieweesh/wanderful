@@ -1360,6 +1360,7 @@ a.edit-link {
   background: #FF934B;
   padding: 5px;
   color: black;
+  margin: 20px 0;
   
   box-shadow: 1px 0px 1px #FFD21D,
               0px 1px 1px #FF1919,
@@ -1386,7 +1387,10 @@ a.edit-link:active {
   -o-transform:translate(20px, 20px);
   transform:translate(20px, 20px) 
 }
-
+#edit-button-padding {
+  padding: 20px 0;
+  float: right;
+}
 #reset-password-button {
   font-size: 16px;
 }

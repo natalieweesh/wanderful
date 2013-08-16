@@ -29,12 +29,14 @@
     <% if @activity.activity_photo_file_size %>
       <%= image_tag @activity.activity_photo.url(:big) %>
     <% end %>
-    
   </li>
 
 </ul>
+
 <% if @activity.user_id == current_user.id %>
+<div id="edit-button-padding">
   <%= link_to "edit this activity", edit_activity_url(@activity.id), class: "edit-link" %>
+</div>
 <% end %>
 
 <section class="comments-section">
