@@ -1,12 +1,13 @@
-<h1>add a new itinerary</h1>
+<h2 class="search-header">add a new itinerary</h2>
 
 
 
-
+<div class="mini-padded group">
 <div id='mini-form-container'>
-  <input type="button" id="close-mini-form" value="X">
 <!-- mini new activity form -->
 <form class="new-activity-form mini-form group" action="<%= activities_url %>" method="post" id="form-new-activity" data-remote="true">
+  <input type="button" id="close-mini-form" value="X">
+
   <h3>add an activity</h3>
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <label for="activity_description">description</label>
@@ -51,7 +52,7 @@
 </form>
 <!-- end mini add new activity form -->
 </div>
-
+</div> <!-- end div padded group -->
 
 
 <form class="new-itinerary-form group" action="<%= itineraries_url %>" method="post">

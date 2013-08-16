@@ -95,6 +95,7 @@ li {
   width: 90%;
   margin: 20px auto;
   position: relative;
+  padding-bottom: 20px;
   
 }
 .nav-buttons {
@@ -197,6 +198,11 @@ input[type=submit].unfavorite-button:hover {
   padding-top: 120px;
 }
 .padded {
+  display: block;
+  width: 415px;
+  margin: 0 auto;
+}
+.mini-padded {
   display: block;
   width: 415px;
   margin: 0 auto;
@@ -351,8 +357,9 @@ input[type=submit].half-big-button:active {
   padding-left: 32px;
 }
 
-.buttons_group {
+.buttons_group, .find_something {
   padding: 30px 0;
+  clear: left;
 }
 
 .activity-blob:hover {
@@ -378,6 +385,7 @@ input[type=submit].half-big-button:active {
 .new-itinerary-form {
   display: block;
   float: left;
+  padding-bottom: 20px;
 }
 input[type="checkbox"] {
   display: none;
@@ -1266,8 +1274,9 @@ input[type=submit].add-comment-button:active {
   font-family: 'Maven Pro', sans-serif;
   width: 30px;
   height: 30px;
-  margin-left: -35px;
-  margin-top: 5px;
+  margin-right: -22px;
+  margin-top: -26px;
+  float: right;
   background: #36D58A;
   color: #4F4D4F;
   font-weight: bold;
@@ -1381,4 +1390,15 @@ a.edit-link:active {
 .search-header {
   padding-top: 100px;
   padding-bottom: 20px;
+}
+#home-pad {
+  display: block;
+  max-width: 615px;
+  margin: 0 auto; 
+}
+.intro {
+  float: left;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  width: 500px;
 }
