@@ -1378,3 +1378,7 @@ a.edit-link:active {
  color: #11C7D8;
  font-size: 16px;
 }
+.search-header {
+  padding-top: 100px;
+  padding-bottom: 20px;
+}
