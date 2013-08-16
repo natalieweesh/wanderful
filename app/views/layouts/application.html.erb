@@ -22,11 +22,7 @@
   
   <div class="container">
 
-    <% if !user_signed_in? %>
-    <div id="logo-div" class="lefty">
-      <figure id="wanderful-logo"></figure>
-    </div>
-    <% end %>    
+
     
     <div class="nav-buttons">
 
@@ -48,11 +44,9 @@
   
     </div>
     
-    <% if user_signed_in? %>
     <div id="logo-div">
       <figure id="wanderful-logo"></figure>
     </div>
-    <% end %>
     
     <%= yield %>
 
