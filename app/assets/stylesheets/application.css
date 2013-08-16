@@ -381,7 +381,7 @@ button.find_button {
 
 .back_button {
   clear: both;
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 .go-button {
