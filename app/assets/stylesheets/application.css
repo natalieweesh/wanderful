@@ -357,11 +357,21 @@ input[type=submit].half-big-button:active {
   padding-left: 32px;
 }
 
-.buttons_group, .find_something {
+.buttons_group {
   padding: 30px 0;
   clear: left;
 }
+.find_something, .share_something {
 
+  clear: left;
+}
+
+button.find_button {
+  margin: 0 70px;
+}
+.query_group {
+  clear: left;
+}
 .activity-blob:hover {
   background: #222419;
   border: 5px solid #B8FF00;
@@ -691,6 +701,7 @@ a.friend-blob:active {
    width: 240px;
    position: absolute;
    z-index: 1000;
+   margin-top: 180px;
 }
 #users-temp {
   height: 60px;
@@ -701,7 +712,7 @@ a.friend-blob:active {
 #temp-2 {
   height: 60px;
   width: 240px;
-  margin-top: 65px;
+  margin-top: 245px;
   position: absolute;
   z-index: 1000;
 }
@@ -713,7 +724,7 @@ a.friend-blob:active {
   margin-top: 135px;
 }
 #temp-2.expanded {
-  margin-top: 740px;
+  margin-top: 920px;
 }
 
 
