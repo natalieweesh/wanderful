@@ -61,6 +61,11 @@ end
 gem "paperclip"
 gem "aws-sdk"
 
+gem "poltergeist"
+
+gem 'launchy'
+
+gem 'capybara-select2', group: :test
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

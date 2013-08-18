@@ -26,7 +26,7 @@
   
   
       <br><br>
-      <label style="display: block; float: left">tags &nbsp;</label>
+      <label for="select-box" style="display: block; float: left">tags</label>
   <div class="select-box-container" style="display: block; float: left;">
   <div id="select-box">
   </div>
@@ -253,11 +253,6 @@ google.maps.visualRefresh = true;
   //  
   // })
   
-  $('#tester-button').on("click", function(event){
-    event.preventDefault();
-    console.log(marker)
-        // alert(marker.formatted_address);
-  })
 
 
 $(document).ready(initialize());
@@ -297,7 +292,6 @@ google.maps.event.addListener(map, 'click', function(event) {
 
 <script>
   var allTags = JSON.parse($("#all_tags").html());
-  console.log(allTags);
   $("#select-box").select2({width: "element", tags: allTags});
   $("#select-box").on("change", function(event) {
     $("#tags").val($("#select-box").val());

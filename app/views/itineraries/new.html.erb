@@ -111,7 +111,7 @@
   </ul>
   </section>
   <br><br>
-  <input class="go-button" type="submit" value="go!">
+  <input class="go-button" type="submit" value="go!" id="new-itinerary-button">
 </form>
 
 
@@ -339,7 +339,6 @@ google.maps.event.addListener(map, 'click', function(event) {
 
 <script>
   var allTags = JSON.parse($("#all_tags").html());
-  console.log(allTags);
   $("#select-box").select2({width: "element", tags: allTags});
   $("#select-box").on("change", function(event) {
     $("#tags").val($("#select-box").val());
@@ -441,9 +440,9 @@ $('#select-box-2').on("change", function(event){
     // $('.activity-checkbox').css('margin', '10px');
     
     theTags = theTags.split(",").map(function(x){return x.replace(' ', '-')}).join(".");
-    console.log(theTags);
+
     var theClasses = ":not(" + "." + theTags + ")";
-    console.log(theClasses);
+
     
     $('#prepend-to-here .activity-checkbox' + theClasses).find(theClasses).css({'display': 'none'});
     $('#prepend-to-here .activity-checkbox' + theClasses).addClass('no-shadow');

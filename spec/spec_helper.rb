@@ -3,6 +3,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rails'
+require 'capybara/poltergeist'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -21,7 +22,14 @@ RSpec.configure do |config|
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
+
+  Capybara.javascript_driver = :poltergeist
+  Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new app, {js_errors: false, debug: true}
+  end
+    
 end
+
 
 def sign_up(username)
   visit "/users/sign_up"

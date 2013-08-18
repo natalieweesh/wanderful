@@ -88,9 +88,18 @@ li {
   display: block;
   clear: both;
 }
+.notice, .alert {
+  position: absolute;
+  margin-top: 115px;
+  text-align: center;
+  width: 100%;
+  color: yellow;
+}
 .top-buttons {
   width: 240px;
 }
+
+
 .container {  
   width: 90%;
   margin: 20px auto;
@@ -1414,7 +1423,16 @@ a.edit-link:active {
 }
 .intro {
   float: left;
-  margin-top: 20px;
+  margin-top: 5px;
   margin-bottom: 50px;
   width: 500px;
+}
+@media (max-width: 1000px) {
+  .top-buttons {
+    margin-top: 120px;
+  }
+  .intro {
+    margin-top: 120px;
+    width: 200px; 
+  }
 }
