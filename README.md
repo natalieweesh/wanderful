@@ -13,4 +13,4 @@ You can favorite itineraries and follow users to keep up to date on their activi
 * jQuery for animations and filtering activities by tags on new itinerary page
 * RSpec with Capybara and Poltergeist for testing
 
-[AppAcademy capstone project]
+[capstone]
